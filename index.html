@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hamdi & Yossr 💍</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lato:wght@300;400&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #fff0f5 0%, #ffe4f0 40%, #ffd6e8 100%);
+      font-family: 'Lato', sans-serif;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .particle {
+      position: fixed;
+      top: -60px;
+      font-size: 1.6rem;
+      animation: fall linear infinite;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.75;
+    }
+    @keyframes fall {
+      0%   { transform: translateY(0) rotate(0deg);   opacity: 0.8; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+
+    header {
+      text-align: center;
+      padding: 50px 20px 20px;
+      position: relative;
+      z-index: 10;
+    }
+    header h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(3rem, 8vw, 6rem);
+      color: #c0396b;
+      text-shadow: 2px 4px 12px rgba(192,57,107,0.25);
+      letter-spacing: 2px;
+    }
+    header p.subtitle {
+      font-size: 1rem;
+      color: #a0556e;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+
+    .divider {
+      text-align: center;
+      font-size: 1.8rem;
+      color: #e07fa0;
+      margin: 10px 0 30px;
+      letter-spacing: 8px;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      padding: 10px 20px 60px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.72);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,182,210,0.55);
+      border-radius: 28px;
+      padding: 40px 44px;
+      width: min(380px, 90vw);
+      text-align: center;
+      box-shadow: 0 12px 40px rgba(192,57,107,0.15);
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 55px rgba(192,57,107,0.25);
+    }
+
+    .card .icon { font-size: 3rem; margin-bottom: 10px; }
+
+    .card h2 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.4rem;
+      color: #c0396b;
+      margin-bottom: 4px;
+    }
+
+    .card .event-date {
+      font-size: 0.85rem;
+      color: #b07090;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+    .time-block {
+      background: linear-gradient(145deg, #ffd6e8, #ffb3d1);
+      border-radius: 16px;
+      padding: 14px 16px 10px;
+      min-width: 68px;
+      box-shadow: 0 4px 14px rgba(192,57,107,0.18);
+    }
+    .time-block .num {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #9b1c4a;
+      line-height: 1;
+      display: block;
+    }
+    .time-block .lbl {
+      font-size: 0.65rem;
+      color: #b05070;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-top: 4px;
+      display: block;
+    }
+
+    .progress-wrap {
+      background: rgba(255,182,210,0.35);
+      border-radius: 50px;
+      height: 8px;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+    .progress-bar {
+      height: 100%;
+      border-radius: 50px;
+      background: linear-gradient(90deg, #f48fb1, #c0396b);
+      transition: width 1s ease;
+    }
+
+    .card .days-left {
+      font-size: 0.82rem;
+      color: #a0556e;
+      letter-spacing: 1px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.6rem;
+      color: #c0396b;
+      position: relative;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+
+<div id="particles"></div>
+
+<header>
+  <h1>Hamdi &amp; Yossr</h1>
+  <p class="subtitle">Our Love Story ✨</p>
+</header>
+<div class="divider">🌸 ❤️ 🌸</div>
+
+<div class="cards">
+
+  <!-- Card 1 : Engagement -->
+  <div class="card" id="card-engagement">
+    <div class="icon">💍</div>
+    <h2>Engagement Day</h2>
+    <p class="event-date" id="eng-date-label"></p>
+    <div class="countdown" id="eng-countdown"></div>
+    <div class="progress-wrap">
+      <div class="progress-bar" id="eng-progress"></div>
+    </div>
+    <p class="days-left" id="eng-days"></p>
+  </div>
+
+  <!-- Card 2 : Wedding -->
+  <div class="card" id="card-wedding">
+    <div class="icon">👰🤵</div>
+    <h2>Wedding Day</h2>
+    <p class="event-date" id="wed-date-label"></p>
+    <div class="countdown" id="wed-countdown"></div>
+    <div class="progress-wrap">
+      <div class="progress-bar" id="wed-progress"></div>
+    </div>
+    <p class="days-left" id="wed-days"></p>
+  </div>
+
+</div>
+
+<footer>Forever & Always 💕</footer>
+
+<script>
+  /* ─── Fixed target dates ─── */
+  // Engagement : 11 July 2026  |  Wedding : 20 May 2027
+  const engTarget = new Date('2026-07-11T00:00:00');
+  const wedTarget = new Date('2027-05-20T00:00:00');
+
+  const ENG_TOTAL_DAYS = 103;
+  const WED_TOTAL_DAYS = 417;
+
+  const fmtDate = d => d.toLocaleDateString('en-GB',
+    { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+
+  document.getElementById('eng-date-label').textContent = fmtDate(engTarget);
+  document.getElementById('wed-date-label').textContent = fmtDate(wedTarget);
+
+  /* ─── Countdown renderer ─── */
+  function renderCountdown(target, cntId, progId, daysId, totalDays) {
+    const diff = target - Date.now();
+    if (diff <= 0) {
+      document.getElementById(cntId).innerHTML =
+        '<span style="font-size:1.4rem;color:#c0396b">🎉 Today is the Day!</span>';
+      document.getElementById(progId).style.width = '100%';
+      document.getElementById(daysId).textContent = '';
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000)  / 60000);
+    const s = Math.floor((diff % 60000)    / 1000);
+
+    const blocks = [
+      { num: d, lbl: 'Days'    },
+      { num: h, lbl: 'Hours'   },
+      { num: m, lbl: 'Minutes' },
+      { num: s, lbl: 'Seconds' },
+    ];
+
+    document.getElementById(cntId).innerHTML = blocks.map(b =>
+      `<div class="time-block">
+         <span class="num">${String(b.num).padStart(2,'0')}</span>
+         <span class="lbl">${b.lbl}</span>
+       </div>`
+    ).join('');
+
+    const pct = Math.max(0, Math.min(100, ((totalDays - d) / totalDays) * 100));
+    document.getElementById(progId).style.width = pct + '%';
+    document.getElementById(daysId).textContent =
+      `still ${d} day${d !== 1 ? 's' : ''} to go ✨`;
+  }
+
+  function tick() {
+    renderCountdown(engTarget, 'eng-countdown', 'eng-progress', 'eng-days', ENG_TOTAL_DAYS);
+    renderCountdown(wedTarget, 'wed-countdown', 'wed-progress', 'wed-days', WED_TOTAL_DAYS);
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  /* ─── Floating particles ─── */
+  const emojis = ['❤️','💕','🌸','🌺','💐','🌹','💗','🌼','✨','💖','🌷','💞'];
+  const container = document.getElementById('particles');
+
+  function spawnParticle() {
+    const el = document.createElement('div');
+    el.className = 'particle';
+    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    const size     = 1.2 + Math.random() * 1.8;
+    const duration = 6   + Math.random() * 10;
+    const delay    = Math.random() * 8;
+    el.style.cssText = `
+      left:${Math.random() * 100}vw;
+      font-size:${size}rem;
+      animation-duration:${duration}s;
+      animation-delay:${delay}s;
+    `;
+    container.appendChild(el);
+    setTimeout(() => el.remove(), (duration + delay) * 1000);
+  }
+
+  for (let i = 0; i < 22; i++) spawnParticle();
+  setInterval(spawnParticle, 700);
+</script>
+</body>
+</html>
+
