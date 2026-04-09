@@ -344,9 +344,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 10px;
-      flex-wrap: wrap;
-      gap: 6px;
+      margin-bottom: 4px;
     }
 
     .msg-label {
@@ -358,10 +356,14 @@
       letter-spacing: 1px;
     }
 
+    .msg-actions { display: flex; gap: 4px; }
+
     .msg-date-pin {
       font-size: 0.78rem;
       color: #b07090;
       letter-spacing: 1px;
+      margin-bottom: 10px;
+      display: block;
     }
 
     .msg-body {
@@ -584,6 +586,11 @@
 <script>
   const engTarget = new Date('2026-07-11T00:00:00');
   const wedTarget = new Date('2027-05-20T00:00:00');
+
+  function localToday() {
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  }
   const ENG_TOTAL_DAYS = 103;
   const WED_TOTAL_DAYS = 417;
 
@@ -706,12 +713,14 @@
       const imgHtml = m.image ? `<img class="msg-img" src="${m.image}" alt="memory photo" />` : '';
       return `
         <div class="msg-card" id="msg-card-${realIdx}">
-          <button class="msg-edit"   onclick="startEdit(${realIdx})"    title="Edit">✏️</button>
-          <button class="msg-delete" onclick="deleteMemory(${realIdx})" title="Delete">✕</button>
           <div class="msg-header">
             <span class="msg-label">${escapeHtml(label)}</span>
-            <span class="msg-date-pin">${pinned}</span>
+            <span class="msg-actions">
+              <button class="msg-edit"   onclick="startEdit(${realIdx})"    title="Edit">✏️</button>
+              <button class="msg-delete" onclick="deleteMemory(${realIdx})" title="Delete">🗑️</button>
+            </span>
           </div>
+          ${pinned ? `<span class="msg-date-pin">${pinned}</span>` : ''}
           ${imgHtml}
           ${m.text ? `<div class="msg-body">${escapeHtml(m.text)}</div>` : ''}
         </div>`;
@@ -771,7 +780,7 @@
     }
 
     document.getElementById('memo-text').value  = '';
-    document.getElementById('memo-date').value  = new Date().toISOString().split('T')[0];
+    document.getElementById('memo-date').value  = localToday();
     document.getElementById('memo-label').value = '';
     clearImage({ stopPropagation: () => {} });
 
@@ -783,7 +792,7 @@
   }
 
   renderMemories();
-  document.getElementById('memo-date').value = new Date().toISOString().split('T')[0];
+  document.getElementById('memo-date').value = localToday();
 
   /* ─── Floating particles ─── */
   const emojis = ['❤️','💕','🌸','🌺','💐','🌹','💗','🌼','✨','💖','🌷','💞'];
