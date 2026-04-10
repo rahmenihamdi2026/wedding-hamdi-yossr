@@ -1,817 +1,859 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hamdi & Yossr 💍</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lato:wght@300;400&display=swap');
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Hamdi & Yossr 💍</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lato:wght@300;400&display=swap');
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      min-height: 100vh;
-      background: linear-gradient(135deg, #fff0f5 0%, #ffe4f0 40%, #ffd6e8 100%);
-      font-family: 'Lato', sans-serif;
-      overflow-x: hidden;
-      position: relative;
-    }
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #fff0f5 0%, #ffe4f0 40%, #ffd6e8 100%);
+            font-family: 'Lato', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
 
-    .particle {
-      position: fixed;
-      top: -60px;
-      font-size: 1.6rem;
-      animation: fall linear infinite;
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.75;
-    }
-    @keyframes fall {
-      0%   { transform: translateY(0) rotate(0deg);   opacity: 0.8; }
-      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
-    }
+        .particle {
+            position: fixed;
+            top: -60px;
+            font-size: 1.6rem;
+            animation: fall linear infinite;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.75;
+        }
 
-    header {
-      text-align: center;
-      padding: 50px 20px 20px;
-      position: relative;
-      z-index: 10;
-    }
-    header h1 {
-      font-family: 'Great Vibes', cursive;
-      font-size: clamp(3rem, 8vw, 6rem);
-      color: #c0396b;
-      text-shadow: 2px 4px 12px rgba(192,57,107,0.25);
-      letter-spacing: 2px;
-    }
-    header p.subtitle {
-      font-size: 1rem;
-      color: #a0556e;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      margin-top: 6px;
-    }
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
 
-    .divider {
-      text-align: center;
-      font-size: 1.8rem;
-      color: #e07fa0;
-      margin: 10px 0 30px;
-      letter-spacing: 8px;
-    }
+        header {
+            text-align: center;
+            padding: 50px 20px 20px;
+            position: relative;
+            z-index: 10;
+        }
 
-    .cards {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 40px;
-      padding: 10px 20px 20px;
-      position: relative;
-      z-index: 10;
-    }
+        header h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(3rem, 8vw, 6rem);
+            color: #c0396b;
+            text-shadow: 2px 4px 12px rgba(192, 57, 107, 0.25);
+            letter-spacing: 2px;
+        }
 
-    .card {
-      background: rgba(255,255,255,0.72);
-      backdrop-filter: blur(14px);
-      border: 1px solid rgba(255,182,210,0.55);
-      border-radius: 28px;
-      padding: 40px 44px;
-      width: min(380px, 90vw);
-      text-align: center;
-      box-shadow: 0 12px 40px rgba(192,57,107,0.15);
-      transition: transform .3s ease, box-shadow .3s ease;
-    }
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 55px rgba(192,57,107,0.25);
-    }
+        header p.subtitle {
+            font-size: 1rem;
+            color: #a0556e;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-top: 6px;
+        }
 
-    .card .icon { font-size: 3rem; margin-bottom: 10px; }
+        .divider {
+            text-align: center;
+            font-size: 1.8rem;
+            color: #e07fa0;
+            margin: 10px 0 30px;
+            letter-spacing: 8px;
+        }
 
-    .card h2 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 2.4rem;
-      color: #c0396b;
-      margin-bottom: 4px;
-    }
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            padding: 10px 20px 20px;
+            position: relative;
+            z-index: 10;
+        }
 
-    .card .event-date {
-      font-size: 0.85rem;
-      color: #b07090;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
+        .card {
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 182, 210, 0.55);
+            border-radius: 28px;
+            padding: 40px 44px;
+            width: min(380px, 90vw);
+            text-align: center;
+            box-shadow: 0 12px 40px rgba(192, 57, 107, 0.15);
+            transition: transform .3s ease, box-shadow .3s ease;
+        }
 
-    .countdown {
-      display: flex;
-      justify-content: center;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-bottom: 22px;
-    }
-    .time-block {
-      background: linear-gradient(145deg, #ffd6e8, #ffb3d1);
-      border-radius: 16px;
-      padding: 14px 16px 10px;
-      min-width: 68px;
-      box-shadow: 0 4px 14px rgba(192,57,107,0.18);
-    }
-    .time-block .num {
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: #9b1c4a;
-      line-height: 1;
-      display: block;
-    }
-    .time-block .lbl {
-      font-size: 0.65rem;
-      color: #b05070;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-top: 4px;
-      display: block;
-    }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 55px rgba(192, 57, 107, 0.25);
+        }
 
-    .progress-wrap {
-      background: rgba(255,182,210,0.35);
-      border-radius: 50px;
-      height: 8px;
-      overflow: hidden;
-      margin-bottom: 14px;
-    }
-    .progress-bar {
-      height: 100%;
-      border-radius: 50px;
-      background: linear-gradient(90deg, #f48fb1, #c0396b);
-      transition: width 1s ease;
-    }
+        .card .icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
 
-    .card .days-left {
-      font-size: 0.82rem;
-      color: #a0556e;
-      letter-spacing: 1px;
-    }
+        .card h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.4rem;
+            color: #c0396b;
+            margin-bottom: 4px;
+        }
 
-    /* Arabic quotes section */
-    .quotes-section {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      padding: 0 20px 40px;
-      position: relative;
-      z-index: 10;
-    }
+        .card .event-date {
+            font-size: 0.85rem;
+            color: #b07090;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
 
-    .quotes-card {
-      background: rgba(255,255,255,0.60);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,182,210,0.45);
-      border-radius: 22px;
-      padding: 28px 36px;
-      width: min(380px, 90vw);
-      box-shadow: 0 8px 28px rgba(192,57,107,0.10);
-    }
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-bottom: 22px;
+        }
 
-    .quotes-card h3 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 1.6rem;
-      color: #c0396b;
-      text-align: center;
-      margin-bottom: 16px;
-    }
+        .time-block {
+            background: linear-gradient(145deg, #ffd6e8, #ffb3d1);
+            border-radius: 16px;
+            padding: 14px 16px 10px;
+            min-width: 68px;
+            box-shadow: 0 4px 14px rgba(192, 57, 107, 0.18);
+        }
 
-    .quote-item {
-      direction: rtl;
-      text-align: right;
-      font-size: 1rem;
-      color: #7a2545;
-      line-height: 1.8;
-      padding: 10px 14px;
-      margin-bottom: 10px;
-      background: rgba(255,182,210,0.18);
-      border-radius: 14px;
-      border-right: 3px solid #e07fa0;
-      font-family: 'Lato', 'Arial', sans-serif;
-    }
+        .time-block .num {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #9b1c4a;
+            line-height: 1;
+            display: block;
+        }
 
-    /* Memory Journal section */
-    .journal-section {
-      position: relative;
-      z-index: 10;
-      max-width: 820px;
-      margin: 0 auto 60px;
-      padding: 0 20px;
-    }
+        .time-block .lbl {
+            font-size: 0.65rem;
+            color: #b05070;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 4px;
+            display: block;
+        }
 
-    .journal-title {
-      text-align: center;
-      font-family: 'Great Vibes', cursive;
-      font-size: 2.8rem;
-      color: #c0396b;
-      margin-bottom: 8px;
-    }
+        .progress-wrap {
+            background: rgba(255, 182, 210, 0.35);
+            border-radius: 50px;
+            height: 8px;
+            overflow: hidden;
+            margin-bottom: 14px;
+        }
 
-    .journal-subtitle {
-      text-align: center;
-      font-size: 0.85rem;
-      color: #a0556e;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-bottom: 28px;
-    }
+        .progress-bar {
+            height: 100%;
+            border-radius: 50px;
+            background: linear-gradient(90deg, #f48fb1, #c0396b);
+            transition: width 1s ease;
+        }
 
-    .journal-form {
-      background: rgba(255,255,255,0.72);
-      backdrop-filter: blur(14px);
-      border: 1px solid rgba(255,182,210,0.55);
-      border-radius: 24px;
-      padding: 30px 34px;
-      box-shadow: 0 8px 30px rgba(192,57,107,0.12);
-      margin-bottom: 28px;
-    }
+        .card .days-left {
+            font-size: 0.82rem;
+            color: #a0556e;
+            letter-spacing: 1px;
+        }
 
-    .form-row {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-bottom: 14px;
-    }
+        .quotes-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 0 20px 40px;
+            position: relative;
+            z-index: 10;
+        }
 
-    .form-row input[type="date"] {
-      flex: 1;
-      min-width: 160px;
-      padding: 10px 14px;
-      border: 1px solid rgba(255,182,210,0.7);
-      border-radius: 12px;
-      background: rgba(255,240,248,0.8);
-      color: #7a2545;
-      font-size: 0.9rem;
-      outline: none;
-      transition: border-color .2s;
-    }
-    .form-row input[type="date"]:focus {
-      border-color: #c0396b;
-    }
+        .quotes-card {
+            background: rgba(255, 255, 255, 0.60);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 182, 210, 0.45);
+            border-radius: 22px;
+            padding: 28px 36px;
+            width: min(380px, 90vw);
+            box-shadow: 0 8px 28px rgba(192, 57, 107, 0.10);
+        }
 
-    .form-row input[type="text"] {
-      flex: 2;
-      min-width: 200px;
-      padding: 10px 14px;
-      border: 1px solid rgba(255,182,210,0.7);
-      border-radius: 12px;
-      background: rgba(255,240,248,0.8);
-      color: #7a2545;
-      font-size: 0.9rem;
-      outline: none;
-      transition: border-color .2s;
-    }
-    .form-row input[type="text"]:focus {
-      border-color: #c0396b;
-    }
+        .quotes-card h3 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.6rem;
+            color: #c0396b;
+            text-align: center;
+            margin-bottom: 16px;
+        }
 
-    .form-row input::placeholder { color: #c090a8; }
+        .quote-item {
+            direction: rtl;
+            text-align: right;
+            font-size: 1rem;
+            color: #7a2545;
+            line-height: 1.8;
+            padding: 10px 14px;
+            margin-bottom: 10px;
+            background: rgba(255, 182, 210, 0.18);
+            border-radius: 14px;
+            border-right: 3px solid #e07fa0;
+            font-family: 'Lato', 'Arial', sans-serif;
+        }
 
-    textarea#memo-text {
-      width: 100%;
-      min-height: 110px;
-      padding: 12px 16px;
-      border: 1px solid rgba(255,182,210,0.7);
-      border-radius: 14px;
-      background: rgba(255,240,248,0.8);
-      color: #7a2545;
-      font-size: 0.95rem;
-      font-family: 'Lato', sans-serif;
-      resize: vertical;
-      outline: none;
-      transition: border-color .2s;
-      margin-bottom: 14px;
-    }
-    textarea#memo-text:focus { border-color: #c0396b; }
-    textarea#memo-text::placeholder { color: #c090a8; }
+        .journal-section {
+            position: relative;
+            z-index: 10;
+            max-width: 820px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+        }
 
-    .save-btn {
-      display: block;
-      width: 100%;
-      padding: 13px;
-      background: linear-gradient(135deg, #e07fa0, #c0396b);
-      color: #fff;
-      border: none;
-      border-radius: 14px;
-      font-size: 1rem;
-      font-family: 'Lato', sans-serif;
-      letter-spacing: 1px;
-      cursor: pointer;
-      transition: opacity .2s, transform .15s;
-    }
-    .save-btn:hover  { opacity: 0.88; transform: translateY(-2px); }
-    .save-btn:active { transform: translateY(0); }
+        .journal-title {
+            text-align: center;
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.8rem;
+            color: #c0396b;
+            margin-bottom: 8px;
+        }
 
-    .toast {
-      display: none;
-      text-align: center;
-      margin-top: 10px;
-      font-size: 0.88rem;
-      color: #9b1c4a;
-      letter-spacing: 1px;
-    }
+        .journal-subtitle {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #a0556e;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+        }
 
-    /* Messages list */
-    .messages-list {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
+        .journal-form {
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 182, 210, 0.55);
+            border-radius: 24px;
+            padding: 30px 34px;
+            box-shadow: 0 8px 30px rgba(192, 57, 107, 0.12);
+            margin-bottom: 28px;
+        }
 
-    .msg-card {
-      background: rgba(255,255,255,0.72);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,182,210,0.50);
-      border-radius: 18px;
-      padding: 20px 24px;
-      box-shadow: 0 6px 20px rgba(192,57,107,0.09);
-      position: relative;
-      animation: fadeIn .4s ease;
-    }
+        .form-row {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-bottom: 14px;
+        }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+        .form-row input {
+            flex: 1;
+            min-width: 160px;
+            padding: 10px 14px;
+            border: 1px solid rgba(255, 182, 210, 0.7);
+            border-radius: 12px;
+            background: rgba(255, 240, 248, 0.8);
+            color: #7a2545;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color .2s;
+        }
 
-    .msg-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 4px;
-    }
+        .form-row input[type="text"] {
+            flex: 2;
+            min-width: 200px;
+        }
 
-    .msg-label {
-      font-size: 0.8rem;
-      color: #fff;
-      background: linear-gradient(135deg, #e07fa0, #c0396b);
-      border-radius: 8px;
-      padding: 3px 10px;
-      letter-spacing: 1px;
-    }
+        .form-row input:focus {
+            border-color: #c0396b;
+        }
 
-    .msg-actions { display: flex; gap: 4px; }
+        .form-row input::placeholder {
+            color: #c090a8;
+        }
 
-    .msg-date-pin {
-      font-size: 0.78rem;
-      color: #b07090;
-      letter-spacing: 1px;
-      margin-bottom: 10px;
-      display: block;
-    }
+        textarea#memo-text {
+            width: 100%;
+            min-height: 110px;
+            padding: 12px 16px;
+            border: 1px solid rgba(255, 182, 210, 0.7);
+            border-radius: 14px;
+            background: rgba(255, 240, 248, 0.8);
+            color: #7a2545;
+            font-size: 0.95rem;
+            font-family: 'Lato', sans-serif;
+            resize: vertical;
+            outline: none;
+            transition: border-color .2s;
+            margin-bottom: 14px;
+        }
 
-    .msg-body {
-      font-size: 0.96rem;
-      color: #5a1a35;
-      line-height: 1.7;
-      white-space: pre-wrap;
-    }
+        textarea#memo-text:focus {
+            border-color: #c0396b;
+        }
 
-    .img-upload-zone {
-      border: 2px dashed rgba(255,182,210,0.8);
-      border-radius: 14px;
-      padding: 18px;
-      text-align: center;
-      cursor: pointer;
-      margin-bottom: 14px;
-      transition: background .2s, border-color .2s;
-      background: rgba(255,240,248,0.5);
-      color: #c090a8;
-      font-size: 0.88rem;
-      letter-spacing: 1px;
-    }
-    .img-upload-zone:hover { background: rgba(255,210,230,0.5); border-color: #c0396b; }
-    .img-upload-zone.has-img { border-style: solid; border-color: #e07fa0; padding: 10px; }
+        textarea#memo-text::placeholder {
+            color: #c090a8;
+        }
 
-    #img-preview {
-      max-width: 100%;
-      max-height: 200px;
-      border-radius: 10px;
-      display: none;
-      margin: 0 auto;
-    }
+        .save-btn {
+            display: block;
+            width: 100%;
+            padding: 13px;
+            background: linear-gradient(135deg, #e07fa0, #c0396b);
+            color: #fff;
+            border: none;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-family: 'Lato', sans-serif;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: opacity .2s, transform .15s;
+        }
 
-    .img-clear-btn {
-      display: none;
-      margin: 6px auto 0;
-      background: none;
-      border: none;
-      color: #c0396b;
-      font-size: 0.8rem;
-      cursor: pointer;
-      letter-spacing: 1px;
-    }
+        .save-btn:hover {
+            opacity: 0.88;
+            transform: translateY(-2px);
+        }
 
-    .msg-img {
-      width: 100%;
-      border-radius: 12px;
-      margin-bottom: 12px;
-      max-height: 280px;
-      object-fit: cover;
-      display: block;
-    }
+        .save-btn:active {
+            transform: translateY(0);
+        }
 
-    .msg-delete {
-      position: absolute;
-      top: 14px;
-      right: 16px;
-      background: none;
-      border: none;
-      color: #d080a0;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: color .2s;
-    }
-    .msg-delete:hover { color: #c0396b; }
+        .toast {
+            display: none;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.88rem;
+            color: #9b1c4a;
+            letter-spacing: 1px;
+        }
 
-    .msg-edit {
-      position: absolute;
-      top: 14px;
-      right: 44px;
-      background: none;
-      border: none;
-      color: #d080a0;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: color .2s;
-    }
-    .msg-edit:hover { color: #c0396b; }
+        .messages-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
 
-    /* Inline edit form inside a card */
-    .edit-form { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
-    .edit-form input, .edit-form textarea {
-      padding: 8px 12px;
-      border: 1px solid rgba(255,182,210,0.7);
-      border-radius: 10px;
-      background: rgba(255,240,248,0.9);
-      color: #7a2545;
-      font-size: 0.9rem;
-      font-family: 'Lato', sans-serif;
-      outline: none;
-    }
-    .edit-form textarea { min-height: 80px; resize: vertical; }
-    .edit-actions { display: flex; gap: 10px; }
-    .btn-save-edit {
-      flex: 1; padding: 9px; background: linear-gradient(135deg, #e07fa0, #c0396b);
-      color: #fff; border: none; border-radius: 10px; cursor: pointer;
-      font-size: 0.88rem; font-family: 'Lato', sans-serif; transition: opacity .2s;
-    }
-    .btn-save-edit:hover { opacity: 0.85; }
-    .btn-cancel-edit {
-      flex: 1; padding: 9px; background: rgba(255,182,210,0.3);
-      color: #9b1c4a; border: 1px solid rgba(255,182,210,0.6);
-      border-radius: 10px; cursor: pointer; font-size: 0.88rem;
-      font-family: 'Lato', sans-serif; transition: background .2s;
-    }
-    .btn-cancel-edit:hover { background: rgba(255,182,210,0.5); }
+        .msg-card {
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 182, 210, 0.50);
+            border-radius: 18px;
+            padding: 20px 24px;
+            box-shadow: 0 6px 20px rgba(192, 57, 107, 0.09);
+            position: relative;
+            animation: fadeIn .4s ease;
+        }
 
-    .no-messages {
-      text-align: center;
-      color: #c090a8;
-      font-size: 0.9rem;
-      padding: 20px;
-      letter-spacing: 1px;
-    }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-family: 'Great Vibes', cursive;
-      font-size: 1.6rem;
-      color: #c0396b;
-      position: relative;
-      z-index: 10;
-    }
-  </style>
+        .msg-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .msg-label {
+            font-size: 0.8rem;
+            color: #fff;
+            background: linear-gradient(135deg, #e07fa0, #c0396b);
+            border-radius: 8px;
+            padding: 3px 10px;
+            letter-spacing: 1px;
+        }
+
+        .msg-actions {
+            display: flex;
+            gap: 4px;
+        }
+
+        .msg-date-pin {
+            font-size: 0.78rem;
+            color: #b07090;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .msg-body {
+            font-size: 0.96rem;
+            color: #5a1a35;
+            line-height: 1.7;
+            white-space: pre-wrap;
+        }
+
+        /* Upload zone — used both in add-form and in edit inline form */
+        .img-upload-zone {
+            border: 2px dashed rgba(255, 182, 210, 0.8);
+            border-radius: 14px;
+            padding: 18px;
+            text-align: center;
+            cursor: pointer;
+            margin-bottom: 14px;
+            transition: background .2s, border-color .2s;
+            background: rgba(255, 240, 248, 0.5);
+            color: #c090a8;
+            font-size: 0.88rem;
+            letter-spacing: 1px;
+        }
+
+        .img-upload-zone:hover {
+            background: rgba(255, 210, 230, 0.5);
+            border-color: #c0396b;
+        }
+
+        .img-upload-zone.has-img {
+            border-style: solid;
+            border-color: #e07fa0;
+            padding: 10px;
+        }
+
+        .zone-preview {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 10px;
+            display: none;
+            margin: 0 auto;
+        }
+
+        .zone-clear-btn {
+            display: none;
+            margin: 6px auto 0;
+            background: none;
+            border: none;
+            color: #c0396b;
+            font-size: 0.8rem;
+            cursor: pointer;
+            letter-spacing: 1px;
+        }
+
+        .msg-img {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            max-height: 280px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .msg-delete, .msg-edit {
+            background: none;
+            border: none;
+            color: #d080a0;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: color .2s;
+            padding: 2px 6px;
+        }
+
+        .msg-delete:hover, .msg-edit:hover {
+            color: #c0396b;
+        }
+
+        .edit-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .edit-form input, .edit-form textarea {
+            padding: 8px 12px;
+            border: 1px solid rgba(255, 182, 210, 0.7);
+            border-radius: 10px;
+            background: rgba(255, 240, 248, 0.9);
+            color: #7a2545;
+            font-size: 0.9rem;
+            font-family: 'Lato', sans-serif;
+            outline: none;
+        }
+
+        .edit-form textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .edit-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-save-edit {
+            flex: 1;
+            padding: 9px;
+            background: linear-gradient(135deg, #e07fa0, #c0396b);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.88rem;
+            font-family: 'Lato', sans-serif;
+            transition: opacity .2s;
+        }
+
+        .btn-save-edit:hover {
+            opacity: 0.85;
+        }
+
+        .btn-cancel-edit {
+            flex: 1;
+            padding: 9px;
+            background: rgba(255, 182, 210, 0.3);
+            color: #9b1c4a;
+            border: 1px solid rgba(255, 182, 210, 0.6);
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.88rem;
+            font-family: 'Lato', sans-serif;
+            transition: background .2s;
+        }
+
+        .btn-cancel-edit:hover {
+            background: rgba(255, 182, 210, 0.5);
+        }
+
+        .no-messages {
+            text-align: center;
+            color: #c090a8;
+            font-size: 0.9rem;
+            padding: 20px;
+            letter-spacing: 1px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.6rem;
+            color: #c0396b;
+            position: relative;
+            z-index: 10;
+        }
+    </style>
 </head>
 <body>
-
 <div id="particles"></div>
-
 <header>
-  <h1>Hamdi &amp; Yossr</h1>
-  <p class="subtitle">Our Love Story ✨</p>
+    <h1>Hamdi &amp; Yossr</h1>
+    <p class="subtitle">Our Love Story ✨</p>
 </header>
 <div class="divider">🌸 ❤️ 🌸</div>
-
 <div class="cards">
-
-  <!-- Card 1 : Engagement -->
-  <div class="card" id="card-engagement">
-    <div class="icon">💍</div>
-    <h2>Engagement Day</h2>
-    <p class="event-date" id="eng-date-label"></p>
-    <div class="countdown" id="eng-countdown"></div>
-    <div class="progress-wrap">
-      <div class="progress-bar" id="eng-progress"></div>
-    </div>
-    <p class="days-left" id="eng-days"></p>
-  </div>
-
-  <!-- Card 2 : Wedding -->
-  <div class="card" id="card-wedding">
-    <div class="icon">👰🤵</div>
-    <h2>Wedding Day</h2>
-    <p class="event-date" id="wed-date-label"></p>
-    <div class="countdown" id="wed-countdown"></div>
-    <div class="progress-wrap">
-      <div class="progress-bar" id="wed-progress"></div>
-    </div>
-    <p class="days-left" id="wed-days"></p>
-  </div>
-
-</div>
-
-<!-- Arabic quotes after countdown cards -->
-<div class="quotes-section" id="quotes-section" style="display:none;">
-
-  <!-- Engagement quotes -->
-  <div class="quotes-card" id="quotes-eng" style="display:none;">
-    <h3>💍 Engagement</h3>
-    <div class="quote-item">ربي كتبك لي وإنت أغلى رزق من عندو</div>
-    <div class="quote-item">اليوم بش نرى برشة حاجات في عينيك</div>
-    <div class="quote-item">نحس روحي نحلم وغدوة الحلمة تولي حقيقة</div>
-    <div class="quote-item">يا رب بارك في يومنا واجمع بيننا في الخير</div>
-    <div class="quote-item">ديمة حمدلله Yossr</div>
-  </div>
-
-  <!-- Wedding quotes -->
-  <div class="quotes-card" id="quotes-wed" style="display:none;">
-    <h3>👰🤵 Wedding</h3>
-    <div class="quote-item">حاضر بش تكون بجنبي ديمة</div>
-    <div class="quote-item">كل يوم نحبك أكثر وأكثر أما اللحظة هذي أكثر ملي تعدى برشة، ربي جمعنا Yossr</div>
-    <div class="quote-item">ربي يجعلك قرة عين ويرزقنا كان الخير وبنوتة كيفك</div>
-    <div class="quote-item">طو باش نخلص الكريدي هههه حمدلله في حلال كما وعدنا بعضنا</div>
-    <div class="quote-item">ربي ينعم علينا بخير وبركة إنت من قبل امنة أما من لحظة هذي الامانة بجنبي ديمة وفي عينيا ديمة</div>
-    <div class="quote-item">غدوة نصلي بيك</div>
-  </div>
-
-</div>
-
-<!-- Memory Journal -->
-<div class="journal-section">
-  <p class="journal-title">Our Memories 💌</p>
-  <p class="journal-subtitle">✨ Pin a moment — save it forever ✨</p>
-
-  <div class="journal-form">
-    <div class="form-row">
-      <input type="date" id="memo-date" title="Pin a date to this memory" />
-      <input type="text" id="memo-label" placeholder="Label (e.g. first date 🌹)" maxlength="60" />
-    </div>
-    <textarea id="memo-text" placeholder="Write your memory here… 💕"></textarea>
-
-    <div class="img-upload-zone" id="img-upload-zone" onclick="document.getElementById('memo-img').click()">
-      <span id="upload-hint">📷 Click to add a photo (optional)</span>
-      <img id="img-preview" src="" alt="preview" />
-      <button class="img-clear-btn" id="img-clear-btn" onclick="clearImage(event)">✕ Remove photo</button>
-    </div>
-    <input type="file" id="memo-img" accept="image/*" style="display:none" onchange="previewImage(event)" />
-    <button class="save-btn" onclick="saveMemory()">💾 Save Memory</button>
-    <p class="toast" id="save-toast">✅ Memory saved!</p>
-  </div>
-
-  <div class="messages-list" id="messages-list">
-    <!-- messages rendered by JS -->
-  </div>
-</div>
-
-<footer>Forever & Always 💕</footer>
-
-<script>
-  const engTarget = new Date('2026-07-11T00:00:00');
-  const wedTarget = new Date('2027-05-20T00:00:00');
-
-  function localToday() {
-    const d = new Date();
-    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
-  }
-  const ENG_TOTAL_DAYS = 103;
-  const WED_TOTAL_DAYS = 417;
-
-  const fmtDate = d => d.toLocaleDateString('en-GB',
-    { weekday:'long', year:'numeric', month:'long', day:'numeric' });
-
-  document.getElementById('eng-date-label').textContent = fmtDate(engTarget);
-  document.getElementById('wed-date-label').textContent = fmtDate(wedTarget);
-
-  function renderCountdown(target, cntId, progId, daysId, totalDays) {
-    const diff = target - Date.now();
-    if (diff <= 0) {
-      document.getElementById(cntId).innerHTML =
-        '<span style="font-size:1.4rem;color:#c0396b">🎉 Today is the Day!</span>';
-      document.getElementById(progId).style.width = '100%';
-      document.getElementById(daysId).textContent = '';
-      return true;
-    }
-    const d = Math.floor(diff / 86400000);
-    const h = Math.floor((diff % 86400000) / 3600000);
-    const m = Math.floor((diff % 3600000)  / 60000);
-    const s = Math.floor((diff % 60000)    / 1000);
-    document.getElementById(cntId).innerHTML =
-      [{ num:d,lbl:'Days'},{ num:h,lbl:'Hours'},{ num:m,lbl:'Minutes'},{ num:s,lbl:'Seconds'}]
-      .map(b => `<div class="time-block"><span class="num">${String(b.num).padStart(2,'0')}</span><span class="lbl">${b.lbl}</span></div>`)
-      .join('');
-    const pct = Math.max(0, Math.min(100, ((totalDays - d) / totalDays) * 100));
-    document.getElementById(progId).style.width = pct + '%';
-    document.getElementById(daysId).textContent = `still ${d} day${d!==1?'s':''} to go ✨`;
-    return false;
-  }
-
-  function tick() {
-    const engDone = renderCountdown(engTarget,'eng-countdown','eng-progress','eng-days',ENG_TOTAL_DAYS);
-    const wedDone = renderCountdown(wedTarget,'wed-countdown','wed-progress','wed-days',WED_TOTAL_DAYS);
-    document.getElementById('quotes-eng').style.display = engDone ? 'block' : 'none';
-    document.getElementById('quotes-wed').style.display = wedDone ? 'block' : 'none';
-    document.getElementById('quotes-section').style.display = (engDone||wedDone) ? 'flex' : 'none';
-  }
-  tick();
-  setInterval(tick, 1000);
-
-  /* ─── Memory Journal ─── */
-  const STORAGE_KEY = 'hamdi-yossr-memories';
-
-  function loadMemories() {
-    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
-    catch(e) { return []; }
-  }
-
-  function saveMemories(list) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
-  }
-
-  function escapeHtml(str) {
-    if (!str) return '';
-    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-
-  function compressImage(file, callback) {
-    const reader = new FileReader();
-    reader.onload = e => {
-      const img = new Image();
-      img.onload = () => {
-        const MAX = 800;
-        let w = img.width, h = img.height;
-        if (w > MAX) { h = Math.round(h * MAX / w); w = MAX; }
-        const canvas = document.createElement('canvas');
-        canvas.width = w; canvas.height = h;
-        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-        callback(canvas.toDataURL('image/jpeg', 0.75));
-      };
-      img.src = e.target.result;
-    };
-    reader.readAsDataURL(file);
-  }
-
-  function previewImage(e) {
-    const file = e.target.files[0];
-    if (!file) return;
-    compressImage(file, b64 => {
-      const preview  = document.getElementById('img-preview');
-      const hint     = document.getElementById('upload-hint');
-      const clearBtn = document.getElementById('img-clear-btn');
-      const zone     = document.getElementById('img-upload-zone');
-      preview.src = b64;
-      preview.style.display = 'block';
-      hint.style.display = 'none';
-      clearBtn.style.display = 'block';
-      zone.classList.add('has-img');
-      zone._b64 = b64;
-    });
-  }
-
-  function clearImage(e) {
-    e.stopPropagation();
-    const preview  = document.getElementById('img-preview');
-    const hint     = document.getElementById('upload-hint');
-    const clearBtn = document.getElementById('img-clear-btn');
-    const zone     = document.getElementById('img-upload-zone');
-    preview.src = ''; preview.style.display = 'none';
-    hint.style.display = '';
-    clearBtn.style.display = 'none';
-    zone.classList.remove('has-img');
-    zone._b64 = null;
-    document.getElementById('memo-img').value = '';
-  }
-
-  function renderMemories() {
-    const list = loadMemories();
-    const container = document.getElementById('messages-list');
-    if (list.length === 0) {
-      container.innerHTML = '<p class="no-messages">No memories saved yet… write your first one 💕</p>';
-      return;
-    }
-    container.innerHTML = list.slice().reverse().map((m, i) => {
-      const realIdx = list.length - 1 - i;
-      const pinned  = m.date  ? `📅 ${m.date}` : '';
-      const label   = m.label ? m.label : 'Memory';
-      const imgHtml = m.image ? `<img class="msg-img" src="${m.image}" alt="memory photo" />` : '';
-      return `
-        <div class="msg-card" id="msg-card-${realIdx}">
-          <div class="msg-header">
-            <span class="msg-label">${escapeHtml(label)}</span>
-            <span class="msg-actions">
-              <button class="msg-edit"   onclick="startEdit(${realIdx})"    title="Edit">✏️</button>
-              <button class="msg-delete" onclick="deleteMemory(${realIdx})" title="Delete">🗑️</button>
-            </span>
-          </div>
-          ${pinned ? `<span class="msg-date-pin">${pinned}</span>` : ''}
-          ${imgHtml}
-          ${m.text ? `<div class="msg-body">${escapeHtml(m.text)}</div>` : ''}
-        </div>`;
-    }).join('');
-  }
-
-  function startEdit(idx) {
-    const list = loadMemories();
-    const m    = list[idx];
-    const card = document.getElementById('msg-card-' + idx);
-    card.innerHTML = `
-      <div class="edit-form">
-        <input type="text" id="edit-label-${idx}" value="${escapeHtml(m.label||'')}" placeholder="Label" maxlength="60" />
-        <input type="date" id="edit-date-${idx}"  value="${m.date||''}" />
-        <textarea          id="edit-text-${idx}"  placeholder="Your memory…">${escapeHtml(m.text||'')}</textarea>
-        <div class="edit-actions">
-          <button class="btn-save-edit"   onclick="saveEdit(${idx})">💾 Save</button>
-          <button class="btn-cancel-edit" onclick="renderMemories()">Cancel</button>
+    <div class="card" id="card-engagement">
+        <div class="icon">💍</div>
+        <h2>Engagement Day</h2>
+        <p class="event-date" id="eng-date-label"></p>
+        <div class="countdown" id="eng-countdown"></div>
+        <div class="progress-wrap">
+            <div class="progress-bar" id="eng-progress"></div>
         </div>
-      </div>`;
-  }
+        <p class="days-left" id="eng-days"></p>
+    </div>
+    <div class="card" id="card-wedding">
+        <div class="icon">👰🤵</div>
+        <h2>Wedding Day</h2>
+        <p class="event-date" id="wed-date-label"></p>
+        <div class="countdown" id="wed-countdown"></div>
+        <div class="progress-wrap">
+            <div class="progress-bar" id="wed-progress"></div>
+        </div>
+        <p class="days-left" id="wed-days"></p>
+    </div>
+</div>
+<div class="quotes-section" id="quotes-section" style="display:none;">
+    <div class="quotes-card" id="quotes-eng" style="display:none;">
+        <h3>💍 Engagement</h3>
+        <div class="quote-item">ربي كتبك لي وإنت أغلى رزق من عندو</div>
+        <div class="quote-item">اليوم بش نرى برشة حاجات في عينيك</div>
+        <div class="quote-item">نحس روحي نحلم وغدوة الحلمة تولي حقيقة</div>
+        <div class="quote-item">يا رب بارك في يومنا واجمع بيننا في الخير</div>
+        <div class="quote-item">ديمة حمدلله Yossr</div>
+    </div>
+    <div class="quotes-card" id="quotes-wed" style="display:none;">
+        <h3>👰🤵 Wedding</h3>
+        <div class="quote-item">حاضر بش تكون بجنبي ديمة</div>
+        <div class="quote-item">كل يوم نحبك أكثر وأكثر أما اللحظة هذي أكثر ملي تعدى برشة، ربي جمعنا Yossr</div>
+        <div class="quote-item">ربي يجعلك قرة عين ويرزقنا كان الخير وبنوتة كيفك</div>
+        <div class="quote-item">طو باش نخلص الكريدي هههه حمدلله في حلال كما وعدنا بعضنا</div>
+        <div class="quote-item">ربي ينعم علينا بخير وبركة إنت من قبل امنة أما من لحظة هذي الامانة بجنبي ديمة وفي عينيا
+            ديمة
+        </div>
+        <div class="quote-item">غدوة نصلي بيك</div>
+    </div>
+</div>
+<div class="journal-section">
+    <p class="journal-title">Our Memories 💌</p>
+    <p class="journal-subtitle">✨ Pin a moment — save it forever ✨</p>
+    <div class="journal-form">
+        <div class="form-row">
+            <input type="date" id="memo-date"/>
+            <input type="text" id="memo-label" placeholder="Label (e.g. first date 🌹)" maxlength="60"/>
+        </div>
+        <textarea id="memo-text" placeholder="Write your memory here… 💕"></textarea>
+        <div class="img-upload-zone" id="add-upload-zone" onclick="document.getElementById('add-file-input').click()">
+            <span id="add-upload-hint">📷 Click to add a photo (optional)</span>
+            <img class="zone-preview" id="add-img-preview" src="" alt="preview"/>
+            <button class="zone-clear-btn" id="add-clear-btn" onclick="clearZone(event,'add')">✕ Remove photo</button>
+        </div>
+        <input type="file" id="add-file-input" accept="image/*" style="display:none"
+               onchange="handleZoneFile(event,'add')"/>
+        <button class="save-btn" onclick="saveMemory()">💾 Save Memory</button>
+        <p class="toast" id="save-toast">✅ Memory saved!</p>
+    </div>
+    <div class="messages-list" id="messages-list"></div>
+</div>
+<footer>Forever & Always 💕</footer>
+<script>
+    const engTarget = new Date('2026-07-11T00:00:00');
+    const wedTarget = new Date('2027-05-20T00:00:00');
+    const ENG_TOTAL_DAYS = 103;
+    const WED_TOTAL_DAYS = 417;
 
-  function saveEdit(idx) {
-    const list  = loadMemories();
-    const label = document.getElementById('edit-label-' + idx).value.trim();
-    const date  = document.getElementById('edit-date-'  + idx).value;
-    const text  = document.getElementById('edit-text-'  + idx).value.trim();
-    list[idx]   = { ...list[idx], label, date, text };
-    saveMemories(list);
-    renderMemories();
-  }
-
-  function deleteMemory(idx) {
-    if (!confirm('Delete this memory?')) return;
-    const list = loadMemories();
-    list.splice(idx, 1);
-    saveMemories(list);
-    renderMemories();
-  }
-
-  function saveMemory() {
-    const text  = document.getElementById('memo-text').value.trim();
-    const date  = document.getElementById('memo-date').value;
-    const label = document.getElementById('memo-label').value.trim();
-    const zone  = document.getElementById('img-upload-zone');
-    const image = zone._b64 || null;
-
-    if (!text && !image) { alert('Please write a memory or add a photo 💕'); return; }
-
-    const list = loadMemories();
-    try {
-      list.push({ text, date, label, image, savedAt: new Date().toISOString() });
-      saveMemories(list);
-    } catch(e) {
-      alert('Storage full! Try removing some old memories or use a smaller photo.');
-      return;
+    function localToday() {
+        const d = new Date();
+        return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
     }
 
-    document.getElementById('memo-text').value  = '';
-    document.getElementById('memo-date').value  = localToday();
-    document.getElementById('memo-label').value = '';
-    clearImage({ stopPropagation: () => {} });
+    const fmtDate = d => d.toLocaleDateString('en-GB', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+    document.getElementById('eng-date-label').textContent = fmtDate(engTarget);
+    document.getElementById('wed-date-label').textContent = fmtDate(wedTarget);
 
-    const toast = document.getElementById('save-toast');
-    toast.style.display = 'block';
-    setTimeout(() => { toast.style.display = 'none'; }, 2500);
+    function renderCountdown(target, cntId, progId, daysId, totalDays) {
+        const diff = target - Date.now();
+        if (diff <= 0) {
+            document.getElementById(cntId).innerHTML = '<span style="font-size:1.4rem;color:#c0396b">🎉 Today is the Day!</span>';
+            document.getElementById(progId).style.width = '100%';
+            document.getElementById(daysId).textContent = '';
+            return true;
+        }
+        const d = Math.floor(diff / 86400000), h = Math.floor((diff % 86400000) / 3600000),
+            m = Math.floor((diff % 3600000) / 60000), s = Math.floor((diff % 60000) / 1000);
+        document.getElementById(cntId).innerHTML = [{num: d, lbl: 'Days'}, {num: h, lbl: 'Hours'}, {
+            num: m,
+            lbl: 'Minutes'
+        }, {num: s, lbl: 'Seconds'}]
+            .map(b => '<div class="time-block"><span class="num">' + String(b.num).padStart(2, '0') + '</span><span class="lbl">' + b.lbl + '</span></div>').join('');
+        document.getElementById(progId).style.width = Math.max(0, Math.min(100, ((totalDays - d) / totalDays) * 100)) + '%';
+        document.getElementById(daysId).textContent = 'still ' + d + ' day' + (d !== 1 ? 's' : '') + ' to go ✨';
+        return false;
+    }
+
+    function tick() {
+        const e = renderCountdown(engTarget, 'eng-countdown', 'eng-progress', 'eng-days', ENG_TOTAL_DAYS);
+        const w = renderCountdown(wedTarget, 'wed-countdown', 'wed-progress', 'wed-days', WED_TOTAL_DAYS);
+        document.getElementById('quotes-eng').style.display = e ? 'block' : 'none';
+        document.getElementById('quotes-wed').style.display = w ? 'block' : 'none';
+        document.getElementById('quotes-section').style.display = (e || w) ? 'flex' : 'none';
+    }
+
+    tick();
+    setInterval(tick, 1000);
+
+    /* ─── Memories stored in-memory ─── */
+    let memories = [];
+
+    function escapeHtml(s) {
+        if (!s) return '';
+        return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function compressImage(file, cb) {
+        const r = new FileReader();
+        r.onload = e => {
+            const img = new Image();
+            img.onload = () => {
+                const MAX = 800;
+                let w = img.width, h = img.height;
+                if (w > MAX) {
+                    h = Math.round(h * MAX / w);
+                    w = MAX;
+                }
+                const c = document.createElement('canvas');
+                c.width = w;
+                c.height = h;
+                c.getContext('2d').drawImage(img, 0, 0, w, h);
+                cb(c.toDataURL('image/jpeg', 0.75));
+            };
+            img.src = e.target.result;
+        };
+        r.readAsDataURL(file);
+    }
+
+    /* Generic zone helpers — zoneId: 'add' or 'edit-N' */
+    function handleZoneFile(event, zoneId) {
+        const file = event.target.files[0];
+        if (!file) return;
+        compressImage(file, b64 => applyZoneImage(zoneId, b64));
+    }
+
+    function applyZoneImage(zoneId, b64) {
+        const zone = document.getElementById(zoneId + '-upload-zone');
+        const preview = document.getElementById(zoneId + '-img-preview');
+        const hint = document.getElementById(zoneId + '-upload-hint');
+        const clearBtn = document.getElementById(zoneId + '-clear-btn');
+        if (!zone) return;
+        zone._b64 = b64;
+        preview.src = b64;
+        preview.style.display = 'block';
+        hint.style.display = 'none';
+        clearBtn.style.display = 'block';
+        zone.classList.add('has-img');
+    }
+
+    function clearZone(e, zoneId) {
+        e.stopPropagation();
+        const zone = document.getElementById(zoneId + '-upload-zone');
+        const preview = document.getElementById(zoneId + '-img-preview');
+        const hint = document.getElementById(zoneId + '-upload-hint');
+        const clearBtn = document.getElementById(zoneId + '-clear-btn');
+        if (!zone) return;
+        zone._b64 = null;
+        preview.src = '';
+        preview.style.display = 'none';
+        hint.style.display = '';
+        clearBtn.style.display = 'none';
+        zone.classList.remove('has-img');
+        const fi = document.getElementById(zoneId + '-file-input') || document.getElementById('add-file-input');
+        if (fi) fi.value = '';
+    }
+
+    /* ─── Render ─── */
+    function renderMemories() {
+        const container = document.getElementById('messages-list');
+        if (memories.length === 0) {
+            container.innerHTML = '<p class="no-messages">No memories saved yet… write your first one 💕</p>';
+            return;
+        }
+        container.innerHTML = memories.slice().reverse().map((m, ri) => {
+            const idx = memories.length - 1 - ri;
+            const imgHtml = m.image ? '<img class="msg-img" src="' + m.image + '" alt="memory photo" />' : '';
+            return '<div class="msg-card" id="msg-card-' + idx + '">' +
+                '<div class="msg-header"><span class="msg-label">' + escapeHtml(m.label || 'Memory') + '</span>' +
+                '<span class="msg-actions"><button class="msg-edit" onclick="startEdit(' + idx + ')" title="Edit">✏️</button>' +
+                '<button class="msg-delete" onclick="deleteMemory(' + idx + ')" title="Delete">🗑️</button></span></div>' +
+                (m.date ? '<span class="msg-date-pin">📅 ' + m.date + '</span>' : '') +
+                imgHtml +
+                (m.text ? '<div class="msg-body">' + escapeHtml(m.text) + '</div>' : '') +
+                '</div>';
+        }).join('');
+    }
+
+    /* ─── Edit with image zone ─── */
+    function startEdit(idx) {
+        const m = memories[idx];
+        const card = document.getElementById('msg-card-' + idx);
+        const uid = 'edit-' + idx;
+        const hasImg = !!m.image;
+        card.innerHTML =
+            '<div class="edit-form">' +
+            '<input type="text" id="' + uid + '-label-input" value="' + escapeHtml(m.label || '') + '" placeholder="Label" maxlength="60" />' +
+            '<input type="date" id="' + uid + '-date-input" value="' + (m.date || '') + '" style="padding:8px 12px;border:1px solid rgba(255,182,210,0.7);border-radius:10px;background:rgba(255,240,248,0.9);color:#7a2545;font-size:0.9rem;font-family:Lato,sans-serif;outline:none;" />' +
+            '<textarea id="' + uid + '-text-input" placeholder="Your memory…">' + escapeHtml(m.text || '') + '</textarea>' +
+            '<div class="img-upload-zone' + (hasImg ? ' has-img' : '') + '" id="' + uid + '-upload-zone" onclick="document.getElementById(\'' + uid + '-file-input\').click()">' +
+            '<span id="' + uid + '-upload-hint"' + (hasImg ? ' style="display:none"' : '') + '>📷 Click to add a photo (optional)</span>' +
+            '<img class="zone-preview" id="' + uid + '-img-preview" src="' + (m.image || '') + '" alt="preview" style="display:' + (hasImg ? 'block' : 'none') + ';" />' +
+            '<button class="zone-clear-btn" id="' + uid + '-clear-btn" style="display:' + (hasImg ? 'block' : 'none') + ';" onclick="clearZone(event,\'' + uid + '\')">✕ Remove photo</button>' +
+            '</div>' +
+            '<input type="file" id="' + uid + '-file-input" accept="image/*" style="display:none" onchange="handleZoneFile(event,\'' + uid + '\')" />' +
+            '<div class="edit-actions">' +
+            '<button class="btn-save-edit" onclick="saveEdit(' + idx + ')">💾 Save</button>' +
+            '<button class="btn-cancel-edit" onclick="renderMemories()">Cancel</button>' +
+            '</div></div>';
+        // store current image in zone state
+        const zone = document.getElementById(uid + '-upload-zone');
+        zone._b64 = m.image || null;
+    }
+
+    function saveEdit(idx) {
+        const uid = 'edit-' + idx;
+        const label = document.getElementById(uid + '-label-input').value.trim();
+        const date = document.getElementById(uid + '-date-input').value;
+        const text = document.getElementById(uid + '-text-input').value.trim();
+        const zone = document.getElementById(uid + '-upload-zone');
+        const image = zone ? zone._b64 : memories[idx].image;
+        memories[idx] = {...memories[idx], label, date, text, image};
+        renderMemories();
+    }
+
+    function deleteMemory(idx) {
+        if (!confirm('Delete this memory?')) return;
+        memories.splice(idx, 1);
+        renderMemories();
+    }
+
+    function saveMemory() {
+        const text = document.getElementById('memo-text').value.trim();
+        const date = document.getElementById('memo-date').value;
+        const label = document.getElementById('memo-label').value.trim();
+        const zone = document.getElementById('add-upload-zone');
+        const image = zone._b64 || null;
+        if (!text && !image) {
+            alert('Please write a memory or add a photo 💕');
+            return;
+        }
+        memories.push({text, date, label, image, savedAt: new Date().toISOString()});
+        document.getElementById('memo-text').value = '';
+        document.getElementById('memo-date').value = localToday();
+        document.getElementById('memo-label').value = '';
+        clearZone({
+            stopPropagation: () => {
+            }
+        }, 'add');
+        const toast = document.getElementById('save-toast');
+        toast.style.display = 'block';
+        setTimeout(() => {
+            toast.style.display = 'none';
+        }, 2500);
+        renderMemories();
+    }
 
     renderMemories();
-  }
+    document.getElementById('memo-date').value = localToday();
 
-  renderMemories();
-  document.getElementById('memo-date').value = localToday();
+    /* ─── Particles ─── */
+    const emojis = ['❤️', '💕', '🌸', '🌺', '💐', '🌹', '💗', '🌼', '✨', '💖', '🌷', '💞'];
+    const pc = document.getElementById('particles');
 
-  /* ─── Floating particles ─── */
-  const emojis = ['❤️','💕','🌸','🌺','💐','🌹','💗','🌼','✨','💖','🌷','💞'];
-  const container = document.getElementById('particles');
+    function spawnParticle() {
+        const el = document.createElement('div');
+        el.className = 'particle';
+        el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        const sz = 1.2 + Math.random() * 1.8, dur = 6 + Math.random() * 10, del = Math.random() * 8;
+        el.style.cssText = 'left:' + Math.random() * 100 + 'vw;font-size:' + sz + 'rem;animation-duration:' + dur + 's;animation-delay:' + del + 's;';
+        pc.appendChild(el);
+        setTimeout(() => el.remove(), (dur + del) * 1000);
+    }
 
-  function spawnParticle() {
-    const el = document.createElement('div');
-    el.className = 'particle';
-    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-    const size     = 1.2 + Math.random() * 1.8;
-    const duration = 6   + Math.random() * 10;
-    const delay    = Math.random() * 8;
-    el.style.cssText = `left:${Math.random()*100}vw;font-size:${size}rem;animation-duration:${duration}s;animation-delay:${delay}s;`;
-    container.appendChild(el);
-    setTimeout(() => el.remove(), (duration + delay) * 1000);
-  }
-
-  for (let i = 0; i < 22; i++) spawnParticle();
-  setInterval(spawnParticle, 700);
+    for (let i = 0; i < 22; i++) spawnParticle();
+    setInterval(spawnParticle, 700);
 </script>
 </body>
 </html>
