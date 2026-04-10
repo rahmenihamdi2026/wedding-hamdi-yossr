@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Hamdi & Yossr 💍</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lato:wght@300;400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lato:wght@300;400&display=swap');
 
         * {
             margin: 0;
@@ -18,6 +18,7 @@
             background: linear-gradient(135deg, #fff0f5 0%, #ffe4f0 40%, #ffd6e8 100%);
             font-family: 'Lato', sans-serif;
             overflow-x: hidden;
+            position: relative;
         }
 
         .particle {
@@ -41,64 +42,9 @@
             }
         }
 
-        /* NAV */
-        .nav {
-            position: sticky;
-            top: 0;
-            z-index: 200;
-            background: rgba(255, 240, 248, 0.92);
-            backdrop-filter: blur(14px);
-            border-bottom: 1px solid rgba(255, 182, 210, 0.4);
-            display: flex;
-            justify-content: center;
-            gap: 6px;
-            padding: 10px 16px;
-            flex-wrap: wrap;
-        }
-
-        .nav-btn {
-            background: none;
-            border: 1px solid rgba(255, 182, 210, 0.6);
-            border-radius: 20px;
-            padding: 7px 16px;
-            font-size: 0.8rem;
-            color: #c0396b;
-            cursor: pointer;
-            font-family: 'Lato', sans-serif;
-            letter-spacing: 1px;
-            transition: all .2s;
-        }
-
-        .nav-btn:hover, .nav-btn.active {
-            background: linear-gradient(135deg, #e07fa0, #c0396b);
-            color: #fff;
-            border-color: transparent;
-        }
-
-        /* SECTIONS */
-        .section {
-            display: none;
-            animation: fadeIn .4s ease;
-        }
-
-        .section.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         header {
             text-align: center;
-            padding: 40px 20px 16px;
+            padding: 50px 20px 20px;
             position: relative;
             z-index: 10;
         }
@@ -123,16 +69,15 @@
             text-align: center;
             font-size: 1.8rem;
             color: #e07fa0;
-            margin: 8px 0 20px;
+            margin: 10px 0 30px;
             letter-spacing: 8px;
         }
 
-        /* CARDS */
         .cards {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 30px;
+            gap: 40px;
             padding: 10px 20px 20px;
             position: relative;
             z-index: 10;
@@ -143,11 +88,11 @@
             backdrop-filter: blur(14px);
             border: 1px solid rgba(255, 182, 210, 0.55);
             border-radius: 28px;
-            padding: 36px 40px;
+            padding: 40px 44px;
             width: min(380px, 90vw);
             text-align: center;
             box-shadow: 0 12px 40px rgba(192, 57, 107, 0.15);
-            transition: transform .3s, box-shadow .3s;
+            transition: transform .3s ease, box-shadow .3s ease;
         }
 
         .card:hover {
@@ -172,27 +117,27 @@
             color: #b07090;
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
         .countdown {
             display: flex;
             justify-content: center;
-            gap: 12px;
+            gap: 14px;
             flex-wrap: wrap;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
 
         .time-block {
             background: linear-gradient(145deg, #ffd6e8, #ffb3d1);
             border-radius: 16px;
-            padding: 12px 14px 8px;
-            min-width: 64px;
+            padding: 14px 16px 10px;
+            min-width: 68px;
             box-shadow: 0 4px 14px rgba(192, 57, 107, 0.18);
         }
 
         .time-block .num {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 700;
             color: #9b1c4a;
             line-height: 1;
@@ -200,7 +145,7 @@
         }
 
         .time-block .lbl {
-            font-size: 0.62rem;
+            font-size: 0.65rem;
             color: #b05070;
             text-transform: uppercase;
             letter-spacing: 1.5px;
@@ -213,7 +158,7 @@
             border-radius: 50px;
             height: 8px;
             overflow: hidden;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
         .progress-bar {
@@ -223,71 +168,18 @@
             transition: width 1s ease;
         }
 
-        .days-left {
+        .card .days-left {
             font-size: 0.82rem;
             color: #a0556e;
             letter-spacing: 1px;
         }
 
-        /* RELATION COUNTER */
-        .relation-card {
-            background: rgba(255, 255, 255, 0.72);
-            backdrop-filter: blur(14px);
-            border: 1px solid rgba(255, 182, 210, 0.55);
-            border-radius: 28px;
-            padding: 30px 36px;
-            width: min(500px, 90vw);
-            text-align: center;
-            box-shadow: 0 12px 40px rgba(192, 57, 107, 0.15);
-            margin: 0 auto 10px;
-        }
-
-        .relation-card h3 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2rem;
-            color: #c0396b;
-            margin-bottom: 16px;
-        }
-
-        .relation-stats {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        .stat-block {
-            background: linear-gradient(145deg, #ffd6e8, #ffb3d1);
-            border-radius: 16px;
-            padding: 14px 18px;
-            min-width: 80px;
-            box-shadow: 0 4px 14px rgba(192, 57, 107, 0.18);
-        }
-
-        .stat-block .snum {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #9b1c4a;
-            display: block;
-            line-height: 1;
-        }
-
-        .stat-block .slbl {
-            font-size: 0.62rem;
-            color: #b05070;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-top: 4px;
-            display: block;
-        }
-
-        /* QUOTES */
         .quotes-section {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
-            padding: 0 20px 30px;
+            padding: 0 20px 40px;
             position: relative;
             z-index: 10;
         }
@@ -323,22 +215,23 @@
             border-right: 3px solid #e07fa0;
         }
 
-        /* SECTION WRAPPER */
-        .section-wrap {
-            max-width: 860px;
-            margin: 0 auto;
-            padding: 20px 20px 60px;
+        .journal-section {
+            position: relative;
+            z-index: 10;
+            max-width: 820px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
         }
 
-        .section-title {
+        .journal-title {
             text-align: center;
             font-family: 'Great Vibes', cursive;
-            font-size: 2.6rem;
+            font-size: 2.8rem;
             color: #c0396b;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
 
-        .section-sub {
+        .journal-subtitle {
             text-align: center;
             font-size: 0.85rem;
             color: #a0556e;
@@ -347,27 +240,26 @@
             margin-bottom: 28px;
         }
 
-        /* MESSAGES — shared styles */
-        .form-box {
+        .journal-form {
             background: rgba(255, 255, 255, 0.72);
             backdrop-filter: blur(14px);
             border: 1px solid rgba(255, 182, 210, 0.55);
             border-radius: 24px;
-            padding: 28px 32px;
+            padding: 30px 34px;
             box-shadow: 0 8px 30px rgba(192, 57, 107, 0.12);
-            margin-bottom: 24px;
+            margin-bottom: 28px;
         }
 
         .form-row {
             display: flex;
-            gap: 12px;
+            gap: 14px;
             flex-wrap: wrap;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
         .form-row input {
             flex: 1;
-            min-width: 150px;
+            min-width: 160px;
             padding: 10px 14px;
             border: 1px solid rgba(255, 182, 210, 0.7);
             border-radius: 12px;
@@ -375,12 +267,13 @@
             color: #7a2545;
             font-size: 0.9rem;
             outline: none;
+            transition: border-color .2s;
             font-family: 'Lato', sans-serif;
         }
 
         .form-row input[type="text"] {
             flex: 2;
-            min-width: 180px;
+            min-width: 200px;
         }
 
         .form-row input:focus {
@@ -391,9 +284,9 @@
             color: #c090a8;
         }
 
-        textarea.memo-ta {
+        textarea#memo-text {
             width: 100%;
-            min-height: 100px;
+            min-height: 110px;
             padding: 12px 16px;
             border: 1px solid rgba(255, 182, 210, 0.7);
             border-radius: 14px;
@@ -403,21 +296,22 @@
             font-family: 'Lato', sans-serif;
             resize: vertical;
             outline: none;
-            margin-bottom: 12px;
+            transition: border-color .2s;
+            margin-bottom: 14px;
         }
 
-        textarea.memo-ta:focus {
+        textarea#memo-text:focus {
             border-color: #c0396b;
         }
 
-        textarea.memo-ta::placeholder {
+        textarea#memo-text::placeholder {
             color: #c090a8;
         }
 
-        .pink-btn {
+        .save-btn {
             display: block;
             width: 100%;
-            padding: 12px;
+            padding: 13px;
             background: linear-gradient(135deg, #e07fa0, #c0396b);
             color: #fff;
             border: none;
@@ -429,12 +323,16 @@
             transition: opacity .2s, transform .15s;
         }
 
-        .pink-btn:hover {
+        .save-btn:hover {
             opacity: 0.88;
             transform: translateY(-2px);
         }
 
-        .pink-btn:disabled {
+        .save-btn:active {
+            transform: translateY(0);
+        }
+
+        .save-btn:disabled {
             opacity: 0.6;
             cursor: not-allowed;
             transform: none;
@@ -443,60 +341,16 @@
         .toast {
             display: none;
             text-align: center;
-            margin-top: 8px;
+            margin-top: 10px;
             font-size: 0.88rem;
             color: #9b1c4a;
-            letter-spacing: 1px;
-        }
-
-        .img-upload-zone {
-            border: 2px dashed rgba(255, 182, 210, 0.8);
-            border-radius: 14px;
-            padding: 16px;
-            text-align: center;
-            cursor: pointer;
-            margin-bottom: 12px;
-            transition: background .2s, border-color .2s;
-            background: rgba(255, 240, 248, 0.5);
-            color: #c090a8;
-            font-size: 0.88rem;
-            letter-spacing: 1px;
-        }
-
-        .img-upload-zone:hover {
-            background: rgba(255, 210, 230, 0.5);
-            border-color: #c0396b;
-        }
-
-        .img-upload-zone.has-img {
-            border-style: solid;
-            border-color: #e07fa0;
-            padding: 8px;
-        }
-
-        .zone-preview {
-            max-width: 100%;
-            max-height: 180px;
-            border-radius: 10px;
-            display: none;
-            margin: 0 auto;
-        }
-
-        .zone-clear-btn {
-            display: none;
-            margin: 6px auto 0;
-            background: none;
-            border: none;
-            color: #c0396b;
-            font-size: 0.8rem;
-            cursor: pointer;
             letter-spacing: 1px;
         }
 
         .messages-list {
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 16px;
         }
 
         .msg-card {
@@ -504,10 +358,21 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 182, 210, 0.50);
             border-radius: 18px;
-            padding: 18px 22px;
+            padding: 20px 24px;
             box-shadow: 0 6px 20px rgba(192, 57, 107, 0.09);
             position: relative;
             animation: fadeIn .4s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .msg-header {
@@ -535,22 +400,66 @@
             font-size: 0.78rem;
             color: #b07090;
             letter-spacing: 1px;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             display: block;
         }
 
         .msg-body {
-            font-size: 0.95rem;
+            font-size: 0.96rem;
             color: #5a1a35;
             line-height: 1.7;
             white-space: pre-wrap;
         }
 
+        .img-upload-zone {
+            border: 2px dashed rgba(255, 182, 210, 0.8);
+            border-radius: 14px;
+            padding: 18px;
+            text-align: center;
+            cursor: pointer;
+            margin-bottom: 14px;
+            transition: background .2s, border-color .2s;
+            background: rgba(255, 240, 248, 0.5);
+            color: #c090a8;
+            font-size: 0.88rem;
+            letter-spacing: 1px;
+        }
+
+        .img-upload-zone:hover {
+            background: rgba(255, 210, 230, 0.5);
+            border-color: #c0396b;
+        }
+
+        .img-upload-zone.has-img {
+            border-style: solid;
+            border-color: #e07fa0;
+            padding: 10px;
+        }
+
+        .zone-preview {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 10px;
+            display: none;
+            margin: 0 auto;
+        }
+
+        .zone-clear-btn {
+            display: none;
+            margin: 6px auto 0;
+            background: none;
+            border: none;
+            color: #c0396b;
+            font-size: 0.8rem;
+            cursor: pointer;
+            letter-spacing: 1px;
+        }
+
         .msg-img {
             width: 100%;
             border-radius: 12px;
-            margin-bottom: 10px;
-            max-height: 260px;
+            margin-bottom: 12px;
+            max-height: 280px;
             object-fit: cover;
             display: block;
         }
@@ -607,6 +516,11 @@
             cursor: pointer;
             font-size: 0.88rem;
             font-family: 'Lato', sans-serif;
+            transition: opacity .2s;
+        }
+
+        .btn-save-edit:hover {
+            opacity: 0.85;
         }
 
         .btn-cancel-edit {
@@ -619,6 +533,11 @@
             cursor: pointer;
             font-size: 0.88rem;
             font-family: 'Lato', sans-serif;
+            transition: background .2s;
+        }
+
+        .btn-cancel-edit:hover {
+            background: rgba(255, 182, 210, 0.5);
         }
 
         .no-messages {
@@ -647,419 +566,16 @@
             }
         }
 
-        /* TIMELINE */
-        .timeline {
-            position: relative;
-            padding: 10px 0 20px;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(180deg, #f48fb1, #c0396b);
-            transform: translateX(-50%);
-        }
-
-        .tl-item {
-            display: flex;
-            justify-content: flex-end;
-            padding-right: calc(50% + 24px);
-            margin-bottom: 28px;
-            position: relative;
-        }
-
-        .tl-item:nth-child(even) {
-            justify-content: flex-start;
-            padding-right: 0;
-            padding-left: calc(50% + 24px);
-        }
-
-        .tl-dot {
-            position: absolute;
-            left: 50%;
-            top: 18px;
-            width: 14px;
-            height: 14px;
-            background: #c0396b;
-            border-radius: 50%;
-            transform: translateX(-50%);
-            border: 3px solid #fff;
-            box-shadow: 0 0 0 3px rgba(192, 57, 107, 0.3);
-        }
-
-        .tl-content {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 182, 210, 0.5);
-            border-radius: 18px;
-            padding: 16px 20px;
-            max-width: 320px;
-            box-shadow: 0 4px 16px rgba(192, 57, 107, 0.10);
-        }
-
-        .tl-content .tl-date {
-            font-size: 0.75rem;
-            color: #e07fa0;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 4px;
-        }
-
-        .tl-content .tl-title {
+        footer {
+            text-align: center;
+            padding: 20px;
             font-family: 'Great Vibes', cursive;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: #c0396b;
-            margin-bottom: 4px;
-        }
-
-        .tl-content .tl-desc {
-            font-size: 0.88rem;
-            color: #7a2545;
-            line-height: 1.6;
-        }
-
-        @media (max-width: 600px) {
-            .timeline::before {
-                left: 20px;
-            }
-
-            .tl-item, .tl-item:nth-child(even) {
-                justify-content: flex-start;
-                padding-right: 0;
-                padding-left: 44px;
-            }
-
-            .tl-dot {
-                left: 20px;
-            }
-
-            .tl-content {
-                max-width: 100%;
-            }
-        }
-
-        /* WISHES */
-        .wishes-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .wish-item {
-            background: rgba(255, 255, 255, 0.72);
-            border: 1px solid rgba(255, 182, 210, 0.5);
-            border-radius: 16px;
-            padding: 14px 18px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            box-shadow: 0 4px 14px rgba(192, 57, 107, 0.08);
-            transition: opacity .3s;
-        }
-
-        .wish-item.done {
-            opacity: 0.55;
-        }
-
-        .wish-check {
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
-            border: 2px solid #e07fa0;
-            background: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            flex-shrink: 0;
-            transition: background .2s, border-color .2s;
-        }
-
-        .wish-item.done .wish-check {
-            background: linear-gradient(135deg, #e07fa0, #c0396b);
-            border-color: transparent;
-            color: #fff;
-        }
-
-        .wish-text {
-            flex: 1;
-            font-size: 0.95rem;
-            color: #5a1a35;
-            line-height: 1.5;
-        }
-
-        .wish-item.done .wish-text {
-            text-decoration: line-through;
-            color: #b07090;
-        }
-
-        .wish-del {
-            background: none;
-            border: none;
-            color: #d080a0;
-            font-size: 0.9rem;
-            cursor: pointer;
-            padding: 2px 6px;
-        }
-
-        .wish-del:hover {
-            color: #c0396b;
-        }
-
-        .wish-add-row {
-            display: flex;
-            gap: 10px;
-            margin-top: 14px;
-        }
-
-        .wish-add-row input {
-            flex: 1;
-            padding: 10px 14px;
-            border: 1px solid rgba(255, 182, 210, 0.7);
-            border-radius: 12px;
-            background: rgba(255, 240, 248, 0.8);
-            color: #7a2545;
-            font-size: 0.9rem;
-            outline: none;
-            font-family: 'Lato', sans-serif;
-        }
-
-        .wish-add-row input:focus {
-            border-color: #c0396b;
-        }
-
-        .wish-add-row input::placeholder {
-            color: #c090a8;
-        }
-
-        .wish-add-btn {
-            padding: 10px 18px;
-            background: linear-gradient(135deg, #e07fa0, #c0396b);
-            color: #fff;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: opacity .2s;
-        }
-
-        .wish-add-btn:hover {
-            opacity: 0.85;
-        }
-
-        .wishes-progress {
-            margin-bottom: 20px;
-        }
-
-        .wp-label {
-            font-size: 0.82rem;
-            color: #a0556e;
-            letter-spacing: 1px;
-            margin-bottom: 6px;
-            text-align: center;
-        }
-
-        .wp-bar-wrap {
-            background: rgba(255, 182, 210, 0.3);
-            border-radius: 50px;
-            height: 10px;
-            overflow: hidden;
-        }
-
-        .wp-bar {
-            height: 100%;
-            border-radius: 50px;
-            background: linear-gradient(90deg, #f48fb1, #c0396b);
-            transition: width .6s ease;
-        }
-
-        /* SECRET MESSAGE */
-        .msg-secret-badge {
-            font-size: 0.72rem;
-            background: linear-gradient(135deg, #b05080, #7a2545);
-            color: #fff;
-            border-radius: 8px;
-            padding: 2px 8px;
-            letter-spacing: 1px;
-            margin-left: 6px;
-        }
-
-        .msg-to {
-            font-size: 0.78rem;
-            color: #b07090;
-            margin-bottom: 6px;
-        }
-
-        .msg-song {
-            font-size: 0.8rem;
-            color: #e07fa0;
-            margin-top: 6px;
-            font-style: italic;
-        }
-
-        .song-input-wrap {
             position: relative;
+            z-index: 10;
         }
 
-        .song-input-wrap input {
-            width: 100%;
-            padding: 10px 14px;
-            border: 1px solid rgba(255, 182, 210, 0.7);
-            border-radius: 12px;
-            background: rgba(255, 240, 248, 0.8);
-            color: #7a2545;
-            font-size: 0.9rem;
-            outline: none;
-            font-family: 'Lato', sans-serif;
-            margin-bottom: 12px;
-        }
-
-        .song-input-wrap input:focus {
-            border-color: #c0396b;
-        }
-
-        .sender-select {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 12px;
-        }
-
-        .sender-btn {
-            flex: 1;
-            padding: 9px;
-            border: 1px solid rgba(255, 182, 210, 0.6);
-            border-radius: 12px;
-            background: rgba(255, 240, 248, 0.6);
-            color: #c0396b;
-            font-size: 0.9rem;
-            font-family: 'Lato', sans-serif;
-            cursor: pointer;
-            transition: all .2s;
-            text-align: center;
-        }
-
-        .sender-btn.selected {
-            background: linear-gradient(135deg, #e07fa0, #c0396b);
-            color: #fff;
-            border-color: transparent;
-        }
-
-        /* SONG PLAYER */
-        .song-embed {
-            margin-top: 8px;
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        /* GALLERY */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns:repeat(auto-fill, minmax(180px, 1fr));
-            gap: 12px;
-            margin-top: 10px;
-        }
-
-        .gallery-img-wrap {
-            border-radius: 14px;
-            overflow: hidden;
-            aspect-ratio: 1;
-            box-shadow: 0 4px 14px rgba(192, 57, 107, 0.12);
-            cursor: pointer;
-            position: relative;
-            transition: transform .2s;
-        }
-
-        .gallery-img-wrap:hover {
-            transform: scale(1.03);
-        }
-
-        .gallery-img-wrap img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .gallery-img-wrap .g-del {
-            position: absolute;
-            top: 6px;
-            right: 6px;
-            background: rgba(255, 255, 255, 0.85);
-            border: none;
-            border-radius: 50%;
-            width: 26px;
-            height: 26px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            color: #c0396b;
-        }
-
-        .gallery-img-wrap:hover .g-del {
-            display: flex;
-        }
-
-        .gallery-upload {
-            border: 2px dashed rgba(255, 182, 210, 0.8);
-            border-radius: 14px;
-            aspect-ratio: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            background: rgba(255, 240, 248, 0.5);
-            color: #c090a8;
-            font-size: 0.85rem;
-            transition: background .2s, border-color .2s;
-            gap: 6px;
-        }
-
-        .gallery-upload:hover {
-            background: rgba(255, 210, 230, 0.5);
-            border-color: #c0396b;
-        }
-
-        /* LIGHTBOX */
-        .lightbox {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.85);
-            z-index: 999;
-            display: none;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .lightbox.open {
-            display: flex;
-        }
-
-        .lightbox img {
-            max-width: 90vw;
-            max-height: 90vh;
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 24px;
-            color: #fff;
-            font-size: 2rem;
-            cursor: pointer;
-            background: none;
-            border: none;
-        }
-
-        /* SYNC */
         .sync-indicator {
             position: fixed;
             bottom: 20px;
@@ -1078,16 +594,6 @@
         .sync-indicator.show {
             display: block;
         }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            font-family: 'Great Vibes', cursive;
-            font-size: 1.6rem;
-            color: #c0396b;
-            position: relative;
-            z-index: 10;
-        }
     </style>
 </head>
 <body>
@@ -1100,184 +606,78 @@
 </header>
 <div class="divider">🌸 ❤️ 🌸</div>
 
-<!-- NAV -->
-<nav class="nav">
-    <button class="nav-btn active" onclick="showSection('home')">🏠 Home</button>
-    <button class="nav-btn" onclick="showSection('memories')">💌 Memories</button>
-    <button class="nav-btn" onclick="showSection('messages')">💬 Messages</button>
-    <button class="nav-btn" onclick="showSection('gallery')">📸 Gallery</button>
-    <button class="nav-btn" onclick="showSection('wishes')">🎯 Wishes</button>
-    <button class="nav-btn" onclick="showSection('timeline')">💑 Our Story</button>
-</nav>
-
-<!-- ═══ HOME ═══ -->
-<div class="section active" id="sec-home">
-    <div class="cards">
-        <div class="card">
-            <div class="icon">💍</div>
-            <h2>Engagement Day</h2>
-            <p class="event-date" id="eng-date-label"></p>
-            <div class="countdown" id="eng-countdown"></div>
-            <div class="progress-wrap">
-                <div class="progress-bar" id="eng-progress"></div>
-            </div>
-            <p class="days-left" id="eng-days"></p>
+<div class="cards">
+    <div class="card">
+        <div class="icon">💍</div>
+        <h2>Engagement Day</h2>
+        <p class="event-date" id="eng-date-label"></p>
+        <div class="countdown" id="eng-countdown"></div>
+        <div class="progress-wrap">
+            <div class="progress-bar" id="eng-progress"></div>
         </div>
-        <div class="card">
-            <div class="icon">👰🤵</div>
-            <h2>Wedding Day</h2>
-            <p class="event-date" id="wed-date-label"></p>
-            <div class="countdown" id="wed-countdown"></div>
-            <div class="progress-wrap">
-                <div class="progress-bar" id="wed-progress"></div>
-            </div>
-            <p class="days-left" id="wed-days"></p>
-        </div>
+        <p class="days-left" id="eng-days"></p>
     </div>
-
-    <!-- Relation counter -->
-    <div style="display:flex;justify-content:center;padding:0 20px 20px;">
-        <div class="relation-card">
-            <h3>💕 Together Since</h3>
-            <p style="font-size:0.8rem;color:#b07090;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;">15
-                August 2025</p>
-            <div class="relation-stats">
-                <div class="stat-block"><span class="snum" id="rel-days">0</span><span class="slbl">Days</span></div>
-                <div class="stat-block"><span class="snum" id="rel-hours">0</span><span class="slbl">Hours</span></div>
-                <div class="stat-block"><span class="snum" id="rel-mins">0</span><span class="slbl">Minutes</span></div>
-            </div>
+    <div class="card">
+        <div class="icon">👰🤵</div>
+        <h2>Wedding Day</h2>
+        <p class="event-date" id="wed-date-label"></p>
+        <div class="countdown" id="wed-countdown"></div>
+        <div class="progress-wrap">
+            <div class="progress-bar" id="wed-progress"></div>
         </div>
-    </div>
-
-    <div class="quotes-section" id="quotes-section" style="display:none;">
-        <div class="quotes-card" id="quotes-eng" style="display:none;">
-            <h3>💍 Engagement</h3>
-            <div class="quote-item">ربي كتبك لي وإنت أغلى رزق من عندو</div>
-            <div class="quote-item">اليوم بش نرى برشة حاجات في عينيك</div>
-            <div class="quote-item">نحس روحي نحلم وغدوة الحلمة تولي حقيقة</div>
-            <div class="quote-item">يا رب بارك في يومنا واجمع بيننا في الخير</div>
-            <div class="quote-item">ديمة حمدلله Yossr</div>
-        </div>
-        <div class="quotes-card" id="quotes-wed" style="display:none;">
-            <h3>👰🤵 Wedding</h3>
-            <div class="quote-item">حاضر بش تكون بجنبي ديمة</div>
-            <div class="quote-item">كل يوم نحبك أكثر وأكثر أما اللحظة هذي أكثر ملي تعدى برشة، ربي جمعنا Yossr</div>
-            <div class="quote-item">ربي يجعلك قرة عين ويرزقنا كان الخير وبنوتة كيفك</div>
-            <div class="quote-item">طو باش نخلص الكريدي هههه حمدلله في حلال كما وعدنا بعضنا</div>
-            <div class="quote-item">ربي ينعم علينا بخير وبركة إنت من قبل امنة أما من لحظة هذي الامانة بجنبي ديمة وفي
-                عينيا ديمة
-            </div>
-            <div class="quote-item">غدوة نصلي بيك</div>
-        </div>
+        <p class="days-left" id="wed-days"></p>
     </div>
 </div>
 
-<!-- ═══ MEMORIES ═══ -->
-<div class="section" id="sec-memories">
-    <div class="section-wrap">
-        <p class="section-title">Our Memories 💌</p>
-        <p class="section-sub">✨ Pin a moment — save it forever ✨</p>
-        <div class="form-box">
-            <div class="form-row">
-                <input type="date" id="memo-date"/>
-                <input type="text" id="memo-label" placeholder="Label (e.g. first date 🌹)" maxlength="60"/>
-            </div>
-            <textarea class="memo-ta" id="memo-text" placeholder="Write your memory here… 💕"></textarea>
-            <div class="img-upload-zone" id="add-upload-zone"
-                 onclick="document.getElementById('add-file-input').click()">
-                <span id="add-upload-hint">📷 Click to add a photo (optional)</span>
-                <img class="zone-preview" id="add-img-preview" src="" alt="preview"/>
-                <button class="zone-clear-btn" id="add-clear-btn" onclick="clearZone(event,'add')">✕ Remove photo
-                </button>
-            </div>
-            <input type="file" id="add-file-input" accept="image/*" style="display:none"
-                   onchange="handleZoneFile(event,'add')"/>
-            <button class="pink-btn" id="save-mem-btn" onclick="saveMemory()">💾 Save Memory</button>
-            <p class="toast" id="save-toast">✅ Memory saved!</p>
+<div class="quotes-section" id="quotes-section" style="display:none;">
+    <div class="quotes-card" id="quotes-eng" style="display:none;">
+        <h3>💍 Engagement</h3>
+        <div class="quote-item">ربي كتبك لي وإنت أغلى رزق من عندو</div>
+        <div class="quote-item">اليوم بش نرى برشة حاجات في عينيك</div>
+        <div class="quote-item">نحس روحي نحلم وغدوة الحلمة تولي حقيقة</div>
+        <div class="quote-item">يا رب بارك في يومنا واجمع بيننا في الخير</div>
+        <div class="quote-item">ديمة حمدلله Yossr</div>
+    </div>
+    <div class="quotes-card" id="quotes-wed" style="display:none;">
+        <h3>👰🤵 Wedding</h3>
+        <div class="quote-item">حاضر بش تكون بجنبي ديمة</div>
+        <div class="quote-item">كل يوم نحبك أكثر وأكثر أما اللحظة هذي أكثر ملي تعدى برشة، ربي جمعنا Yossr</div>
+        <div class="quote-item">ربي يجعلك قرة عين ويرزقنا كان الخير وبنوتة كيفك</div>
+        <div class="quote-item">طو باش نخلص الكريدي هههه حمدلله في حلال كما وعدنا بعضنا</div>
+        <div class="quote-item">ربي ينعم علينا بخير وبركة إنت من قبل امنة أما من لحظة هذي الامانة بجنبي ديمة وفي عينيا
+            ديمة
         </div>
-        <div class="messages-list" id="messages-list"><p class="loading-msg">💕 Loading memories...</p></div>
+        <div class="quote-item">غدوة نصلي بيك</div>
     </div>
 </div>
 
-<!-- ═══ SECRET MESSAGES ═══ -->
-<div class="section" id="sec-messages">
-    <div class="section-wrap">
-        <p class="section-title">Secret Messages 💬</p>
-        <p class="section-sub">✨ Just between us ✨</p>
-        <div class="form-box">
-            <p style="font-size:0.85rem;color:#a0556e;margin-bottom:10px;letter-spacing:1px;">From :</p>
-            <div class="sender-select">
-                <div class="sender-btn selected" id="from-hamdi" onclick="selectSender('Hamdi')">🤵 Hamdi</div>
-                <div class="sender-btn" id="from-yossr" onclick="selectSender('Yossr')">👰 Yossr</div>
-            </div>
-            <textarea class="memo-ta" id="secret-text" placeholder="Write your secret message… 💕"
-                      style="min-height:80px;"></textarea>
-            <input type="text" id="secret-song" placeholder="🎵 Song name (optional)"
-                   style="width:100%;padding:10px 14px;border:1px solid rgba(255,182,210,0.7);border-radius:12px;background:rgba(255,240,248,0.8);color:#7a2545;font-size:0.9rem;outline:none;font-family:'Lato',sans-serif;margin-bottom:12px;"/>
-            <button class="pink-btn" id="save-secret-btn" onclick="saveSecret()">💌 Send Message</button>
-            <p class="toast" id="secret-toast">✅ Message sent!</p>
+<div class="journal-section">
+    <p class="journal-title">Our Memories 💌</p>
+    <p class="journal-subtitle">✨ Pin a moment — save it forever ✨</p>
+    <div class="journal-form">
+        <div class="form-row">
+            <input type="date" id="memo-date"/>
+            <input type="text" id="memo-label" placeholder="Label (e.g. first date 🌹)" maxlength="60"/>
         </div>
-        <div class="messages-list" id="secrets-list"><p class="loading-msg">💕 Loading messages...</p></div>
-    </div>
-</div>
-
-<!-- ═══ GALLERY ═══ -->
-<div class="section" id="sec-gallery">
-    <div class="section-wrap">
-        <p class="section-title">Our Gallery 📸</p>
-        <p class="section-sub">✨ Our beautiful moments ✨</p>
-        <div class="gallery-grid" id="gallery-grid">
-            <div class="gallery-upload" onclick="document.getElementById('gallery-file').click()">
-                <span style="font-size:2rem;">📷</span>
-                <span>Add photo</span>
-            </div>
+        <textarea id="memo-text" placeholder="Write your memory here… 💕"></textarea>
+        <div class="img-upload-zone" id="add-upload-zone" onclick="document.getElementById('add-file-input').click()">
+            <span id="add-upload-hint">📷 Click to add a photo (optional)</span>
+            <img class="zone-preview" id="add-img-preview" src="" alt="preview"/>
+            <button class="zone-clear-btn" id="add-clear-btn" onclick="clearZone(event,'add')">✕ Remove photo</button>
         </div>
-        <input type="file" id="gallery-file" accept="image/*" multiple style="display:none"
-               onchange="addGalleryPhotos(event)"/>
+        <input type="file" id="add-file-input" accept="image/*" style="display:none"
+               onchange="handleZoneFile(event,'add')"/>
+        <button class="save-btn" id="save-btn" onclick="saveMemory()">💾 Save Memory</button>
+        <p class="toast" id="save-toast">✅ Memory saved!</p>
     </div>
-</div>
-
-<!-- ═══ WISHES ═══ -->
-<div class="section" id="sec-wishes">
-    <div class="section-wrap">
-        <p class="section-title">Our Wishes 🎯</p>
-        <p class="section-sub">✨ Things to do together ✨</p>
-        <div class="form-box">
-            <div class="wishes-progress">
-                <p class="wp-label" id="wp-label">0 / 0 completed 🌸</p>
-                <div class="wp-bar-wrap">
-                    <div class="wp-bar" id="wp-bar" style="width:0%"></div>
-                </div>
-            </div>
-            <div class="wishes-list" id="wishes-list"><p class="loading-msg">💕 Loading wishes...</p></div>
-            <div class="wish-add-row">
-                <input type="text" id="wish-input" placeholder="Add a wish… 🌹" maxlength="100"
-                       onkeydown="if(event.key==='Enter')addWish()"/>
-                <button class="wish-add-btn" onclick="addWish()">+</button>
-            </div>
-        </div>
+    <div class="messages-list" id="messages-list">
+        <p class="loading-msg">💕 Loading memories...</p>
     </div>
-</div>
-
-<!-- ═══ TIMELINE ═══ -->
-<div class="section" id="sec-timeline">
-    <div class="section-wrap">
-        <p class="section-title">Our Story 💑</p>
-        <p class="section-sub">✨ Every step of our journey ✨</p>
-        <div class="timeline" id="timeline">
-            <!-- rendered by JS -->
-        </div>
-    </div>
-</div>
-
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-    <img id="lightbox-img" src="" alt="memory"/>
 </div>
 
 <footer>Forever & Always 💕</footer>
 
+<!-- Firebase SDK -->
 <script type="module">
     import {initializeApp} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
     import {
@@ -1300,46 +700,15 @@
         messagingSenderId: "850872869440",
         appId: "1:850872869440:web:5aedd5c8b1dc7e9d4f35a5"
     };
+
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
+    const memoriesRef = collection(db, "memories");
 
-    /* ─── TIMELINE DATA ─── */
-    const timelineEvents = [
-        {date: "15 Aug 2025", title: "We Met 💕", desc: "The day our story began ✨", emoji: "🌹"},
-        {date: "11 Jul 2026", title: "Engagement 💍", desc: "The day Hamdi proposed to Yossr", emoji: "💍"},
-        {date: "20 May 2027", title: "Wedding Day 👰🤵", desc: "Forever begins here", emoji: "🎊"}
-    ];
-
-    function renderTimeline() {
-        const tl = document.getElementById('timeline');
-        tl.innerHTML = timelineEvents.map((e, i) =>
-            `<div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-content">
-        <div class="tl-date">${e.date}</div>
-        <div class="tl-title">${e.emoji} ${e.title}</div>
-        <div class="tl-desc">${e.desc}</div>
-      </div>
-    </div>`
-        ).join('');
-    }
-
-    renderTimeline();
-
-    /* ─── SECTION NAV ─── */
-    window.showSection = function (name) {
-        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById('sec-' + name).classList.add('active');
-        event.target.classList.add('active');
-        window.scrollTo({top: 0, behavior: 'smooth'});
-    };
-
-    /* ─── COUNTDOWN ─── */
+    /* ─── Countdown ─── */
     const engTarget = new Date('2026-07-11T00:00:00');
     const wedTarget = new Date('2027-05-20T00:00:00');
-    const relStart = new Date('2025-08-15T00:00:00');
-    const ENG_TOTAL = 103, WED_TOTAL = 417;
+    const ENG_TOTAL_DAYS = 103, WED_TOTAL_DAYS = 417;
     const fmtDate = d => d.toLocaleDateString('en-GB', {
         weekday: 'long',
         year: 'numeric',
@@ -1349,7 +718,7 @@
     document.getElementById('eng-date-label').textContent = fmtDate(engTarget);
     document.getElementById('wed-date-label').textContent = fmtDate(wedTarget);
 
-    function renderCountdown(target, cntId, progId, daysId, total) {
+    function renderCountdown(target, cntId, progId, daysId, totalDays) {
         const diff = target - Date.now();
         if (diff <= 0) {
             document.getElementById(cntId).innerHTML = '<span style="font-size:1.4rem;color:#c0396b">🎉 Today is the Day!</span>';
@@ -1364,28 +733,17 @@
             lbl: 'Minutes'
         }, {num: s, lbl: 'Seconds'}]
             .map(b => '<div class="time-block"><span class="num">' + String(b.num).padStart(2, '0') + '</span><span class="lbl">' + b.lbl + '</span></div>').join('');
-        document.getElementById(progId).style.width = Math.max(0, Math.min(100, ((total - d) / total) * 100)) + '%';
+        document.getElementById(progId).style.width = Math.max(0, Math.min(100, ((totalDays - d) / totalDays) * 100)) + '%';
         document.getElementById(daysId).textContent = 'still ' + d + ' day' + (d !== 1 ? 's' : '') + ' to go ✨';
         return false;
     }
 
-    function updateRelation() {
-        const diff = Date.now() - relStart;
-        const d = Math.floor(diff / 86400000);
-        const h = Math.floor((diff % 86400000) / 3600000);
-        const m = Math.floor((diff % 3600000) / 60000);
-        document.getElementById('rel-days').textContent = d;
-        document.getElementById('rel-hours').textContent = h;
-        document.getElementById('rel-mins').textContent = m;
-    }
-
     function tick() {
-        const e = renderCountdown(engTarget, 'eng-countdown', 'eng-progress', 'eng-days', ENG_TOTAL);
-        const w = renderCountdown(wedTarget, 'wed-countdown', 'wed-progress', 'wed-days', WED_TOTAL);
+        const e = renderCountdown(engTarget, 'eng-countdown', 'eng-progress', 'eng-days', ENG_TOTAL_DAYS);
+        const w = renderCountdown(wedTarget, 'wed-countdown', 'wed-progress', 'wed-days', WED_TOTAL_DAYS);
         document.getElementById('quotes-eng').style.display = e ? 'block' : 'none';
         document.getElementById('quotes-wed').style.display = w ? 'block' : 'none';
         document.getElementById('quotes-section').style.display = (e || w) ? 'flex' : 'none';
-        updateRelation();
     }
 
     tick();
@@ -1398,22 +756,23 @@
 
     document.getElementById('memo-date').value = localToday();
 
-    /* ─── IMAGE UTILS ─── */
-    function compressImage(file, cb, maxW = 600, q = 0.65) {
+    /* ─── Image helpers ─── */
+    function compressImage(file, cb) {
         const r = new FileReader();
         r.onload = e => {
             const img = new Image();
             img.onload = () => {
+                const MAX = 600;
                 let w = img.width, h = img.height;
-                if (w > maxW) {
-                    h = Math.round(h * maxW / w);
-                    w = maxW;
+                if (w > MAX) {
+                    h = Math.round(h * MAX / w);
+                    w = MAX;
                 }
                 const c = document.createElement('canvas');
                 c.width = w;
                 c.height = h;
                 c.getContext('2d').drawImage(img, 0, 0, w, h);
-                cb(c.toDataURL('image/jpeg', q));
+                cb(c.toDataURL('image/jpeg', 0.65));
             };
             img.src = e.target.result;
         };
@@ -1443,60 +802,52 @@
     window.clearZone = function (e, zoneId) {
         e.stopPropagation();
         const zone = document.getElementById(zoneId + '-upload-zone');
+        const preview = document.getElementById(zoneId + '-img-preview');
+        const hint = document.getElementById(zoneId + '-upload-hint');
+        const clearBtn = document.getElementById(zoneId + '-clear-btn');
         if (!zone) return;
         zone._b64 = null;
-        document.getElementById(zoneId + '-img-preview').src = '';
-        document.getElementById(zoneId + '-img-preview').style.display = 'none';
-        document.getElementById(zoneId + '-upload-hint').style.display = '';
-        document.getElementById(zoneId + '-clear-btn').style.display = 'none';
+        preview.src = '';
+        preview.style.display = 'none';
+        hint.style.display = '';
+        clearBtn.style.display = 'none';
         zone.classList.remove('has-img');
         const fi = document.getElementById(zoneId + '-file-input') || document.getElementById('add-file-input');
         if (fi) fi.value = '';
     };
 
+    /* ─── Escape HTML ─── */
     function esc(s) {
         if (!s) return '';
         return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
 
-    function showSync() {
-        document.getElementById('sync-indicator').classList.add('show');
-    }
-
-    function hideSync() {
-        document.getElementById('sync-indicator').classList.remove('show');
-    }
-
-    function showToast(id) {
-        const t = document.getElementById(id);
-        t.style.display = 'block';
-        setTimeout(() => {
-            t.style.display = 'none';
-        }, 2500);
-    }
-
-    /* ══════════ MEMORIES ══════════ */
-    const memoriesRef = collection(db, 'memories');
-    const memQ = query(memoriesRef, orderBy('savedAt', 'desc'));
-    onSnapshot(memQ, snap => {
+    /* ─── Real-time listener from Firestore ─── */
+    const q = query(memoriesRef, orderBy("savedAt", "desc"));
+    onSnapshot(q, (snapshot) => {
         const container = document.getElementById('messages-list');
-        if (snap.empty) {
+        if (snapshot.empty) {
             container.innerHTML = '<p class="no-messages">No memories saved yet… write your first one 💕</p>';
             return;
         }
-        container.innerHTML = snap.docs.map(d => {
-            const m = d.data(), id = d.id;
+        container.innerHTML = snapshot.docs.map(docSnap => {
+            const m = docSnap.data();
+            const id = docSnap.id;
+            const imgHtml = m.image ? '<img class="msg-img" src="' + m.image + '" alt="memory photo" />' : '';
             return '<div class="msg-card" id="msg-card-' + id + '">' +
                 '<div class="msg-header"><span class="msg-label">' + esc(m.label || 'Memory') + '</span>' +
-                '<span class="msg-actions"><button class="msg-edit" onclick="startEditMem(\'' + id + '\')">✏️</button>' +
-                '<button class="msg-delete" onclick="deleteMem(\'' + id + '\')">🗑️</button></span></div>' +
+                '<span class="msg-actions">' +
+                '<button class="msg-edit" onclick="startEdit(\'' + id + '\')" title="Edit">✏️</button>' +
+                '<button class="msg-delete" onclick="deleteMemory(\'' + id + '\')" title="Delete">🗑️</button>' +
+                '</span></div>' +
                 (m.date ? '<span class="msg-date-pin">📅 ' + esc(m.date) + '</span>' : '') +
-                (m.image ? '<img class="msg-img" src="' + m.image + '" alt="photo" onclick="openLightbox(\'' + m.image + '\')" />' : '') +
+                imgHtml +
                 (m.text ? '<div class="msg-body">' + esc(m.text) + '</div>' : '') +
                 '</div>';
         }).join('');
     });
 
+    /* ─── Save memory to Firestore ─── */
     window.saveMemory = async function () {
         const text = document.getElementById('memo-text').value.trim();
         const date = document.getElementById('memo-date').value;
@@ -1507,7 +858,7 @@
             alert('Please write a memory or add a photo 💕');
             return;
         }
-        const btn = document.getElementById('save-mem-btn');
+        const btn = document.getElementById('save-btn');
         btn.disabled = true;
         btn.textContent = '💾 Saving...';
         showSync();
@@ -1520,50 +871,61 @@
                 stopPropagation: () => {
                 }
             }, 'add');
-            showToast('save-toast');
+            const toast = document.getElementById('save-toast');
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 2500);
         } catch (e) {
-            alert('Error: ' + e.message);
+            alert('Error saving: ' + e.message);
         }
         btn.disabled = false;
         btn.textContent = '💾 Save Memory';
         hideSync();
     };
 
-    window.deleteMem = async function (id) {
+    /* ─── Delete ─── */
+    window.deleteMemory = async function (id) {
         if (!confirm('Delete this memory?')) return;
         showSync();
         await deleteDoc(doc(db, 'memories', id));
         hideSync();
     };
 
-    window.startEditMem = function (id) {
+    /* ─── Edit ─── */
+    window.startEdit = function (id) {
         const card = document.getElementById('msg-card-' + id);
-        const imgEl = card.querySelector('.msg-img');
-        const imgSrc = imgEl ? imgEl.src : '';
+        const imgSrc = card.querySelector('.msg-img') ? card.querySelector('.msg-img').src : '';
         const label = card.querySelector('.msg-label') ? card.querySelector('.msg-label').textContent : '';
         const datePin = card.querySelector('.msg-date-pin') ? card.querySelector('.msg-date-pin').textContent.replace('📅 ', '') : '';
         const body = card.querySelector('.msg-body') ? card.querySelector('.msg-body').textContent : '';
         const uid = 'edit-' + id;
         const hasImg = !!imgSrc;
-        card.innerHTML = '<div class="edit-form">' +
+        card.innerHTML =
+            '<div class="edit-form">' +
             '<input type="text" id="' + uid + '-label-input" value="' + esc(label) + '" placeholder="Label" maxlength="60" />' +
-            '<input type="date" id="' + uid + '-date-input" value="' + esc(datePin) + '" />' +
+            '<input type="date" id="' + uid + '-date-input" value="' + esc(datePin) + '" style="padding:8px 12px;border:1px solid rgba(255,182,210,0.7);border-radius:10px;background:rgba(255,240,248,0.9);color:#7a2545;font-size:0.9rem;font-family:Lato,sans-serif;outline:none;" />' +
             '<textarea id="' + uid + '-text-input" placeholder="Your memory…">' + esc(body) + '</textarea>' +
             '<div class="img-upload-zone' + (hasImg ? ' has-img' : '') + '" id="' + uid + '-upload-zone" onclick="document.getElementById(\'' + uid + '-file-input\').click()">' +
-            '<span id="' + uid + '-upload-hint"' + (hasImg ? ' style="display:none"' : '') + '>📷 Add photo</span>' +
+            '<span id="' + uid + '-upload-hint"' + (hasImg ? ' style="display:none"' : '') + '>📷 Click to add a photo (optional)</span>' +
             '<img class="zone-preview" id="' + uid + '-img-preview" src="' + (imgSrc || '') + '" alt="preview" style="display:' + (hasImg ? 'block' : 'none') + ';" />' +
-            '<button class="zone-clear-btn" id="' + uid + '-clear-btn" style="display:' + (hasImg ? 'block' : 'none') + ';" onclick="clearZone(event,\'' + uid + '\')">✕ Remove</button>' +
+            '<button class="zone-clear-btn" id="' + uid + '-clear-btn" style="display:' + (hasImg ? 'block' : 'none') + ';" onclick="clearZone(event,\'' + uid + '\')">✕ Remove photo</button>' +
             '</div>' +
             '<input type="file" id="' + uid + '-file-input" accept="image/*" style="display:none" onchange="handleZoneFile(event,\'' + uid + '\')" />' +
             '<div class="edit-actions">' +
-            '<button class="btn-save-edit" onclick="saveEditMem(\'' + id + '\')">💾 Save</button>' +
-            '<button class="btn-cancel-edit" onclick="location.reload()">Cancel</button>' +
+            '<button class="btn-save-edit" onclick="saveEdit(\'' + id + '\')">💾 Save</button>' +
+            '<button class="btn-cancel-edit" onclick="cancelEdit()">Cancel</button>' +
             '</div></div>';
         const zone = document.getElementById(uid + '-upload-zone');
         zone._b64 = imgSrc || null;
     };
 
-    window.saveEditMem = async function (id) {
+    window.cancelEdit = function () {
+        // trigger re-render by forcing a snapshot re-read — just reload
+        window.location.reload();
+    };
+
+    window.saveEdit = async function (id) {
         const uid = 'edit-' + id;
         const label = document.getElementById(uid + '-label-input').value.trim();
         const date = document.getElementById(uid + '-date-input').value;
@@ -1574,189 +936,21 @@
         try {
             await updateDoc(doc(db, 'memories', id), {label, date, text, image});
         } catch (e) {
-            alert('Error: ' + e.message);
+            alert('Error updating: ' + e.message);
         }
         hideSync();
     };
 
-    /* ══════════ SECRET MESSAGES ══════════ */
-    let currentSender = 'Hamdi';
-    window.selectSender = function (name) {
-        currentSender = name;
-        document.getElementById('from-hamdi').classList.toggle('selected', name === 'Hamdi');
-        document.getElementById('from-yossr').classList.toggle('selected', name === 'Yossr');
-    };
-
-    const secretsRef = collection(db, 'secrets');
-    const secQ = query(secretsRef, orderBy('savedAt', 'desc'));
-    onSnapshot(secQ, snap => {
-        const container = document.getElementById('secrets-list');
-        if (snap.empty) {
-            container.innerHTML = '<p class="no-messages">No messages yet… send your first one 💕</p>';
-            return;
-        }
-        container.innerHTML = snap.docs.map(d => {
-            const m = d.data(), id = d.id;
-            const isHamdi = m.from === 'Hamdi';
-            return '<div class="msg-card" id="sec-card-' + id + '" style="' + (isHamdi ? 'border-left:3px solid #e07fa0;' : 'border-left:3px solid #c0396b;') + '">' +
-                '<div class="msg-header">' +
-                '<span><span class="msg-label">' + (isHamdi ? '🤵 Hamdi' : '👰 Yossr') + '</span>' +
-                (m.song ? '<span class="msg-secret-badge">🎵</span>' : '') +
-                '</span>' +
-                '<button class="msg-delete" onclick="deleteSecret(\'' + id + '\')">🗑️</button>' +
-                '</div>' +
-                (m.date ? '<span class="msg-date-pin">📅 ' + esc(m.date) + '</span>' : '') +
-                (m.text ? '<div class="msg-body">' + esc(m.text) + '</div>' : '') +
-                (m.song ? '<div class="msg-song">🎵 ' + esc(m.song) + '</div>' : '') +
-                '</div>';
-        }).join('');
-    });
-
-    window.saveSecret = async function () {
-        const text = document.getElementById('secret-text').value.trim();
-        const song = document.getElementById('secret-song').value.trim();
-        if (!text) {
-            alert('Please write a message 💕');
-            return;
-        }
-        const btn = document.getElementById('save-secret-btn');
-        btn.disabled = true;
-        btn.textContent = '💌 Sending...';
-        showSync();
-        try {
-            await addDoc(secretsRef, {
-                from: currentSender,
-                text,
-                song,
-                date: localToday(),
-                savedAt: new Date().toISOString()
-            });
-            document.getElementById('secret-text').value = '';
-            document.getElementById('secret-song').value = '';
-            showToast('secret-toast');
-        } catch (e) {
-            alert('Error: ' + e.message);
-        }
-        btn.disabled = false;
-        btn.textContent = '💌 Send Message';
-        hideSync();
-    };
-
-    window.deleteSecret = async function (id) {
-        if (!confirm('Delete this message?')) return;
-        showSync();
-        await deleteDoc(doc(db, 'secrets', id));
-        hideSync();
-    };
-
-    /* ══════════ GALLERY ══════════ */
-    const galleryRef = collection(db, 'gallery');
-    const galQ = query(galleryRef, orderBy('savedAt', 'desc'));
-    onSnapshot(galQ, snap => {
-        const grid = document.getElementById('gallery-grid');
-        const uploadBtn = grid.querySelector('.gallery-upload');
-        // clear existing photos
-        Array.from(grid.querySelectorAll('.gallery-img-wrap')).forEach(el => el.remove());
-        snap.docs.forEach(d => {
-            const m = d.data(), id = d.id;
-            const wrap = document.createElement('div');
-            wrap.className = 'gallery-img-wrap';
-            wrap.innerHTML = '<img src="' + m.image + '" alt="gallery" loading="lazy" onclick="openLightbox(\'' + m.image + '\')" />' +
-                '<button class="g-del" onclick="deleteGalleryPhoto(\'' + id + '\',event)">🗑️</button>';
-            grid.insertBefore(wrap, uploadBtn);
-        });
-    });
-
-    window.addGalleryPhotos = function (event) {
-        const files = Array.from(event.target.files);
-        files.forEach(file => {
-            compressImage(file, async b64 => {
-                showSync();
-                try {
-                    await addDoc(galleryRef, {image: b64, savedAt: new Date().toISOString()});
-                } catch (e) {
-                    alert('Error: ' + e.message);
-                }
-                hideSync();
-            }, 800, 0.7);
-        });
-        event.target.value = '';
-    };
-
-    window.deleteGalleryPhoto = async function (id, e) {
-        e.stopPropagation();
-        if (!confirm('Delete this photo?')) return;
-        showSync();
-        await deleteDoc(doc(db, 'gallery', id));
-        hideSync();
-    };
-
-    /* ══════════ WISHES ══════════ */
-    const wishesRef = collection(db, 'wishes');
-    const wishQ = query(wishesRef, orderBy('savedAt', 'asc'));
-    onSnapshot(wishQ, snap => {
-        const list = document.getElementById('wishes-list');
-        if (snap.empty) {
-            list.innerHTML = '<p class="no-messages">No wishes yet… add your first one 🌹</p>';
-            updateWishProgress(0, 0);
-            return;
-        }
-        const total = snap.docs.length;
-        const done = snap.docs.filter(d => d.data().done).length;
-        list.innerHTML = snap.docs.map(d => {
-            const m = d.data(), id = d.id;
-            return '<div class="wish-item' + (m.done ? ' done' : '') + '">' +
-                '<button class="wish-check" onclick="toggleWish(\'' + id + '\',' + m.done + ')">' +
-                (m.done ? '✓' : '') +
-                '</button>' +
-                '<span class="wish-text">' + esc(m.text) + '</span>' +
-                '<button class="wish-del" onclick="deleteWish(\'' + id + '\')">🗑️</button>' +
-                '</div>';
-        }).join('');
-        updateWishProgress(done, total);
-    });
-
-    function updateWishProgress(done, total) {
-        document.getElementById('wp-label').textContent = done + ' / ' + total + ' completed 🌸';
-        document.getElementById('wp-bar').style.width = (total ? Math.round(done / total * 100) : 0) + '%';
+    /* ─── Sync indicator ─── */
+    function showSync() {
+        document.getElementById('sync-indicator').classList.add('show');
     }
 
-    window.addWish = async function () {
-        const text = document.getElementById('wish-input').value.trim();
-        if (!text) return;
-        showSync();
-        try {
-            await addDoc(wishesRef, {text, done: false, savedAt: new Date().toISOString()});
-        } catch (e) {
-            alert('Error: ' + e.message);
-        }
-        document.getElementById('wish-input').value = '';
-        hideSync();
-    };
+    function hideSync() {
+        document.getElementById('sync-indicator').classList.remove('show');
+    }
 
-    window.toggleWish = async function (id, isDone) {
-        showSync();
-        await updateDoc(doc(db, 'wishes', id), {done: !isDone});
-        hideSync();
-    };
-
-    window.deleteWish = async function (id) {
-        if (!confirm('Delete this wish?')) return;
-        showSync();
-        await deleteDoc(doc(db, 'wishes', id));
-        hideSync();
-    };
-
-    /* ══════════ LIGHTBOX ══════════ */
-    window.openLightbox = function (src) {
-        document.getElementById('lightbox-img').src = src;
-        document.getElementById('lightbox').classList.add('open');
-    };
-    window.closeLightbox = function () {
-        document.getElementById('lightbox').classList.remove('open');
-    };
-
-    /* ─── PARTICLES ─── */
+    /* ─── Particles ─── */
     const emojis = ['❤️', '💕', '🌸', '🌺', '💐', '🌹', '💗', '🌼', '✨', '💖', '🌷', '💞'];
     const pc = document.getElementById('particles');
 
@@ -1772,6 +966,7 @@
 
     for (let i = 0; i < 22; i++) spawnParticle();
     setInterval(spawnParticle, 700);
+
 </script>
 </body>
 </html>
