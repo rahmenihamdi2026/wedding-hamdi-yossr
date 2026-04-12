@@ -1384,7 +1384,7 @@
     /* ===== REACTION EMOJIS ===== */
     const REACTION_EMOJIS = ["❤️", "💕", "🥰", "😍", "😂", "🌹", "🦋", "🌸", "💐"];
 
-    /* ===== FIRESTORE MEMORIES LISTENER - sorted by date ASC ===== */
+    /* ===== FIRESTORE MEMORIES LISTENER - sorted by date Desc ===== */
     const memoriesRef = collection(db, "memories");
     onSnapshot(query(memoriesRef, orderBy("date", "desc")), snapshot => {
         const container = document.getElementById("messages-list");
@@ -1440,7 +1440,7 @@
             const commentCount = comments.length;
 
             return `<div class="msg-card" id="msg-card-${id}">
-      <div class="msg-header"><span class="msg-label">${esc(m.label || "Memory")}</span>
+      <div class="msg-header"><span class="msg-label">${m.createdBy === "yossr" ? "👩" : "👨"} ${esc(m.label || "Memory")}</span>
       <span class="msg-actions"><button class="msg-edit" onclick="startEdit('${id}')">✏️</button><button class="msg-delete" onclick="deleteMemory('${id}')">🗑️</button></span></div>
       ${m.date ? `<span class="msg-date-pin">📅 ${esc(m.date)}</span>` : ""}
       ${m.image ? `<img class="msg-img" src="${m.image}" alt="memory photo"/>` : ""}
@@ -1597,7 +1597,7 @@
         btn.textContent = "💾 Saving...";
         showSync();
         try {
-            await addDoc(memoriesRef, {text, date, label, image, savedAt: new Date().toISOString(), reactions: {}, comments: []});
+            await addDoc(memoriesRef, {text, date, label, image, savedAt: new Date().toISOString(), reactions: {}, comments: [], createdBy: currentUser || "hamdi"});
             document.getElementById("memo-text").value = "";
             document.getElementById("memo-date").value = localToday();
             document.getElementById("memo-label").value = "";
