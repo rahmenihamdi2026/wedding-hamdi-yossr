@@ -1803,7 +1803,7 @@
         renderCustom();
         const partner = currentUser === "hamdi" ? "yossr" : "hamdi";
         const whoName = currentUser === "hamdi" ? "Hamdi" : "Yossr";
-        
+
     };
     window.deleteCustom=function(i){if(!confirm("Delete this event?"))return;const list=loadEvents();list.splice(i,1);saveEvents(list);renderCustom();};
     renderCustom();
@@ -1846,11 +1846,42 @@
     });
 
     window.toggleReactionPicker=function(id){if(!currentUser){showIdentityModal();return;}const picker=document.getElementById("picker-"+id);if(!picker)return;document.querySelectorAll('.reaction-picker.open').forEach(p=>{if(p.id!=="picker-"+id)p.classList.remove('open');});picker.classList.toggle("open");};
-    window.addReaction=async function(id,emoji){if(!currentUser){showIdentityModal();return;}document.getElementById("picker-"+id)?.classList.remove("open");showSync();try{const docRef=doc(db,"memories",id);const snap=await getDoc(docRef);const data=snap.data();const reactions=data.reactions||{};const updateData={};if(reactions[currentUser]===emoji)updateData["reactions."+currentUser]=deleteField();else updateData["reactions."+currentUser]=emoji;await updateDoc(docRef,updateData);}catch(e){alert("Error: "+e.message);}hideSync();};
+    window.addReaction=async function(id,emoji){if(!currentUser){showIdentityModal();return;}document.getElementById("picker-"+id)?.classList.remove("open");showSync();try{const docRef=doc(db,"memories",id);const snap=await getDoc(docRef);const data=snap.data();const reactions=data.reactions||{};const updateData={};const isRemoving=reactions[currentUser]===emoji;if(isRemoving)updateData["reactions."+currentUser]=deleteField();else updateData["reactions."+currentUser]=emoji;await updateDoc(docRef,updateData);if(!isRemoving){const partner=currentUser==="hamdi"?"yossr":"hamdi";const whoName=currentUser==="hamdi"?"Hamdi":"Yossr";await createNotification("memory",`${whoName} reacted ${emoji} to a memory`,partner,"memories");}}catch(e){alert("Error: "+e.message);}hideSync();};
     window.toggleCommentReactionPicker=function(memId,ci){if(!currentUser){showIdentityModal();return;}const pickerId="cpicker-"+memId+"-"+ci;const picker=document.getElementById(pickerId);if(!picker)return;document.querySelectorAll('.comment-reaction-picker.open').forEach(p=>{if(p.id!==pickerId)p.classList.remove('open');});picker.classList.toggle("open");};
-    window.addCommentReaction=async function(memId,ci,emoji){if(!currentUser){showIdentityModal();return;}document.getElementById("cpicker-"+memId+"-"+ci)?.classList.remove("open");showSync();try{const docRef=doc(db,"memories",memId);const snap=await getDoc(docRef);const data=snap.data();const comments=data.comments||[];if(!comments[ci]){hideSync();return;}if(!comments[ci].reactions)comments[ci].reactions={};if(comments[ci].reactions[currentUser]===emoji)delete comments[ci].reactions[currentUser];else comments[ci].reactions[currentUser]=emoji;await updateDoc(docRef,{comments:comments});}catch(e){alert("Error: "+e.message);}hideSync();};
+    window.addCommentReaction=async function(memId,ci,emoji){if(!currentUser){showIdentityModal();return;}document.getElementById("cpicker-"+memId+"-"+ci)?.classList.remove("open");showSync();try{const docRef=doc(db,"memories",memId);const snap=await getDoc(docRef);const data=snap.data();const comments=data.comments||[];if(!comments[ci]){hideSync();return;}if(!comments[ci].reactions)comments[ci].reactions={};const isRemoving=comments[ci].reactions[currentUser]===emoji;if(isRemoving)delete comments[ci].reactions[currentUser];else comments[ci].reactions[currentUser]=emoji;await updateDoc(docRef,{comments:comments});if(!isRemoving&&comments[ci].author!==currentUser){const targetUser=comments[ci].author;const whoName=currentUser==="hamdi"?"Hamdi":"Yossr";await createNotification("memory",`${whoName} reacted ${emoji} to your comment`,targetUser,"memories");}}catch(e){alert("Error: "+e.message);}hideSync();};
     window.toggleComments=function(id){const list=document.getElementById("comments-"+id);if(list)list.classList.toggle("open");};
-    window.addComment=async function(id){if(!currentUser){showIdentityModal();return;}const input=document.getElementById("cinput-"+id);if(!input)return;const text=input.value.trim();if(!text)return;showSync();try{const docRef=doc(db,"memories",id);const snap=await getDoc(docRef);const data=snap.data();const comments=data.comments||[];const now=new Date();const timeStr=now.toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"})+" "+now.toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"});comments.push({author:currentUser,text:text,time:timeStr});await updateDoc(docRef,{comments:comments});input.value="";}catch(e){alert("Error: "+e.message);}hideSync();};
+    window.addComment = async function (id) {
+        if (!currentUser) {
+            showIdentityModal();
+            return;
+        }
+        const input = document.getElementById("cinput-" + id);
+        if (!input) return;
+        const text = input.value.trim();
+        if (!text) return;
+        showSync();
+        try {
+            const docRef = doc(db, "memories", id);
+            const snap = await getDoc(docRef);
+            const data = snap.data();
+            const comments = data.comments || [];
+            const now = new Date();
+            const timeStr = now.toLocaleDateString("en-GB", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            }) + " " + now.toLocaleTimeString("en-GB", {hour: "2-digit", minute: "2-digit"});
+            comments.push({author: currentUser, text: text, time: timeStr});
+            await updateDoc(docRef, {comments: comments});
+            input.value = "";
+            const partner = currentUser === "hamdi" ? "yossr" : "hamdi";
+            const whoName = currentUser === "hamdi" ? "Hamdi" : "Yossr";
+            await createNotification("memory", `${whoName} commented on a memory 💬`, partner, "memories");
+        } catch (e) {
+            alert("Error: " + e.message);
+        }
+        hideSync();
+    };
     window.deleteComment=async function(id,commentIndex){if(!confirm("Delete this comment?"))return;showSync();try{const docRef=doc(db,"memories",id);const snap=await getDoc(docRef);const data=snap.data();const comments=data.comments||[];comments.splice(commentIndex,1);await updateDoc(docRef,{comments:comments});}catch(e){alert("Error: "+e.message);}hideSync();};
     window.saveMemory = async function () {
         const text = document.getElementById("memo-text").value.trim();
