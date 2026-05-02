@@ -50,6 +50,186 @@
             color: #fff; border-color: transparent;
             box-shadow: 0 4px 14px rgba(192, 57, 107, 0.3);
         }
+        /* ===== NOTIFICATION SYSTEM ===== */
+        .nav-btn { position: relative; }
+
+        .notif-badge {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: linear-gradient(135deg, #ff5252, #f44336);
+            color: white;
+            border-radius: 50%;
+            min-width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 8px rgba(244, 67, 54, 0.4);
+            animation: notifPulse 2s ease-in-out infinite;
+            z-index: 5;
+        }
+
+        @keyframes notifPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        .notif-bell {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 250;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1.5px solid rgba(255, 182, 210, 0.6);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 14px rgba(192, 57, 107, 0.15);
+        }
+
+        .notif-bell:hover {
+            background: rgba(255, 210, 230, 0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(192, 57, 107, 0.25);
+        }
+
+        .notif-dropdown {
+            position: fixed;
+            top: 140px;
+            right: 20px;
+            width: min(380px, calc(100vw - 40px));
+            max-height: 500px;
+            background: rgba(255, 255, 255, 0.98);
+            border: 1px solid rgba(255, 182, 210, 0.6);
+            border-radius: 20px;
+            box-shadow: 0 12px 40px rgba(192, 57, 107, 0.25);
+            backdrop-filter: blur(16px);
+            display: none;
+            flex-direction: column;
+            z-index: 9999;
+            animation: slideDown 0.3s ease;
+        }
+
+        .notif-dropdown.open { display: flex; }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .notif-header {
+            padding: 18px 22px;
+            border-bottom: 1px solid rgba(255, 182, 210, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .notif-header h3 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.6rem;
+            color: #c0396b;
+        }
+
+        .notif-clear-all {
+            background: none;
+            border: none;
+            color: #b07090;
+            font-size: 0.8rem;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: color 0.2s;
+        }
+
+        .notif-clear-all:hover { color: #c0396b; }
+
+        .notif-list {
+            overflow-y: auto;
+            max-height: 400px;
+            padding: 10px;
+        }
+
+        .notif-item {
+            padding: 14px 16px;
+            margin-bottom: 8px;
+            background: rgba(255, 240, 248, 0.6);
+            border-left: 3px solid #e07fa0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            animation: fadeIn 0.3s ease;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .notif-item:hover {
+            background: rgba(255, 210, 230, 0.5);
+            transform: translateX(4px);
+        }
+
+        .notif-item.unread {
+            background: rgba(255, 210, 230, 0.4);
+            border-left-color: #c0396b;
+            font-weight: 500;
+        }
+
+        .notif-item-icon { font-size: 1.3rem; flex-shrink: 0; }
+
+        .notif-item-content { flex: 1; }
+
+        .notif-item-text {
+            font-size: 0.9rem;
+            color: #5a1a35;
+            line-height: 1.5;
+            margin-bottom: 4px;
+        }
+
+        .notif-item-time {
+            font-size: 0.72rem;
+            color: #b07090;
+            letter-spacing: 0.5px;
+        }
+
+        .notif-item-delete {
+            background: none;
+            border: none;
+            color: #d0a0b5;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: color 0.2s;
+            flex-shrink: 0;
+            padding: 2px 4px;
+        }
+
+        .notif-item-delete:hover { color: #c0396b; }
+
+        .notif-empty {
+            text-align: center;
+            padding: 40px 20px;
+            color: #c090a8;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .notif-unread-dot {
+            width: 8px;
+            height: 8px;
+            background: #c0396b;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 6px;
+        }
 
         .page { display: none; animation: fadeIn .35s ease; position: relative; z-index: 10; }
         .page.active { display: block; }
@@ -657,6 +837,240 @@
         }
         .quiz-add-btn:hover { opacity: .88; }
 
+        /* ===== QUIZ TYPE SELECTOR ===== */
+        .quiz-type-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+            justify-content: center;
+        }
+
+        .quiz-type-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: 1.5px solid rgba(255, 182, 210, .6);
+            border-radius: 12px;
+            background: rgba(255, 240, 248, .5);
+            color: #c0396b;
+            font-family: 'Lato', sans-serif;
+            font-size: .88rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all .25s;
+        }
+
+        .quiz-type-btn:hover { background: rgba(255, 210, 230, .4); }
+
+        .quiz-type-btn.active {
+            background: linear-gradient(135deg, #e07fa0, #c0396b);
+            color: #fff;
+            border-color: transparent;
+        }
+
+        /* ===== QUIZ FILTER BAR ===== */
+        .quiz-filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .quiz-filter-btn {
+            padding: 8px 18px;
+            border: 1.5px solid rgba(255, 182, 210, .6);
+            border-radius: 50px;
+            background: transparent;
+            color: #c0396b;
+            font-family: 'Lato', sans-serif;
+            font-size: .85rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all .22s;
+            position: relative;
+        }
+
+        .quiz-filter-btn:hover { background: rgba(255, 182, 210, .2); }
+
+        .quiz-filter-btn.active {
+            background: linear-gradient(135deg, #e07fa0, #c0396b);
+            color: #fff;
+            border-color: transparent;
+            box-shadow: 0 3px 12px rgba(192, 57, 107, .25);
+        }
+
+        .quiz-filter-count {
+            background: rgba(255, 255, 255, .3);
+            border-radius: 50px;
+            padding: 1px 7px;
+            font-size: .7rem;
+            margin-left: 4px;
+        }
+
+        /* ===== OPEN-ENDED QUIZ ANSWERS ===== */
+        .quiz-open-answer-section { margin-top: 10px; }
+
+        .quiz-open-answer-input {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid rgba(255, 182, 210, .7);
+            border-radius: 12px;
+            background: rgba(255, 240, 248, .8);
+            color: #7a2545;
+            font-size: .9rem;
+            font-family: 'Lato', sans-serif;
+            outline: none;
+            resize: vertical;
+            min-height: 70px;
+            box-sizing: border-box;
+            margin-bottom: 8px;
+        }
+
+        .quiz-open-answer-input:focus { border-color: #c0396b; }
+        .quiz-open-answer-input::placeholder { color: #c090a8; }
+
+        .quiz-open-submit-btn {
+            padding: 8px 18px;
+            background: linear-gradient(135deg, #e07fa0, #c0396b);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: .88rem;
+            font-family: 'Lato', sans-serif;
+            cursor: pointer;
+            transition: opacity .2s;
+        }
+
+        .quiz-open-submit-btn:hover { opacity: .88; }
+
+        .quiz-open-answer-display {
+            background: rgba(255, 210, 230, .3);
+            border-left: 3px solid #e07fa0;
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-top: 10px;
+        }
+
+        .quiz-open-answer-label {
+            font-size: .72rem;
+            color: #c0396b;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .quiz-open-answer-text {
+            font-size: .92rem;
+            color: #5a1a35;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        /* ===== QUIZ AUTHOR COMMENTS ===== */
+        .quiz-author-comments-section {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 182, 210, .3);
+        }
+
+        .quiz-author-comment {
+            background: rgba(255, 240, 248, .6);
+            border-left: 3px solid #c0396b;
+            border-radius: 10px;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+        }
+
+        .quiz-author-comment-icon {
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .quiz-author-comment-body { flex: 1; }
+
+        .quiz-author-comment-author {
+            font-size: .75rem;
+            font-weight: 700;
+            color: #c0396b;
+            letter-spacing: .5px;
+            margin-bottom: 2px;
+        }
+
+        .quiz-author-comment-text {
+            font-size: .88rem;
+            color: #5a1a35;
+            line-height: 1.5;
+        }
+
+        .quiz-author-comment-time {
+            font-size: .68rem;
+            color: #c090a8;
+            margin-top: 3px;
+        }
+
+        .quiz-author-comment-delete {
+            background: none;
+            border: none;
+            color: #d0a0b5;
+            font-size: .75rem;
+            cursor: pointer;
+            transition: color .2s;
+            flex-shrink: 0;
+            padding: 2px;
+        }
+
+        .quiz-author-comment-delete:hover { color: #c0396b; }
+
+        .quiz-comment-input-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .quiz-comment-input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid rgba(255, 182, 210, .6);
+            border-radius: 10px;
+            background: rgba(255, 240, 248, .8);
+            color: #7a2545;
+            font-size: .85rem;
+            font-family: 'Lato', sans-serif;
+            outline: none;
+        }
+
+        .quiz-comment-input:focus { border-color: #c0396b; }
+        .quiz-comment-input::placeholder { color: #c090a8; }
+
+        .quiz-comment-send-btn {
+            padding: 8px 14px;
+            background: linear-gradient(135deg, #e07fa0, #c0396b);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: .85rem;
+            cursor: pointer;
+            font-family: 'Lato', sans-serif;
+            transition: opacity .2s;
+        }
+
+        .quiz-comment-send-btn:hover { opacity: .85; }
+
+        .quiz-question-type-badge {
+            display: inline-block;
+            background: rgba(192, 57, 107, .15);
+            color: #c0396b;
+            border-radius: 8px;
+            padding: 2px 8px;
+            font-size: .7rem;
+            letter-spacing: .5px;
+            margin-left: 6px;
+        }
+
         .quiz-question-card {
             background: rgba(255,255,255,.72); backdrop-filter: blur(10px);
             border: 1px solid rgba(255,182,210,.5); border-radius: 20px;
@@ -718,6 +1132,22 @@
 <div id="particles"></div>
 <div class="sync-indicator" id="sync-indicator">💾 Saving...</div>
 
+<!-- NOTIFICATION BELL -->
+<div class="notif-bell" id="notif-bell" onclick="toggleNotifDropdown()">
+    🔔
+</div>
+
+<!-- NOTIFICATION DROPDOWN -->
+<div class="notif-dropdown" id="notif-dropdown">
+    <div class="notif-header">
+        <h3>Notifications</h3>
+        <button class="notif-clear-all" onclick="clearAllNotifications()">Clear all</button>
+    </div>
+    <div class="notif-list" id="notif-list">
+        <p class="notif-empty">No new notifications 💕</p>
+    </div>
+</div>
+
 <!-- IDENTITY MODAL -->
 <div class="identity-overlay" id="identity-overlay" style="display:none;">
     <div class="identity-modal">
@@ -733,15 +1163,15 @@
 <div class="current-user-badge" id="current-user-badge" onclick="changeIdentity()"></div>
 
 <nav>
-    <button class="nav-btn active" onclick="showPage('home',this)">🏠 Home</button>
-    <button class="nav-btn" onclick="showPage('memories',this)">💌 Memories</button>
-    <button class="nav-btn" onclick="showPage('checklist',this)">✅ Checklist</button>
-    <button class="nav-btn" onclick="showPage('special',this)">🗓️ Special Dates</button>
-    <button class="nav-btn" onclick="showPage('places',this)">🗺️ Our Places</button>
-    <button class="nav-btn" onclick="showPage('gallery',this)">📸 Gallery</button>
-    <button class="nav-btn" onclick="showPage('scratch',this)">🎴 Scratch Cards</button>
-    <button class="nav-btn" onclick="showPage('quiz',this)">❓ Quiz</button>
-    <button class="nav-btn" onclick="showPage('story',this)">👩‍❤️‍👨 Our Story</button>
+    <button class="nav-btn active" id="nav-home" onclick="showPage('home',this)">🏠 Home</button>
+    <button class="nav-btn" id="nav-memories" onclick="showPage('memories',this)">💌 Memories</button>
+    <button class="nav-btn" id="nav-checklist" onclick="showPage('checklist',this)">✅ Checklist</button>
+    <button class="nav-btn" id="nav-special" onclick="showPage('special',this)">🗓️ Special Dates</button>
+    <button class="nav-btn" id="nav-places" onclick="showPage('places',this)">🗺️ Our Places</button>
+    <button class="nav-btn" id="nav-gallery" onclick="showPage('gallery',this)">📸 Gallery</button>
+    <button class="nav-btn" id="nav-scratch" onclick="showPage('scratch',this)">🎴 Scratch Cards</button>
+    <button class="nav-btn" id="nav-quiz" onclick="showPage('quiz',this)">❓ Quiz</button>
+    <button class="nav-btn" id="nav-story" onclick="showPage('story',this)">👩‍❤️‍👨 Our Story</button>
 </nav>
 
 <!-- HOME -->
@@ -999,31 +1429,60 @@
 
         <!-- Add Question Panel -->
         <div class="quiz-panel active" id="qpanel-add">
-            <div class="quiz-add-form">
-                <h3>💡 Add a Question About Yourself</h3>
-                <label class="quiz-field-label">Your question</label>
-                <input type="text" class="quiz-input" id="q-question" placeholder="e.g. What is my favourite colour?" maxlength="120"/>
-                <label class="quiz-field-label">4 answer options</label>
-                <div class="quiz-options-grid">
-                    <div class="quiz-option-field"><span class="quiz-option-letter">A</span><input class="quiz-option-input" id="q-opt-a" placeholder="Option A…" maxlength="60"/></div>
-                    <div class="quiz-option-field"><span class="quiz-option-letter">B</span><input class="quiz-option-input" id="q-opt-b" placeholder="Option B…" maxlength="60"/></div>
-                    <div class="quiz-option-field"><span class="quiz-option-letter">C</span><input class="quiz-option-input" id="q-opt-c" placeholder="Option C…" maxlength="60"/></div>
-                    <div class="quiz-option-field"><span class="quiz-option-letter">D</span><input class="quiz-option-input" id="q-opt-d" placeholder="Option D…" maxlength="60"/></div>
-                </div>
-                <div class="quiz-correct-row">
-                    <label class="quiz-field-label" style="margin:0;">✅ Correct answer:</label>
-                    <select class="quiz-correct-select" id="q-correct">
-                        <option value="a">A</option><option value="b">B</option>
-                        <option value="c">C</option><option value="d">D</option>
-                    </select>
-                </div>
-                <button class="quiz-add-btn" id="q-add-btn" onclick="addQuizQuestion()">💾 Add Question</button>
-            </div>
-            <div id="my-questions-list"><p class="quiz-loading">💕 Loading your questions...</p></div>
+    <div class="quiz-add-form">
+        <h3>💡 Add a Question About Yourself</h3>
+
+        <!-- Question Type Selector -->
+        <div class="quiz-type-selector">
+            <button class="quiz-type-btn active" id="quiz-type-multiple" onclick="selectQuizType('multiple')">
+                📝 Multiple Choice
+            </button>
+            <button class="quiz-type-btn" id="quiz-type-open" onclick="selectQuizType('open')">
+                ✍️ Open-Ended
+            </button>
         </div>
+
+        <label class="quiz-field-label">Your question</label>
+        <input type="text" class="quiz-input" id="q-question" placeholder="e.g. What is my favourite colour?" maxlength="120"/>
+
+        <!-- Multiple Choice Options -->
+        <div id="quiz-options-container">
+            <label class="quiz-field-label">4 answer options</label>
+            <div class="quiz-options-grid">
+                <div class="quiz-option-field"><span class="quiz-option-letter">A</span><input class="quiz-option-input" id="q-opt-a" placeholder="Option A…" maxlength="60"/></div>
+                <div class="quiz-option-field"><span class="quiz-option-letter">B</span><input class="quiz-option-input" id="q-opt-b" placeholder="Option B…" maxlength="60"/></div>
+                <div class="quiz-option-field"><span class="quiz-option-letter">C</span><input class="quiz-option-input" id="q-opt-c" placeholder="Option C…" maxlength="60"/></div>
+                <div class="quiz-option-field"><span class="quiz-option-letter">D</span><input class="quiz-option-input" id="q-opt-d" placeholder="Option D…" maxlength="60"/></div>
+            </div>
+            <div class="quiz-correct-row">
+                <label class="quiz-field-label" style="margin:0;">✅ Correct answer:</label>
+                <select class="quiz-correct-select" id="q-correct">
+                    <option value="a">A</option><option value="b">B</option>
+                    <option value="c">C</option><option value="d">D</option>
+                </select>
+            </div>
+        </div>
+
+        <button class="quiz-add-btn" id="q-add-btn" onclick="addQuizQuestion()">💾 Add Question</button>
+    </div>
+    <div id="my-questions-list"><p class="quiz-loading">💕 Loading your questions...</p></div>
+</div>
 
         <!-- Answer Panel -->
         <div class="quiz-panel" id="qpanel-answer">
+            <!-- Filter Bar -->
+            <div class="quiz-filter-bar">
+                <button class="quiz-filter-btn active" id="filter-new" onclick="filterQuizQuestions('new', this)">
+                    🆕 New <span class="quiz-filter-count" id="count-new">0</span>
+                </button>
+                <button class="quiz-filter-btn" id="filter-answered" onclick="filterQuizQuestions('answered', this)">
+                    ✅ Answered <span class="quiz-filter-count" id="count-answered">0</span>
+                </button>
+                <button class="quiz-filter-btn" id="filter-all" onclick="filterQuizQuestions('all', this)">
+                    📋 All <span class="quiz-filter-count" id="count-all">0</span>
+                </button>
+            </div>
+
             <div id="answer-questions-list"><p class="quiz-loading">💕 Loading questions...</p></div>
         </div>
 
@@ -1061,16 +1520,172 @@
         else { badge.style.display = "none"; }
     }
     window.setIdentity = function(who) {
-        currentUser = who; localStorage.setItem(ID_KEY, who);
-        document.getElementById("identity-overlay").style.display = "none";
-        updateBadge();
-        // update sc-to default
-        const scTo = document.getElementById("sc-to");
-        if (scTo) scTo.value = who === "hamdi" ? "yossr" : "hamdi";
-    };
+    currentUser = who; localStorage.setItem(ID_KEY, who);
+    document.getElementById("identity-overlay").style.display = "none";
+    updateBadge();
+    const scTo = document.getElementById("sc-to");
+    if (scTo) scTo.value = who === "hamdi" ? "yossr" : "hamdi";
+    // Refresh notifications and quiz with new identity
+    renderNotifications();
+    updateNavBadges();
+    renderMyQuestionsPanel();
+    renderAnswerPanel();
+};
     window.changeIdentity = function() { showIdentityModal(); };
     if (!currentUser) showIdentityModal();
     updateBadge();
+
+    /* ============================================================
+   ===== NOTIFICATIONS SYSTEM =====
+   ============================================================ */
+    const notificationsRef = collection(db, "notifications");
+    let allNotifications = [];
+
+    onSnapshot(query(notificationsRef, orderBy("createdAt", "desc")), snapshot => {
+        allNotifications = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+        renderNotifications();
+        updateNavBadges();
+    });
+
+    function renderNotifications() {
+        if (!currentUser) return;
+        const myNotifications = allNotifications.filter(n => n.targetUser === currentUser);
+        const listEl = document.getElementById("notif-list");
+        if (!listEl) return;
+
+        if (myNotifications.length === 0) {
+            listEl.innerHTML = '<p class="notif-empty">No new notifications 💕</p>';
+            return;
+        }
+
+        listEl.innerHTML = myNotifications.map(n => {
+            const timeAgo = getTimeAgo(n.createdAt);
+            const unreadClass = n.read ? '' : 'unread';
+            const unreadDot = n.read ? '' : '<span class="notif-unread-dot"></span>';
+            const icon = getNotificationIcon(n.type);
+            return `<div class="notif-item ${unreadClass}" onclick="handleNotificationClick('${n.id}', '${n.page}')">
+                ${unreadDot}
+                <span class="notif-item-icon">${icon}</span>
+                <div class="notif-item-content">
+                    <div class="notif-item-text">${esc(n.message)}</div>
+                    <div class="notif-item-time">${timeAgo}</div>
+                </div>
+                <button class="notif-item-delete" onclick="deleteNotification(event, '${n.id}')">🗑️</button>
+            </div>`;
+        }).join("");
+    }
+
+    function getNotificationIcon(type) {
+        const icons = {
+            memory: '💌', gallery: '📸', scratch: '🎴', quiz: '❓',
+            checklist: '✅', places: '🗺️', special: '🗓️',
+            quiz_answer: '💬', quiz_comment: '💭'
+        };
+        return icons[type] || '🔔';
+    }
+
+    function getTimeAgo(timestamp) {
+        if (!timestamp) return 'just now';
+        const diff = Date.now() - new Date(timestamp).getTime();
+        const minutes = Math.floor(diff / 60000);
+        const hours = Math.floor(diff / 3600000);
+        const days = Math.floor(diff / 86400000);
+        if (minutes < 1) return 'just now';
+        if (minutes < 60) return `${minutes}m ago`;
+        if (hours < 24) return `${hours}h ago`;
+        return `${days}d ago`;
+    }
+
+    window.toggleNotifDropdown = function() {
+        document.getElementById("notif-dropdown").classList.toggle("open");
+    };
+
+    window.handleNotificationClick = async function(notifId, page) {
+        try {
+            await updateDoc(doc(db, "notifications", notifId), { read: true });
+        } catch (e) { console.error(e); }
+        document.getElementById("notif-dropdown").classList.remove("open");
+        if (page) {
+            const navBtn = document.getElementById("nav-" + page);
+            if (navBtn) navBtn.click();
+        }
+    };
+
+    window.deleteNotification = async function(event, notifId) {
+        event.stopPropagation();
+        try {
+            await deleteDoc(doc(db, "notifications", notifId));
+        } catch (e) { console.error(e); }
+    };
+
+    window.clearAllNotifications = async function() {
+        if (!confirm("Clear all notifications?")) return;
+        const myNotifications = allNotifications.filter(n => n.targetUser === currentUser);
+        showSync();
+        for (const notif of myNotifications) {
+            try { await deleteDoc(doc(db, "notifications", notif.id)); }
+            catch (e) { console.error(e); }
+        }
+        hideSync();
+    };
+
+    document.addEventListener("click", function(e) {
+        const dropdown = document.getElementById("notif-dropdown");
+        const bell = document.getElementById("notif-bell");
+        if (dropdown && bell && !dropdown.contains(e.target) && !bell.contains(e.target)) {
+            dropdown.classList.remove("open");
+        }
+    });
+
+    async function createNotification(type, message, targetUser, page) {
+        if (!targetUser || targetUser === currentUser) return;
+        try {
+            await addDoc(notificationsRef, {
+                type, message, targetUser, page,
+                createdBy: currentUser,
+                read: false,
+                createdAt: new Date().toISOString()
+            });
+        } catch (e) { console.error("Notification error:", e); }
+    }
+
+    function updateNavBadges() {
+        if (!currentUser) return;
+        const myUnread = allNotifications.filter(n => n.targetUser === currentUser && !n.read);
+        const pageCount = {};
+        myUnread.forEach(n => { if (n.page) pageCount[n.page] = (pageCount[n.page] || 0) + 1; });
+
+        // Update bell badge (total unread)
+        const bell = document.getElementById("notif-bell");
+        if (bell) {
+            const oldBadge = bell.querySelector(".notif-badge");
+            if (oldBadge) oldBadge.remove();
+            if (myUnread.length > 0) {
+                const badge = document.createElement("span");
+                badge.className = "notif-badge";
+                badge.textContent = myUnread.length;
+                bell.appendChild(badge);
+            }
+        }
+
+        // Update nav buttons
+        document.querySelectorAll('.nav-btn .notif-badge').forEach(b => b.remove());
+        Object.keys(pageCount).forEach(page => {
+            const navBtn = document.getElementById("nav-" + page);
+            if (navBtn) {
+                const badge = document.createElement('span');
+                badge.className = 'notif-badge';
+                badge.textContent = pageCount[page];
+                navBtn.appendChild(badge);
+            }
+        });
+    }
+
+    // Helper to make currentUser change refresh notifications
+    window.addEventListener("storage", () => {
+        renderNotifications();
+        updateNavBadges();
+    });
 
     /* ===== NAV ===== */
     window.showPage = function(id, btn) {
@@ -1177,7 +1792,7 @@
             const el=document.getElementById("cc-lbl-"+i);if(el)el.textContent=d+" day"+(d!==1?"s":"")+" to go ✨";
         });
     }
-    window.addCustomEvent=function(){
+    window.addCustomEvent=async function(){
         const emoji=document.getElementById("ev-emoji").value.trim()||"🗓️";
         const name=document.getElementById("ev-name").value.trim();
         const date=document.getElementById("ev-date").value;
@@ -1186,6 +1801,9 @@
         saveEvents(list);
         document.getElementById("ev-emoji").value="";document.getElementById("ev-name").value="";document.getElementById("ev-date").value="";
         renderCustom();
+        const partner = currentUser === "hamdi" ? "yossr" : "hamdi";
+        const whoName = currentUser === "hamdi" ? "Hamdi" : "Yossr";
+        
     };
     window.deleteCustom=function(i){if(!confirm("Delete this event?"))return;const list=loadEvents();list.splice(i,1);saveEvents(list);renderCustom();};
     renderCustom();
@@ -1234,7 +1852,51 @@
     window.toggleComments=function(id){const list=document.getElementById("comments-"+id);if(list)list.classList.toggle("open");};
     window.addComment=async function(id){if(!currentUser){showIdentityModal();return;}const input=document.getElementById("cinput-"+id);if(!input)return;const text=input.value.trim();if(!text)return;showSync();try{const docRef=doc(db,"memories",id);const snap=await getDoc(docRef);const data=snap.data();const comments=data.comments||[];const now=new Date();const timeStr=now.toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"})+" "+now.toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"});comments.push({author:currentUser,text:text,time:timeStr});await updateDoc(docRef,{comments:comments});input.value="";}catch(e){alert("Error: "+e.message);}hideSync();};
     window.deleteComment=async function(id,commentIndex){if(!confirm("Delete this comment?"))return;showSync();try{const docRef=doc(db,"memories",id);const snap=await getDoc(docRef);const data=snap.data();const comments=data.comments||[];comments.splice(commentIndex,1);await updateDoc(docRef,{comments:comments});}catch(e){alert("Error: "+e.message);}hideSync();};
-    window.saveMemory=async function(){const text=document.getElementById("memo-text").value.trim();const date=document.getElementById("memo-date").value;const label=document.getElementById("memo-label").value.trim();const zone=document.getElementById("add-upload-zone");const image=zone._b64||null;if(!text&&!image){alert("Please write a memory or add a photo 💕");return;}const btn=document.getElementById("save-btn");btn.disabled=true;btn.textContent="💾 Saving...";showSync();try{await addDoc(memoriesRef,{text,date,label,image,savedAt:new Date().toISOString(),reactions:{},comments:[],createdBy:currentUser||"hamdi"});document.getElementById("memo-text").value="";document.getElementById("memo-date").value=localToday();document.getElementById("memo-label").value="";clearZone({stopPropagation:()=>{}}, "add");const toast=document.getElementById("save-toast");toast.style.display="block";setTimeout(()=>toast.style.display="none",2500);}catch(e){alert("Error: "+e.message);}btn.disabled=false;btn.textContent="💾 Save Memory";hideSync();};
+    window.saveMemory = async function () {
+        const text = document.getElementById("memo-text").value.trim();
+        const date = document.getElementById("memo-date").value;
+        const label = document.getElementById("memo-label").value.trim();
+        const zone = document.getElementById("add-upload-zone");
+        const image = zone._b64 || null;
+        if (!text && !image) {
+            alert("Please write a memory or add a photo 💕");
+            return;
+        }
+        const btn = document.getElementById("save-btn");
+        btn.disabled = true;
+        btn.textContent = "💾 Saving...";
+        showSync();
+        try {
+            await addDoc(memoriesRef, {
+                text,
+                date,
+                label,
+                image,
+                savedAt: new Date().toISOString(),
+                reactions: {},
+                comments: [],
+                createdBy: currentUser || "hamdi"
+            });
+            document.getElementById("memo-text").value = "";
+            document.getElementById("memo-date").value = localToday();
+            document.getElementById("memo-label").value = "";
+            clearZone({
+                stopPropagation: () => {
+                }
+            }, "add");
+            const toast = document.getElementById("save-toast");
+            toast.style.display = "block";
+            setTimeout(() => toast.style.display = "none", 2500);
+            const partner = currentUser === "hamdi" ? "yossr" : "hamdi";
+            const whoName = currentUser === "hamdi" ? "Hamdi" : "Yossr";
+            await createNotification("memory", `${whoName} added a new memory${label ? ' "' + label + '"' : ''}`, partner, "memories");
+        } catch (e) {
+            alert("Error: " + e.message);
+        }
+        btn.disabled = false;
+        btn.textContent = "💾 Save Memory";
+        hideSync();
+    };
     window.deleteMemory=async function(id){if(!confirm("Delete this memory?"))return;showSync();await deleteDoc(doc(db,"memories",id));hideSync();};
     window.startEdit=function(id){const card=document.getElementById("msg-card-"+id);const imgSrc=card.querySelector(".msg-img")?card.querySelector(".msg-img").src:"";const label=card.querySelector(".msg-label")?card.querySelector(".msg-label").textContent:"";const datePin=card.querySelector(".msg-date-pin")?card.querySelector(".msg-date-pin").textContent.replace("📅 ",""):"";const body=card.querySelector(".msg-body")?card.querySelector(".msg-body").textContent:"";const uid="edit-"+id;const hasImg=!!imgSrc;card.innerHTML=`<div class="edit-form"><input type="text" id="${uid}-label-input" value="${esc(label)}" placeholder="Label" maxlength="60"/><input type="date" id="${uid}-date-input" value="${esc(datePin)}" style="padding:8px 12px;border:1px solid rgba(255,182,210,.7);border-radius:10px;background:rgba(255,240,248,.9);color:#7a2545;font-size:.9rem;font-family:Lato,sans-serif;outline:none;"/><textarea id="${uid}-text-input" placeholder="Your memory…">${esc(body)}</textarea><div class="img-upload-zone${hasImg?" has-img":""}" id="${uid}-upload-zone" onclick="document.getElementById('${uid}-file-input').click()"><span id="${uid}-upload-hint"${hasImg?' style="display:none"':""}>📷 Click to change photo</span><img class="zone-preview" id="${uid}-img-preview" src="${imgSrc||""}" style="display:${hasImg?"block":"none"};"/><button class="zone-clear-btn" id="${uid}-clear-btn" style="display:${hasImg?"block":"none"};" onclick="clearZone(event,'${uid}')">✕ Remove</button></div><input type="file" id="${uid}-file-input" accept="image/*" style="display:none" onchange="handleZoneFile(event,'${uid}')"/><div class="edit-actions"><button class="btn-save-edit" onclick="saveEdit('${id}')">💾 Save</button><button class="btn-cancel-edit" onclick="cancelEdit()">Cancel</button></div></div>`;document.getElementById(uid+"-upload-zone")._b64=imgSrc||null;};
     window.cancelEdit=function(){window.location.reload();};
@@ -1257,7 +1919,33 @@
         if(bar)bar.style.width=pct+"%";if(lbl)lbl.textContent=total===0?"Add your first task 🌸":`${done} of ${total} tasks completed (${pct}%) 💕`;
     }
     onSnapshot(query(checklistRef,orderBy("createdAt","asc")),snapshot=>{renderChecklistTasks(snapshot.docs);});
-    window.addChecklistTask=async function(){const input=document.getElementById("cl-task-input");const select=document.getElementById("cl-status-select");if(!input||!select)return;const text=input.value.trim();if(!text){input.focus();return;}showSync();try{await addDoc(checklistRef,{text,status:select.value,createdBy:currentUser||"hamdi",createdAt:new Date().toISOString()});input.value="";select.value="todo";}catch(e){alert("Error: "+e.message);}hideSync();};
+    window.addChecklistTask = async function () {
+        const input = document.getElementById("cl-task-input");
+        const select = document.getElementById("cl-status-select");
+        if (!input || !select) return;
+        const text = input.value.trim();
+        if (!text) {
+            input.focus();
+            return;
+        }
+        showSync();
+        try {
+            await addDoc(checklistRef, {
+                text,
+                status: select.value,
+                createdBy: currentUser || "hamdi",
+                createdAt: new Date().toISOString()
+            });
+            input.value = "";
+            select.value = "todo";
+            const partner = currentUser === "hamdi" ? "yossr" : "hamdi";
+            const whoName = currentUser === "hamdi" ? "Hamdi" : "Yossr";
+            await createNotification("checklist", `${whoName} added a task: ${text}`, partner, "checklist");
+        } catch (e) {
+            alert("Error: " + e.message);
+        }
+        hideSync();
+    };
     window.deleteChecklistTask=async function(id){if(!confirm("Delete this task?"))return;showSync();try{await deleteDoc(doc(db,"checklist",id));}catch(e){alert("Error: "+e.message);}hideSync();};
     window.onTaskDragStart=function(e,id){draggedTaskId=id;e.dataTransfer.effectAllowed="move";setTimeout(()=>{const el=document.getElementById("task-"+id);if(el)el.classList.add("dragging");},0);};
     window.onTaskDragEnd=function(e){if(draggedTaskId){const el=document.getElementById("task-"+draggedTaskId);if(el)el.classList.remove("dragging");}document.querySelectorAll(".checklist-column").forEach(c=>c.classList.remove("drag-over"));};
@@ -1289,7 +1977,40 @@
     function renderPlacesList(places){const list=document.getElementById("places-list");if(!list)return;const filtered=placeSearchQuery?places.filter(p=>(p.name||"").toLowerCase().includes(placeSearchQuery)||(p.desc||"").toLowerCase().includes(placeSearchQuery)||(p.emoji||"").includes(placeSearchQuery)):places;if(places.length===0){list.innerHTML='<p class="no-places">No places saved yet… click the map to add your first one 🌹</p>';return;}if(filtered.length===0){list.innerHTML=`<p class="no-places">No places found for "<strong>${esc(placeSearchQuery)}</strong>" 🔍</p>`;return;}list.innerHTML=filtered.map(p=>{const authorIcon=p.addedBy==="yossr"?"👩":"👨";const authorName=p.addedBy==="yossr"?"Yossr":"Hamdi";return `<div class="place-card"><button class="p-del" onclick="deletePlace('${p.id}')">🗑️</button><div class="p-emoji">${p.emoji||"📍"}</div><div class="p-name">${esc(p.name)}</div>${p.desc?`<div class="p-desc">${esc(p.desc)}</div>`:""}<div class="p-coords">📍 ${Number(p.lat).toFixed(4)}, ${Number(p.lng).toFixed(4)}</div><div class="p-author">${authorIcon} Added by ${authorName}</div><button class="p-view-btn" onclick="flyToPlace(${p.lat},${p.lng})">🗺️ View on Map</button></div>`;}).join("");}
     onSnapshot(query(placesRef,orderBy("addedAt","asc")),snapshot=>{placesData=snapshot.docs.map(d=>({id:d.id,...d.data()}));renderPlacesList(placesData);renderPlaceMarkers(placesData);});
     window.flyToPlace=function(lat,lng){if(!leafletMap)return;leafletMap.flyTo([lat,lng],15,{duration:1.2});window.scrollTo({top:document.getElementById("our-places-map").offsetTop-80,behavior:"smooth"});};
-    window.savePlaceFromModal=async function(){const name=document.getElementById("place-name-input").value.trim();const emoji=document.getElementById("place-emoji-input").value.trim()||"📍";const desc=document.getElementById("place-desc-input").value.trim();const lat=parseFloat(document.getElementById("place-lat-input").value);const lng=parseFloat(document.getElementById("place-lng-input").value);if(!name){alert("Please enter a place name 💕");return;}if(isNaN(lat)||isNaN(lng)){alert("Invalid coordinates. Please click on the map first.");return;}showSync();try{await addDoc(placesRef,{name,emoji,desc,lat,lng,addedBy:currentUser||"hamdi",addedAt:new Date().toISOString()});closePlaceModal();}catch(e){alert("Error: "+e.message);}hideSync();};
+    window.savePlaceFromModal = async function () {
+        const name = document.getElementById("place-name-input").value.trim();
+        const emoji = document.getElementById("place-emoji-input").value.trim() || "📍";
+        const desc = document.getElementById("place-desc-input").value.trim();
+        const lat = parseFloat(document.getElementById("place-lat-input").value);
+        const lng = parseFloat(document.getElementById("place-lng-input").value);
+        if (!name) {
+            alert("Please enter a place name 💕");
+            return;
+        }
+        if (isNaN(lat) || isNaN(lng)) {
+            alert("Invalid coordinates. Please click on the map first.");
+            return;
+        }
+        showSync();
+        try {
+            await addDoc(placesRef, {
+                name,
+                emoji,
+                desc,
+                lat,
+                lng,
+                addedBy: currentUser || "hamdi",
+                addedAt: new Date().toISOString()
+            });
+            closePlaceModal();
+            const partner = currentUser === "hamdi" ? "yossr" : "hamdi";
+            const whoName = currentUser === "hamdi" ? "Hamdi" : "Yossr";
+            await createNotification("places", `${whoName} added a new place: ${name}`, partner, "places");
+        } catch (e) {
+            alert("Error: " + e.message);
+        }
+        hideSync();
+    };
     window.closePlaceModal=function(){document.getElementById("place-add-popup").classList.remove("open");};
     window.deletePlace=async function(id){if(!confirm("Delete this place?"))return;showSync();try{await deleteDoc(doc(db,"places",id));}catch(e){alert("Error: "+e.message);}hideSync();};
     document.getElementById("place-add-popup").addEventListener("click",function(e){if(e.target===this)closePlaceModal();});
@@ -1301,7 +2022,41 @@
     function renderMultiPreview(){const ready=galleryPendingPhotos.filter(Boolean);galleryPendingPhotos=ready;const grid=document.getElementById("gal-multi-grid");grid.style.display=ready.length>0?"grid":"none";grid.innerHTML=ready.map((p,i)=>`<div class="gal-multi-item" id="gmi-${i}"><img src="${p.b64}" alt="photo ${i+1}"/><input type="text" placeholder="Caption… 💕" maxlength="80" oninput="galleryPendingPhotos[${i}].caption=this.value" value="${esc(p.caption||"")}"/><button class="gal-multi-remove" onclick="removeGalleryPending(${i})">✕</button></div>`).join("");updateGalSaveBtn();}
     window.removeGalleryPending=function(i){galleryPendingPhotos.splice(i,1);renderMultiPreview();};
     function updateGalSaveBtn(){const btn=document.getElementById("gal-save-btn");const n=galleryPendingPhotos.length;btn.style.display=n>0?"block":"none";btn.textContent=n===1?"💾 Add 1 Photo to Gallery":`💾 Add ${n} Photos to Gallery`;}
-    window.saveAllGalleryPhotos=async function(){if(!galleryPendingPhotos.length)return;const albumRaw=document.getElementById("gal-album").value.trim();const album=albumRaw||"Other ✨";const btn=document.getElementById("gal-save-btn");btn.disabled=true;btn.textContent="💾 Saving…";showSync();try{for(const p of galleryPendingPhotos){await addDoc(galleryRef,{image:p.b64,caption:p.caption||"",album,addedBy:currentUser||"hamdi",addedAt:new Date().toISOString()});}galleryPendingPhotos=[];document.getElementById("gal-multi-grid").style.display="none";document.getElementById("gal-multi-grid").innerHTML="";document.getElementById("gal-album").value="";document.getElementById("gal-file-input").value="";}catch(er){alert("Error: "+er.message);}btn.disabled=false;updateGalSaveBtn();hideSync();};
+
+    window.saveAllGalleryPhotos = async function () {
+        if (!galleryPendingPhotos.length) return;
+        const albumRaw = document.getElementById("gal-album").value.trim();
+        const album = albumRaw || "Other ✨";
+        const btn = document.getElementById("gal-save-btn");
+        btn.disabled = true;
+        btn.textContent = "💾 Saving…";
+        showSync();
+        try {
+            for (const p of galleryPendingPhotos) {
+                await addDoc(galleryRef, {
+                    image: p.b64,
+                    caption: p.caption || "",
+                    album,
+                    addedBy: currentUser || "hamdi",
+                    addedAt: new Date().toISOString()
+                });
+            }
+            galleryPendingPhotos = [];
+            document.getElementById("gal-multi-grid").style.display = "none";
+            document.getElementById("gal-multi-grid").innerHTML = "";
+            document.getElementById("gal-album").value = "";
+            document.getElementById("gal-file-input").value = "";
+            const partner = currentUser === "hamdi" ? "yossr" : "hamdi";
+            const whoName = currentUser === "hamdi" ? "Hamdi" : "Yossr";
+            const photoCount = galleryPendingPhotos.length || 1;
+            await createNotification("gallery", `${whoName} added ${photoCount} photo${photoCount > 1 ? 's' : ''} to the gallery`, partner, "gallery");
+        } catch (er) {
+            alert("Error: " + er.message);
+        }
+        btn.disabled = false;
+        updateGalSaveBtn();
+        hideSync();
+    };
     onSnapshot(query(galleryRef,orderBy("addedAt","desc")),snapshot=>{galleryAllPhotos=snapshot.docs.map(d=>({id:d.id,...d.data()}));renderGalleryGrid();});
     function renderGalleryGrid(){const grid=document.getElementById("gallery-grid");if(!grid)return;const albumSet=[...new Set(galleryAllPhotos.map(p=>p.album).filter(Boolean))];const dl=document.getElementById("albums-datalist");if(dl)dl.innerHTML=albumSet.map(a=>`<option value="${esc(a)}">`).join("");const tabsEl=document.getElementById("album-tabs");if(tabsEl){tabsEl.innerHTML=`<button class="album-tab${currentAlbumFilter==="all"?" active":""}" onclick="filterAlbum('all',this)">🌸 All (${galleryAllPhotos.length})</button>`+albumSet.map(a=>{const count=galleryAllPhotos.filter(p=>p.album===a).length;const active=currentAlbumFilter===a?" active":"";return `<button class="album-tab${active}" onclick="filterAlbum('${esc(a).replace(/'/g,"\\'")}',this)">${esc(a)} <span style="font-size:.75rem;opacity:.8">(${count})</span></button>`;}).join("");}
     const filtered=currentAlbumFilter==="all"?galleryAllPhotos:galleryAllPhotos.filter(p=>p.album===currentAlbumFilter);slideshowPhotos=filtered;if(filtered.length===0){grid.innerHTML='<p class="gallery-empty">No photos yet in this album… add your first memory 📸</p>';return;}grid.innerHTML=filtered.map((p,i)=>`<div class="photo-item" onclick="openSlideshow(${i})"><img src="${p.image}" alt="${esc(p.caption||"")}" loading="lazy"/><div class="photo-overlay">${p.caption?`<div class="po-caption">${esc(p.caption)}</div>`:""}<div class="po-album">${esc(p.album||"")}</div></div><button class="photo-del-btn" onclick="deleteGalleryPhoto(event,'${p.id}')">🗑️</button></div>`).join("");}
@@ -1506,6 +2261,8 @@
             });
             document.getElementById("sc-emoji").value = "";
             document.getElementById("sc-msg").value = "";
+            const whoName = currentUser === "hamdi" ? "Hamdi" : "Yossr";
+            await createNotification("scratch", `${whoName} sent you a secret scratch card 🎴`, to, "scratch");
         } catch(e) { alert("Error: " + e.message); }
         btn.disabled = false; btn.textContent = "🎴 Send Secret Card";
         hideSync();
@@ -1520,99 +2277,212 @@
     };
 
     /* ============================================================
-       ===== QUIZ =====
-       ============================================================ */
-    const quizRef = collection(db, "quizquestions");
-    let allQuizQuestions = [];
+   ===== QUIZ - UPDATED =====
+   ============================================================ */
+const quizRef = collection(db, "quizquestions");
+let allQuizQuestions = [];
+let currentQuizType = "multiple"; // 'multiple' or 'open'
+let currentQuizFilter = "new";    // 'new', 'answered', 'all'
 
-    window.showQuizTab = function(tab, btn) {
-        document.querySelectorAll(".quiz-panel").forEach(p => p.classList.remove("active"));
-        document.querySelectorAll(".quiz-tab").forEach(b => b.classList.remove("active"));
-        document.getElementById("qpanel-" + tab).classList.add("active");
-        btn.classList.add("active");
-        if (tab === "scores") renderQuizScores();
-        if (tab === "answer") renderAnswerPanel();
-        if (tab === "add") renderMyQuestionsPanel();
+window.showQuizTab = function(tab, btn) {
+    document.querySelectorAll(".quiz-panel").forEach(p => p.classList.remove("active"));
+    document.querySelectorAll(".quiz-tab").forEach(b => b.classList.remove("active"));
+    document.getElementById("qpanel-" + tab).classList.add("active");
+    btn.classList.add("active");
+    if (tab === "scores") renderQuizScores();
+    if (tab === "answer") renderAnswerPanel();
+    if (tab === "add") renderMyQuestionsPanel();
+};
+
+window.selectQuizType = function(type) {
+    currentQuizType = type;
+    document.getElementById("quiz-type-multiple").classList.toggle("active", type === "multiple");
+    document.getElementById("quiz-type-open").classList.toggle("active", type === "open");
+    const optsContainer = document.getElementById("quiz-options-container");
+    if (optsContainer) optsContainer.style.display = type === "multiple" ? "block" : "none";
+};
+
+window.filterQuizQuestions = function(filter, btn) {
+    currentQuizFilter = filter;
+    document.querySelectorAll(".quiz-filter-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    renderAnswerPanel();
+};
+
+onSnapshot(query(quizRef, orderBy("createdAt", "desc")), snapshot => {
+    allQuizQuestions = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+    renderMyQuestionsPanel();
+    renderAnswerPanel();
+    renderQuizScores();
+});
+
+window.addQuizQuestion = async function() {
+    if (!currentUser) { showIdentityModal(); return; }
+    const question = document.getElementById("q-question").value.trim();
+    if (!question) { alert("Please enter a question 💕"); return; }
+
+    let questionData = {
+        about: currentUser,
+        question,
+        type: currentQuizType,
+        createdBy: currentUser,
+        createdAt: new Date().toISOString(),
+        answers: {},
+        authorComments: []
     };
 
-    onSnapshot(query(quizRef, orderBy("createdAt", "asc")), snapshot => {
-        allQuizQuestions = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
-        renderMyQuestionsPanel();
-        renderAnswerPanel();
-        renderQuizScores();
-    });
-
-    window.addQuizQuestion = async function() {
-        if (!currentUser) { showIdentityModal(); return; }
-        const question = document.getElementById("q-question").value.trim();
+    if (currentQuizType === "multiple") {
         const optA = document.getElementById("q-opt-a").value.trim();
         const optB = document.getElementById("q-opt-b").value.trim();
         const optC = document.getElementById("q-opt-c").value.trim();
         const optD = document.getElementById("q-opt-d").value.trim();
         const correct = document.getElementById("q-correct").value;
-        if (!question || !optA || !optB || !optC || !optD) { alert("Please fill in the question and all 4 options 💕"); return; }
-        const btn = document.getElementById("q-add-btn");
-        btn.disabled = true; btn.textContent = "💾 Saving...";
-        showSync();
-        try {
-            await addDoc(quizRef, {
-                about: currentUser,
-                question, options: { a: optA, b: optB, c: optC, d: optD },
-                correct,
-                createdBy: currentUser,
-                createdAt: new Date().toISOString(),
-                answers: {}
-            });
-            document.getElementById("q-question").value = "";
+        if (!optA || !optB || !optC || !optD) {
+            alert("Please fill in all 4 options 💕");
+            return;
+        }
+        questionData.options = { a: optA, b: optB, c: optC, d: optD };
+        questionData.correct = correct;
+    }
+
+    const btn = document.getElementById("q-add-btn");
+    btn.disabled = true;
+    btn.textContent = "💾 Saving...";
+    showSync();
+
+    try {
+        await addDoc(quizRef, questionData);
+        document.getElementById("q-question").value = "";
+        if (currentQuizType === "multiple") {
             document.getElementById("q-opt-a").value = "";
             document.getElementById("q-opt-b").value = "";
             document.getElementById("q-opt-c").value = "";
             document.getElementById("q-opt-d").value = "";
             document.getElementById("q-correct").value = "a";
-        } catch(e) { alert("Error: " + e.message); }
-        btn.disabled = false; btn.textContent = "💾 Add Question";
-        hideSync();
-    };
-
-    function renderMyQuestionsPanel() {
-        const me = currentUser || "hamdi";
-        const myQs = allQuizQuestions.filter(q => q.about === me);
-        const container = document.getElementById("my-questions-list");
-        if (!container) return;
-        if (myQs.length === 0) {
-            container.innerHTML = '<p class="quiz-empty">You haven\'t added any questions yet — add one above! 💡</p>';
-            return;
         }
-        container.innerHTML = `<p style="font-family:Great Vibes,cursive;font-size:1.5rem;color:#c0396b;text-align:center;margin-bottom:14px;">Your Questions About Yourself</p>` +
-            myQs.map(q => buildQuizCardHTML(q, true)).join("");
+        // Notify partner
+        const partner = currentUser === "hamdi" ? "yossr" : "hamdi";
+        const whoName = currentUser === "hamdi" ? "Hamdi" : "Yossr";
+        await createNotification("quiz", `${whoName} added a new quiz question 💡`, partner, "quiz");
+    } catch (e) { alert("Error: " + e.message); }
+
+    btn.disabled = false;
+    btn.textContent = "💾 Add Question";
+    hideSync();
+};
+
+function renderMyQuestionsPanel() {
+    const me = currentUser || "hamdi";
+    const myQs = allQuizQuestions.filter(q => q.about === me);
+    const container = document.getElementById("my-questions-list");
+    if (!container) return;
+    if (myQs.length === 0) {
+        container.innerHTML = '<p class="quiz-empty">You haven\'t added any questions yet — add one above! 💡</p>';
+        return;
+    }
+    container.innerHTML = `<p style="font-family:Great Vibes,cursive;font-size:1.5rem;color:#c0396b;text-align:center;margin-bottom:14px;">Your Questions About Yourself</p>` +
+        myQs.map(q => buildQuizCardHTML(q, true)).join("");
+}
+
+function renderAnswerPanel() {
+    const me = currentUser || "hamdi";
+    const partner = me === "hamdi" ? "yossr" : "hamdi";
+    const partnerQs = allQuizQuestions.filter(q => q.about === partner);
+
+    // Update filter counts
+    const newCount = partnerQs.filter(q => !q.answers || !q.answers[me]).length;
+    const answeredCount = partnerQs.filter(q => q.answers && q.answers[me]).length;
+    const allCount = partnerQs.length;
+    const cn = document.getElementById("count-new");
+    const ca = document.getElementById("count-answered");
+    const cAll = document.getElementById("count-all");
+    if (cn) cn.textContent = newCount;
+    if (ca) ca.textContent = answeredCount;
+    if (cAll) cAll.textContent = allCount;
+
+    // Apply filter
+    let filteredQs;
+    if (currentQuizFilter === "new") {
+        filteredQs = partnerQs.filter(q => !q.answers || !q.answers[me]);
+    } else if (currentQuizFilter === "answered") {
+        filteredQs = partnerQs.filter(q => q.answers && q.answers[me]);
+    } else {
+        filteredQs = partnerQs;
     }
 
-    function renderAnswerPanel() {
-        const me = currentUser || "hamdi";
-        const partner = me === "hamdi" ? "yossr" : "hamdi";
-        const partnerQs = allQuizQuestions.filter(q => q.about === partner);
-        const container = document.getElementById("answer-questions-list");
-        if (!container) return;
-        if (partnerQs.length === 0) {
-            const partnerName = partner === "hamdi" ? "Hamdi" : "Yossr";
-            container.innerHTML = `<p class="quiz-empty">No questions from ${partnerName} yet… ask them to add some! 💕</p>`;
-            return;
-        }
-        const partnerName = partner === "hamdi" ? "Hamdi" : "Yossr";
-        container.innerHTML = `<p style="font-family:Great Vibes,cursive;font-size:1.5rem;color:#c0396b;text-align:center;margin-bottom:14px;">Questions About ${partnerName} ${partner === "hamdi" ? "👨" : "👩"}</p>` +
-            partnerQs.map(q => buildQuizCardHTML(q, false)).join("");
+    // Sort: newest first (already sorted by createdAt desc)
+    const container = document.getElementById("answer-questions-list");
+    if (!container) return;
+    const partnerName = partner === "hamdi" ? "Hamdi" : "Yossr";
+
+    if (partnerQs.length === 0) {
+        container.innerHTML = `<p class="quiz-empty">No questions from ${partnerName} yet… ask them to add some! 💕</p>`;
+        return;
+    }
+    if (filteredQs.length === 0) {
+        const msg = currentQuizFilter === "new"
+            ? "No new questions — you've answered them all! 🎉"
+            : currentQuizFilter === "answered"
+                ? "You haven't answered any questions yet 💕"
+                : "No questions yet";
+        container.innerHTML = `<p class="quiz-empty">${msg}</p>`;
+        return;
     }
 
-    function buildQuizCardHTML(q, isOwn) {
-        const aboutIcon = q.about === "hamdi" ? "👨" : "👩";
-        const aboutName = q.about === "hamdi" ? "Hamdi" : "Yossr";
-        const me = currentUser || "hamdi";
-        const myAnswer = q.answers && q.answers[me];
-        const hasAnswered = !!myAnswer;
+    container.innerHTML = `<p style="font-family:Great Vibes,cursive;font-size:1.5rem;color:#c0396b;text-align:center;margin-bottom:14px;">Questions About ${partnerName} ${partner === "hamdi" ? "👨" : "👩"}</p>` +
+        filteredQs.map(q => buildQuizCardHTML(q, false)).join("");
+}
 
+function buildQuizCardHTML(q, isOwn) {
+    const aboutIcon = q.about === "hamdi" ? "👨" : "👩";
+    const aboutName = q.about === "hamdi" ? "Hamdi" : "Yossr";
+    const me = currentUser || "hamdi";
+    const isOpen = q.type === "open";
+    const myAnswer = q.answers && q.answers[me];
+    const hasAnswered = !!myAnswer;
+    const partner = me === "hamdi" ? "yossr" : "hamdi";
+    const partnerAnswer = q.answers && q.answers[partner];
+    const typeBadge = isOpen ? '<span class="quiz-question-type-badge">✍️ Open</span>' : '<span class="quiz-question-type-badge">📝 MCQ</span>';
+
+    let answerSection = "";
+
+    if (isOpen) {
+        // Open-ended question
+        if (isOwn) {
+            // Show partner's answer if exists
+            if (partnerAnswer) {
+                const partnerIcon = partner === "hamdi" ? "👨" : "👩";
+                const partnerN = partner === "hamdi" ? "Hamdi" : "Yossr";
+                answerSection = `<div class="quiz-open-answer-display">
+                    <div class="quiz-open-answer-label">${partnerIcon} ${partnerN}'s answer:</div>
+                    <div class="quiz-open-answer-text">${esc(partnerAnswer.text || partnerAnswer.answer || "")}</div>
+                </div>`;
+                // Author can comment on the answer
+                answerSection += buildAuthorCommentsSection(q, true);
+            } else {
+                answerSection = `<div class="quiz-answered-status">⏳ Waiting for ${partner === "hamdi" ? "Hamdi" : "Yossr"}'s answer…</div>`;
+            }
+        } else {
+            // Partner viewing - can answer if not answered yet
+            if (hasAnswered) {
+                answerSection = `<div class="quiz-open-answer-display">
+                    <div class="quiz-open-answer-label">📝 Your answer:</div>
+                    <div class="quiz-open-answer-text">${esc(myAnswer.text || myAnswer.answer || "")}</div>
+                </div>`;
+                // Show author's comments on this answer
+                answerSection += buildAuthorCommentsSection(q, false);
+            } else {
+                answerSection = `<div class="quiz-open-answer-section">
+                    <textarea class="quiz-open-answer-input" id="open-answer-${q.id}" placeholder="Write your answer here… 💕" maxlength="500"></textarea>
+                    <button class="quiz-open-submit-btn" onclick="submitOpenAnswer('${q.id}')">💾 Submit Answer</button>
+                </div>`;
+            }
+        }
+    } else {
+        // Multiple choice question
         let optionsHtml = "";
-        ["a","b","c","d"].forEach(letter => {
-            const optText = q.options[letter];
+        ["a", "b", "c", "d"].forEach(letter => {
+            const optText = q.options && q.options[letter];
             if (!optText) return;
             let btnClass = "quiz-option-btn";
             let disabled = "";
@@ -1627,106 +2497,209 @@
             }
             optionsHtml += `<button class="${btnClass}" ${disabled} onclick="answerQuiz('${q.id}','${letter}')">${letter.toUpperCase()}. ${esc(optText)}</button>`;
         });
+        answerSection = `<div class="quiz-options">${optionsHtml}</div>`;
 
-        let statusHtml = "";
+        // Status
         if (isOwn) {
-            const answerers = [];
-            const partner = me === "hamdi" ? "yossr" : "hamdi";
-            if (q.answers && q.answers[partner]) {
-                const ans = q.answers[partner];
+            if (partnerAnswer) {
                 const partnerIcon = partner === "hamdi" ? "👨" : "👩";
-                const correct = ans.answer === q.correct;
-                statusHtml = `<div class="quiz-answered-status">${partnerIcon} answered: <span class="${correct ? "ans-correct" : "ans-wrong"}">${q.options[ans.answer] || ans.answer} ${correct ? "✅" : "❌"}</span></div>`;
+                const correct = partnerAnswer.answer === q.correct;
+                answerSection += `<div class="quiz-answered-status">${partnerIcon} answered: <span class="${correct ? "ans-correct" : "ans-wrong"}">${esc(q.options[partnerAnswer.answer] || partnerAnswer.answer)} ${correct ? "✅" : "❌"}</span></div>`;
             } else {
-                statusHtml = `<div class="quiz-answered-status">⏳ Waiting for answer…</div>`;
+                answerSection += `<div class="quiz-answered-status">⏳ Waiting for answer…</div>`;
             }
         } else if (hasAnswered) {
             const correct = myAnswer.answer === q.correct;
-            statusHtml = `<div class="quiz-answered-status">You answered: <span class="${correct ? "ans-correct" : "ans-wrong"}">${q.options[myAnswer.answer] || myAnswer.answer} ${correct ? "✅ Correct!" : "❌ Wrong — correct was: " + q.options[q.correct]}</span></div>`;
+            answerSection += `<div class="quiz-answered-status">You answered: <span class="${correct ? "ans-correct" : "ans-wrong"}">${esc(q.options[myAnswer.answer] || myAnswer.answer)} ${correct ? "✅ Correct!" : "❌ Wrong — correct was: " + esc(q.options[q.correct])}</span></div>`;
         }
+    }
 
-        return `<div class="quiz-question-card">
-            <div class="quiz-q-header">
-                <span class="quiz-q-about">${aboutIcon} About ${aboutName}</span>
-                ${isOwn ? `<button class="quiz-q-del" onclick="deleteQuizQuestion('${q.id}')">🗑️</button>` : ""}
+    return `<div class="quiz-question-card">
+        <div class="quiz-q-header">
+            <span class="quiz-q-about">${aboutIcon} About ${aboutName}${typeBadge}</span>
+            ${isOwn ? `<button class="quiz-q-del" onclick="deleteQuizQuestion('${q.id}')">🗑️</button>` : ""}
+        </div>
+        <div class="quiz-q-text">${esc(q.question)}</div>
+        ${answerSection}
+    </div>`;
+}
+
+function buildAuthorCommentsSection(q, isAuthor) {
+    const comments = q.authorComments || [];
+    const me = currentUser || "hamdi";
+    const author = q.about; // The one who created the question
+
+    let commentsHtml = comments.map((c, ci) => {
+        const whoIcon = c.author === "hamdi" ? "👨" : "👩";
+        const whoName = c.author === "hamdi" ? "Hamdi" : "Yossr";
+        const canDelete = c.author === me;
+        return `<div class="quiz-author-comment">
+            <span class="quiz-author-comment-icon">${whoIcon}</span>
+            <div class="quiz-author-comment-body">
+                <div class="quiz-author-comment-author">${whoName}</div>
+                <div class="quiz-author-comment-text">${esc(c.text)}</div>
+                <div class="quiz-author-comment-time">${c.time || ""}</div>
             </div>
-            <div class="quiz-q-text">${esc(q.question)}</div>
-            <div class="quiz-options">${optionsHtml}</div>
-            ${statusHtml}
+            ${canDelete ? `<button class="quiz-author-comment-delete" onclick="deleteQuizComment('${q.id}', ${ci})">🗑️</button>` : ""}
+        </div>`;
+    }).join("");
+
+    let inputHtml = "";
+    if (isAuthor) {
+        // Only the author of the question can add comments
+        inputHtml = `<div class="quiz-comment-input-row">
+            <input type="text" class="quiz-comment-input" id="qcomment-${q.id}" placeholder="React to this answer… 💕" maxlength="300" onkeydown="if(event.key==='Enter')addQuizComment('${q.id}')"/>
+            <button class="quiz-comment-send-btn" onclick="addQuizComment('${q.id}')">Send</button>
         </div>`;
     }
 
-    window.answerQuiz = async function(qId, letter) {
-        if (!currentUser) { showIdentityModal(); return; }
+    if (!comments.length && !isAuthor) return "";
+
+    return `<div class="quiz-author-comments-section">
+        ${comments.length > 0 ? `<div style="font-size:.75rem;color:#c0396b;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;font-weight:700;">💭 Reactions</div>` : ""}
+        ${commentsHtml}
+        ${inputHtml}
+    </div>`;
+}
+
+window.submitOpenAnswer = async function(qId) {
+    if (!currentUser) { showIdentityModal(); return; }
+    const input = document.getElementById("open-answer-" + qId);
+    if (!input) return;
+    const text = input.value.trim();
+    if (!text) { alert("Please write an answer 💕"); return; }
+    showSync();
+    try {
+        const update = {};
+        update[`answers.${currentUser}`] = {
+            text: text,
+            answeredAt: new Date().toISOString()
+        };
+        await updateDoc(doc(db, "quizquestions", qId), update);
+        // Notify the question author
         const q = allQuizQuestions.find(x => x.id === qId);
-        if (!q) return;
-        showSync();
-        try {
-            const update = {};
-            update[`answers.${currentUser}`] = {
-                answer: letter,
-                answeredAt: new Date().toISOString()
-            };
-            await updateDoc(doc(db, "quizquestions", qId), update);
-        } catch(e) { alert("Error: " + e.message); }
-        hideSync();
-    };
-
-    window.deleteQuizQuestion = async function(id) {
-        if (!confirm("Delete this question?")) return;
-        showSync();
-        try { await deleteDoc(doc(db, "quizquestions", id)); }
-        catch(e) { alert("Error: " + e.message); }
-        hideSync();
-    };
-
-    function renderQuizScores() {
-        const container = document.getElementById("scores-content");
-        if (!container) return;
-
-        // Hamdi's score: correct answers to questions about Yossr
-        const hamdiQs = allQuizQuestions.filter(q => q.about === "yossr" && q.answers && q.answers.hamdi);
-        const hamdiCorrect = hamdiQs.filter(q => q.answers.hamdi.answer === q.correct).length;
-        const hamdiTotal = hamdiQs.length;
-
-        // Yossr's score: correct answers to questions about Hamdi
-        const yossrQs = allQuizQuestions.filter(q => q.about === "hamdi" && q.answers && q.answers.yossr);
-        const yossrCorrect = yossrQs.filter(q => q.answers.yossr.answer === q.correct).length;
-        const yossrTotal = yossrQs.length;
-
-        const hamdiPct = hamdiTotal > 0 ? Math.round((hamdiCorrect / hamdiTotal) * 100) : 0;
-        const yossrPct = yossrTotal > 0 ? Math.round((yossrCorrect / yossrTotal) * 100) : 0;
-
-        let winnerHtml = "";
-        if (hamdiTotal > 0 || yossrTotal > 0) {
-            if (hamdiPct > yossrPct) {
-                winnerHtml = `<div class="quiz-winner-banner"><h3>👨 Hamdi knows Yossr better! 🏆</h3><p>${hamdiPct}% vs ${yossrPct}% — Hamdi wins this round 😄</p></div>`;
-            } else if (yossrPct > hamdiPct) {
-                winnerHtml = `<div class="quiz-winner-banner"><h3>👩 Yossr knows Hamdi better! 🏆</h3><p>${yossrPct}% vs ${hamdiPct}% — Yossr wins this round 😄</p></div>`;
-            } else if (hamdiTotal > 0 && yossrTotal > 0) {
-                winnerHtml = `<div class="quiz-winner-banner"><h3>💕 It's a tie! You know each other perfectly!</h3><p>${hamdiPct}% — perfectly matched 🌹</p></div>`;
-            }
+        if (q) {
+            const whoName = currentUser === "hamdi" ? "Hamdi" : "Yossr";
+            await createNotification("quiz_answer", `${whoName} answered your quiz question 💬`, q.about, "quiz");
         }
+    } catch (e) { alert("Error: " + e.message); }
+    hideSync();
+};
 
-        container.innerHTML = winnerHtml + `
-        <div class="quiz-scores-wrap">
-            <div class="quiz-score-card">
-                <div class="quiz-score-icon">👨</div>
-                <div class="quiz-score-name">Hamdi</div>
-                <div class="quiz-score-num">${hamdiCorrect}<span style="font-size:1.2rem;color:#b07090;">/${hamdiTotal}</span></div>
-                <div class="quiz-score-label">Questions correct</div>
-                <div class="quiz-score-pct">${hamdiPct}% about Yossr 💕</div>
-            </div>
-            <div class="quiz-score-card">
-                <div class="quiz-score-icon">👩</div>
-                <div class="quiz-score-name">Yossr</div>
-                <div class="quiz-score-num">${yossrCorrect}<span style="font-size:1.2rem;color:#b07090;">/${yossrTotal}</span></div>
-                <div class="quiz-score-label">Questions correct</div>
-                <div class="quiz-score-pct">${yossrPct}% about Hamdi 💕</div>
-            </div>
-        </div>
-        ${allQuizQuestions.length === 0 ? '<p class="quiz-empty">No questions yet — go add some! 💡</p>' : ''}`;
+window.answerQuiz = async function(qId, letter) {
+    if (!currentUser) { showIdentityModal(); return; }
+    const q = allQuizQuestions.find(x => x.id === qId);
+    if (!q) return;
+    showSync();
+    try {
+        const update = {};
+        update[`answers.${currentUser}`] = {
+            answer: letter,
+            answeredAt: new Date().toISOString()
+        };
+        await updateDoc(doc(db, "quizquestions", qId), update);
+        // Notify the question author
+        const whoName = currentUser === "hamdi" ? "Hamdi" : "Yossr";
+        await createNotification("quiz_answer", `${whoName} answered your quiz question 💬`, q.about, "quiz");
+    } catch (e) { alert("Error: " + e.message); }
+    hideSync();
+};
+
+window.addQuizComment = async function(qId) {
+    if (!currentUser) { showIdentityModal(); return; }
+    const input = document.getElementById("qcomment-" + qId);
+    if (!input) return;
+    const text = input.value.trim();
+    if (!text) return;
+    showSync();
+    try {
+        const docRef = doc(db, "quizquestions", qId);
+        const snap = await getDoc(docRef);
+        const data = snap.data();
+        const comments = data.authorComments || [];
+        const now = new Date();
+        const timeStr = now.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" }) + " " + now.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
+        comments.push({ author: currentUser, text, time: timeStr });
+        await updateDoc(docRef, { authorComments: comments });
+        input.value = "";
+        // Notify the partner (the one who answered)
+        const partner = currentUser === "hamdi" ? "yossr" : "hamdi";
+        const whoName = currentUser === "hamdi" ? "Hamdi" : "Yossr";
+        await createNotification("quiz_comment", `${whoName} reacted to your quiz answer 💭`, partner, "quiz");
+    } catch (e) { alert("Error: " + e.message); }
+    hideSync();
+};
+
+window.deleteQuizComment = async function(qId, ci) {
+    if (!confirm("Delete this comment?")) return;
+    showSync();
+    try {
+        const docRef = doc(db, "quizquestions", qId);
+        const snap = await getDoc(docRef);
+        const data = snap.data();
+        const comments = data.authorComments || [];
+        comments.splice(ci, 1);
+        await updateDoc(docRef, { authorComments: comments });
+    } catch (e) { alert("Error: " + e.message); }
+    hideSync();
+};
+
+window.deleteQuizQuestion = async function(id) {
+    if (!confirm("Delete this question?")) return;
+    showSync();
+    try { await deleteDoc(doc(db, "quizquestions", id)); }
+    catch (e) { alert("Error: " + e.message); }
+    hideSync();
+};
+
+function renderQuizScores() {
+    const container = document.getElementById("scores-content");
+    if (!container) return;
+
+    // Only count multiple-choice questions for scoring
+    const hamdiQs = allQuizQuestions.filter(q => q.about === "yossr" && q.type !== "open" && q.answers && q.answers.hamdi);
+    const hamdiCorrect = hamdiQs.filter(q => q.answers.hamdi.answer === q.correct).length;
+    const hamdiTotal = hamdiQs.length;
+
+    const yossrQs = allQuizQuestions.filter(q => q.about === "hamdi" && q.type !== "open" && q.answers && q.answers.yossr);
+    const yossrCorrect = yossrQs.filter(q => q.answers.yossr.answer === q.correct).length;
+    const yossrTotal = yossrQs.length;
+
+    const hamdiPct = hamdiTotal > 0 ? Math.round((hamdiCorrect / hamdiTotal) * 100) : 0;
+    const yossrPct = yossrTotal > 0 ? Math.round((yossrCorrect / yossrTotal) * 100) : 0;
+
+    let winnerHtml = "";
+    if (hamdiTotal > 0 || yossrTotal > 0) {
+        if (hamdiPct > yossrPct) {
+            winnerHtml = `<div class="quiz-winner-banner"><h3>👨 Hamdi knows Yossr better! 🏆</h3><p>${hamdiPct}% vs ${yossrPct}% — Hamdi wins this round 😄</p></div>`;
+        } else if (yossrPct > hamdiPct) {
+            winnerHtml = `<div class="quiz-winner-banner"><h3>👩 Yossr knows Hamdi better! 🏆</h3><p>${yossrPct}% vs ${hamdiPct}% — Yossr wins this round 😄</p></div>`;
+        } else if (hamdiTotal > 0 && yossrTotal > 0) {
+            winnerHtml = `<div class="quiz-winner-banner"><h3>💕 It's a tie! You know each other perfectly!</h3><p>${hamdiPct}% — perfectly matched 🌹</p></div>`;
+        }
     }
+
+    container.innerHTML = winnerHtml + `
+    <div class="quiz-scores-wrap">
+        <div class="quiz-score-card">
+            <div class="quiz-score-icon">👨</div>
+            <div class="quiz-score-name">Hamdi</div>
+            <div class="quiz-score-num">${hamdiCorrect}<span style="font-size:1.2rem;color:#b07090;">/${hamdiTotal}</span></div>
+            <div class="quiz-score-label">Questions correct</div>
+            <div class="quiz-score-pct">${hamdiPct}% about Yossr 💕</div>
+        </div>
+        <div class="quiz-score-card">
+            <div class="quiz-score-icon">👩</div>
+            <div class="quiz-score-name">Yossr</div>
+            <div class="quiz-score-num">${yossrCorrect}<span style="font-size:1.2rem;color:#b07090;">/${yossrTotal}</span></div>
+            <div class="quiz-score-label">Questions correct</div>
+            <div class="quiz-score-pct">${yossrPct}% about Hamdi 💕</div>
+        </div>
+    </div>
+    <p style="text-align:center;color:#a0556e;font-size:.78rem;letter-spacing:1px;margin-top:14px;">📌 Only multiple-choice questions count for scores. Open-ended questions are for sharing 💕</p>
+    ${allQuizQuestions.length === 0 ? '<p class="quiz-empty">No questions yet — go add some! 💡</p>' : ''}`;
+}
+
 
     /* ===== PARTICLES ===== */
     const emojis=["❤️","💕","🌸","🌺","💐","🌹","💗","🌼","✨","💖","🌷","💞"];const pc=document.getElementById("particles");
