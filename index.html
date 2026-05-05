@@ -1675,6 +1675,41 @@
 
         .quiz-empty { text-align: center; color: #c090a8; font-size: .9rem; padding: 30px; letter-spacing: 1px; }
         .quiz-loading { text-align: center; color: #e07fa0; font-size: .9rem; padding: 30px; letter-spacing: 1px; animation: pulse 1.5s infinite; }
+        /* ===== QUIZ PIN / DISCUSSION ===== */
+        .quiz-q-actions { display: flex; gap: 6px; align-items: center; }
+        .quiz-q-pin {
+            background: none; border: none; color: #d080a0;
+            font-size: .95rem; cursor: pointer; transition: all .2s;
+            padding: 2px 6px; border-radius: 8px;
+        }
+        .quiz-q-pin:hover { color: #c0396b; background: rgba(255,210,230,.4); }
+        .quiz-q-pin.pinned {
+            color: #c0396b; background: rgba(255,215,0,.3);
+            transform: rotate(-15deg);
+        }
+        .quiz-question-card.pinned {
+            border: 2px solid rgba(255,195,60,.65);
+            box-shadow: 0 6px 24px rgba(255,180,60,.22);
+            background: rgba(255,250,235,.85);
+        }
+        .quiz-pinned-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffc940, #f5a623);
+            color: #fff; border-radius: 8px;
+            padding: 2px 8px; font-size: .7rem;
+            letter-spacing: .5px; margin-left: 6px; font-weight: 700;
+        }
+        .discussion-info-banner {
+            background: rgba(255,230,150,.3);
+            border: 1px solid rgba(255,195,60,.45);
+            border-radius: 14px; padding: 12px 18px;
+            margin-bottom: 18px; text-align: center;
+            font-size: .85rem; color: #8a6520; letter-spacing: .5px;
+        }
+        .discussion-empty {
+            text-align: center; color: #c090a8;
+            font-size: .9rem; padding: 30px; letter-spacing: 1px;
+        }
     </style>
 </head>
 <body>
@@ -1974,7 +2009,9 @@
         <div class="quiz-tabs">
             <button class="quiz-tab active" onclick="showQuizTab('add',this)">➕ Add a Question</button>
             <button class="quiz-tab" onclick="showQuizTab('answer',this)">💬 Answer Questions</button>
+            <button class="quiz-tab" onclick="showQuizTab('discussions',this)">📌 Discussions</button>
             <button class="quiz-tab" onclick="showQuizTab('scores',this)">🏆 Scores</button>
+
         </div>
 
         <!-- Add Question Panel -->
@@ -2039,6 +2076,13 @@
         <!-- Scores Panel -->
         <div class="quiz-panel" id="qpanel-scores">
             <div id="scores-content"><p class="quiz-loading">💕 Calculating scores...</p></div>
+        </div>
+        <!-- Discussions Panel -->
+        <div class="quiz-panel" id="qpanel-discussions">
+            <div class="discussion-info-banner">
+                📌 Pinned questions for longer conversations 💕
+            </div>
+            <div id="discussions-list"><p class="quiz-loading">💕 Loading discussions...</p></div>
         </div>
     </div>
 </div>
@@ -3088,6 +3132,7 @@ window.showQuizTab = function(tab, btn) {
     if (tab === "scores") renderQuizScores();
     if (tab === "answer") renderAnswerPanel();
     if (tab === "add") renderMyQuestionsPanel();
+    if (tab === "discussions") renderDiscussionsPanel();
 };
 
 window.selectQuizType = function(type) {
@@ -3110,6 +3155,7 @@ onSnapshot(query(quizRef, orderBy("createdAt", "desc")), snapshot => {
     renderMyQuestionsPanel();
     renderAnswerPanel();
     renderQuizScores();
+    renderDiscussionsPanel();
 });
 
 window.addQuizQuestion = async function() {
@@ -3310,13 +3356,19 @@ function buildQuizCardHTML(q, isOwn) {
         }
     }
 
-    return `<div class="quiz-question-card">
+    const pinnedBadge = q.pinned ? '<span class="quiz-pinned-badge">📌 Pinned</span>' : '';
+    const cardClass = q.pinned ? 'quiz-question-card pinned' : 'quiz-question-card';
+    return `<div class="${cardClass}">
         <div class="quiz-q-header">
-            <span class="quiz-q-about">${aboutIcon} About ${aboutName}${typeBadge}</span>
-            ${isOwn ? `<button class="quiz-q-del" onclick="deleteQuizQuestion('${q.id}')">🗑️</button>` : ""}
+            <span class="quiz-q-about">${aboutIcon} About ${aboutName}${typeBadge}${pinnedBadge}</span>
+            <span class="quiz-q-actions">
+                <button class="quiz-q-pin ${q.pinned ? 'pinned' : ''}" onclick="togglePinQuestion('${q.id}')" title="${q.pinned ? 'Unpin question' : 'Pin for deep discussion'}">📌</button>
+                ${isOwn ? `<button class="quiz-q-del" onclick="deleteQuizQuestion('${q.id}')">🗑️</button>` : ""}
+            </span>
         </div>
         <div class="quiz-q-text">${esc(q.question)}</div>
         ${answerSection}
+        ${q.pinned && !isOpen && (hasAnswered || partnerAnswer) ? buildAuthorCommentsSection(q, isOwn) : ''}
     </div>`;
 }
 
@@ -3341,19 +3393,20 @@ function buildAuthorCommentsSection(q, isAuthor) {
     }).join("");
 
     let inputHtml = "";
-    if (isAuthor) {
-        // Only the author of the question can add comments
+    // Pin mode = both users can chat freely
+    const canComment = isAuthor || q.pinned;
+    if (canComment) {
+        const placeholder = q.pinned ? 'Continue the discussion… 💬' : 'React to this answer… 💕';
         inputHtml = `<div class="quiz-comment-input-row">
-            <input type="text" class="quiz-comment-input" id="qcomment-${q.id}" placeholder="React to this answer… 💕" maxlength="300" onkeydown="if(event.key==='Enter')addQuizComment('${q.id}')"/>
+            <input type="text" class="quiz-comment-input" id="qcomment-${q.id}" placeholder="${placeholder}" maxlength="300" onkeydown="if(event.key==='Enter')addQuizComment('${q.id}')"/>
             <button class="quiz-comment-send-btn" onclick="addQuizComment('${q.id}')">Send</button>
         </div>`;
     }
 
-    if (!comments.length && !isAuthor) return "";
+    if (!comments.length && !canComment) return "";
 
     return `<div class="quiz-author-comments-section">
-        ${comments.length > 0 ? `<div style="font-size:.75rem;color:#c0396b;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;font-weight:700;">💭 Reactions</div>` : ""}
-        ${commentsHtml}
+${comments.length > 0 ? `<div style="font-size:.75rem;color:#c0396b;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;font-weight:700;">${q.pinned ? '💬 Discussion' : '💭 Reactions'}</div>` : ""}        ${commentsHtml}
         ${inputHtml}
     </div>`;
 }
@@ -3447,6 +3500,35 @@ window.deleteQuizQuestion = async function(id) {
     catch (e) { alert("Error: " + e.message); }
     hideSync();
 };
+
+window.togglePinQuestion = async function(qId) {
+    if (!currentUser) { showIdentityModal(); return; }
+    const q = allQuizQuestions.find(x => x.id === qId);
+    if (!q) return;
+    const newPinState = !q.pinned;
+    showSync();
+    try {
+        await updateDoc(doc(db, "quizquestions", qId), { pinned: newPinState });
+        if (newPinState) {
+            const partner = currentUser === "hamdi" ? "yossr" : "hamdi";
+            const whoName = currentUser === "hamdi" ? "Hamdi" : "Yossr";
+            await createNotification("quiz", `${whoName} pinned a question for deeper discussion 📌`, partner, "quiz");
+        }
+    } catch (e) { alert("Error: " + e.message); }
+    hideSync();
+};
+
+function renderDiscussionsPanel() {
+    const container = document.getElementById("discussions-list");
+    if (!container) return;
+    const pinned = allQuizQuestions.filter(q => q.pinned);
+    if (pinned.length === 0) {
+        container.innerHTML = '<p class="discussion-empty">No pinned discussions yet… click 📌 on any question to open a deeper chat 💕</p>';
+        return;
+    }
+    const me = currentUser || "hamdi";
+    container.innerHTML = pinned.map(q => buildQuizCardHTML(q, q.about === me)).join("");
+}
 
 function renderQuizScores() {
     const container = document.getElementById("scores-content");
