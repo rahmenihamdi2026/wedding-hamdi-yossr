@@ -3315,8 +3315,8 @@ function buildQuizCardHTML(q, isOwn) {
                 answerSection += buildAuthorCommentsSection(q, false);
             } else {
                 answerSection = `<div class="quiz-open-answer-section">
-                    <textarea class="quiz-open-answer-input" id="open-answer-${q.id}" placeholder="Write your answer here… 💕" maxlength="500"></textarea>
-                    <button class="quiz-open-submit-btn" onclick="submitOpenAnswer('${q.id}')">💾 Submit Answer</button>
+                    <textarea class="quiz-open-answer-input" placeholder="Write your answer here… 💕" maxlength="500"></textarea>
+                    <button class="quiz-open-submit-btn" onclick="submitOpenAnswer('${q.id}', this.parentElement.querySelector('.quiz-open-answer-input'))">💾 Submit Answer</button>
                 </div>`;
             }
         }
@@ -3398,8 +3398,8 @@ function buildAuthorCommentsSection(q, isAuthor) {
     if (canComment) {
         const placeholder = q.pinned ? 'Continue the discussion… 💬' : 'React to this answer… 💕';
         inputHtml = `<div class="quiz-comment-input-row">
-            <input type="text" class="quiz-comment-input" id="qcomment-${q.id}" placeholder="${placeholder}" maxlength="300" onkeydown="if(event.key==='Enter')addQuizComment('${q.id}')"/>
-            <button class="quiz-comment-send-btn" onclick="addQuizComment('${q.id}')">Send</button>
+            <input type="text" class="quiz-comment-input" placeholder="${placeholder}" maxlength="300" onkeydown="if(event.key==='Enter')addQuizComment('${q.id}', this)"/>
+            <button class="quiz-comment-send-btn" onclick="addQuizComment('${q.id}', this.parentElement.querySelector('.quiz-comment-input'))">Send</button>
         </div>`;
     }
 
@@ -3411,9 +3411,9 @@ ${comments.length > 0 ? `<div style="font-size:.75rem;color:#c0396b;letter-spaci
     </div>`;
 }
 
-window.submitOpenAnswer = async function(qId) {
+window.submitOpenAnswer = async function(qId, inputEl) {
     if (!currentUser) { showIdentityModal(); return; }
-    const input = document.getElementById("open-answer-" + qId);
+    const input = inputEl || document.getElementById("open-answer-" + qId);
     if (!input) return;
     const text = input.value.trim();
     if (!text) { alert("Please write an answer 💕"); return; }
@@ -3454,9 +3454,9 @@ window.answerQuiz = async function(qId, letter) {
     hideSync();
 };
 
-window.addQuizComment = async function(qId) {
+window.addQuizComment = async function(qId, inputEl) {
     if (!currentUser) { showIdentityModal(); return; }
-    const input = document.getElementById("qcomment-" + qId);
+    const input = inputEl || document.getElementById("qcomment-" + qId);
     if (!input) return;
     const text = input.value.trim();
     if (!text) return;
