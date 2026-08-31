@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Hamdi & Yossr 💍</title>
-    <meta name="app-version" content="v22"/>
+    <meta name="app-version" content="v23"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
     <!-- ===== PWA — Installable app ===== -->
     <link rel="manifest" href="manifest.json"/>
@@ -4512,7 +4512,8 @@
             ]
         },
         {
-            date: "20 May 2027", ts: "2027-05-20T00:00:00",
+            date: "8 Oct 2027", ts: "2027-10-08T00:00:00",
+            unlockDate: "7 Oct 2027", unlockTs: "2027-10-07T00:00:00",
             title: "Wedding Day 👰🤵", desc: "Forever begins here", emoji: "🎊",
             quotes: [
                 "حاضر بش تكون بجنبي ديمة",
@@ -4526,7 +4527,10 @@
     ];
     const tlOpen = new Set();   // keeps cards open across re-renders
 
-    function tlIsUnlocked(e) { return Date.now() >= new Date(e.ts).getTime(); }
+    // An event can unlock its words BEFORE its own date (ex: Wedding Day → J-1)
+    function tlUnlockTs(e)   { return e.unlockTs   || e.ts; }
+    function tlUnlockDate(e) { return e.unlockDate || e.date; }
+    function tlIsUnlocked(e) { return Date.now() >= new Date(tlUnlockTs(e)).getTime(); }
 
     function renderTimeline() {
         const wrap = document.getElementById("timeline");
@@ -4545,7 +4549,7 @@
                 extra = `<div class="tl-quotes-hint" data-closed="${closedTxt}" data-open="${openTxt}">${isOpen ? openTxt : closedTxt}</div>
                     <div class="tl-quotes">${e.quotes.map(q => `<div class="quote-item">${esc(q)}</div>`).join("")}</div>`;
             } else if (hasQuotes) {
-                extra = `<div class="tl-locked-note" id="tl-lock-${i}">🔒 Our words unlock on ${e.date} 💕</div>`;
+                extra = `<div class="tl-locked-note" id="tl-lock-${i}">🔒 Our words unlock on ${tlUnlockDate(e)} 💕</div>`;
             }
 
             return `<div class="tl-item"><div class="tl-dot"></div>` +
@@ -4573,10 +4577,10 @@
             if (!e.quotes || !e.quotes.length) return;
             const lockEl = document.getElementById("tl-lock-" + i);
             if (!lockEl) return;
-            const ms = new Date(e.ts).getTime() - Date.now();
+            const ms = new Date(tlUnlockTs(e)).getTime() - Date.now();
             if (ms <= 0) { needsRender = true; return; }
             const d = Math.ceil(ms / 86400000);
-            lockEl.textContent = `🔒 Our words unlock on ${e.date} · in ${d} day${d !== 1 ? "s" : ""} 💕`;
+            lockEl.textContent = `🔒 Our words unlock on ${tlUnlockDate(e)} · in ${d} day${d !== 1 ? "s" : ""} 💕`;
         });
         if (needsRender) renderTimeline();
     }
@@ -4586,7 +4590,7 @@
 
     /* ===== COUNTDOWNS ===== */
     const engTarget = new Date("2026-07-11T00:00:00");
-    const wedTarget = new Date("2027-05-20T00:00:00");
+    const wedTarget = new Date("2027-10-08T00:00:00");
     const relStart  = new Date("2025-08-15T00:00:00");
     const ENG_TOTAL = 103, WED_TOTAL = 417;
     const fmtDate = d => d.toLocaleDateString("en-GB", {weekday:"long",year:"numeric",month:"long",day:"numeric"});
@@ -8412,7 +8416,7 @@ function renderQuizScores() {
         if (unlocked && e.quotes && e.quotes.length) {
             quotes = e.quotes.map(q => '<div class="pdfb-quote">' + esc(q) + '</div>').join("");
         } else if (e.quotes && e.quotes.length) {
-            quotes = '<div class="pdfb-muted">🔒 Our words for this day are still sealed until ' + esc(e.date) + '</div>';
+            quotes = '<div class="pdfb-muted">🔒 Our words for this day are still sealed until ' + esc(e.unlockDate || e.date) + '</div>';
         }
         return '<div class="pdfb-card">' +
             '<div class="pdfb-card-top"><span class="pdfb-tag">' + e.emoji + '</span><span class="pdfb-date">' + esc(e.date) + '</span></div>' +
@@ -8663,7 +8667,7 @@ function renderQuizScores() {
             /* ---- our story ---- */
             if (opts.story) {
                 bookSectionStart("👩‍❤️‍👨", "Our Story", "Every step of our journey");
-                tlEvents.forEach(e => bookAdd(pdfStoryHTML(e, Date.now() >= new Date(e.ts).getTime())));
+                tlEvents.forEach(e => bookAdd(pdfStoryHTML(e, tlIsUnlocked(e))));
             }
 
             /* ---- memories ---- */
